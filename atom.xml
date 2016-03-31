@@ -95,7 +95,7 @@
     <link href="http://edolphin-ydf.github.io/2016/03/30/rpc-design-and-implement/"/>
     <id>http://edolphin-ydf.github.io/2016/03/30/rpc-design-and-implement/</id>
     <published>2016-03-31T02:48:08.000Z</published>
-    <updated>2016-03-31T08:39:50.016Z</updated>
+    <updated>2016-03-31T09:47:12.892Z</updated>
     
     <content type="html">&lt;hr&gt;
 &lt;p&gt;Rpc应该建立在&lt;/p&gt;
@@ -128,6 +128,7 @@
 &lt;li&gt;CAPP:得到函数调用结果&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;为了简单，下面所讨论的RPC都只是一种简单的RPC, 请求和返回的都是继承自MessageLite的消息&lt;/p&gt;
 &lt;p&gt;即：&lt;/p&gt;
 &lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;MessageLite &lt;span class=&quot;title&quot;&gt;rpcCall&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(MessageLite msg)&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -207,7 +208,26 @@
 &lt;p&gt;分层&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;应用层&lt;/li&gt;
-&lt;
+&lt;li&gt;RPC层&lt;/li&gt;
+&lt;li&gt;消息传输层(protobuf on netty)&lt;/li&gt;
+&lt;li&gt;网络框架层(netty)&lt;/li&gt;
+&lt;li&gt;网络通信层(socket)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;先暂时忽略掉底层 东西，考虑一个Rpc流程……&lt;/p&gt;
+&lt;p&gt;C(客户端)， S(服务器)&lt;/p&gt;
+&lt;p&gt;APP(应用层), RPC(Rpc层)&lt;/p&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;CAPP:调用一个方法-&amp;gt;&lt;/li&gt;
+&lt;li&gt;CRPC:将方法参数序列化通过网络传输到服务器-&amp;gt;&lt;/li&gt;
+&lt;li&gt;SRPC:收到数据反序列化为消息，然后调用相应处理方法-&amp;gt;&lt;/li&gt;
+&lt;li&gt;SAPP:一个普通方法被调用，并返回数据-&amp;gt;&lt;/li&gt;
+&lt;li&gt;SRPC:将应用层返回的数据序列化，通过网络返回给客户端-&amp;gt;&lt;/li&gt;
+&lt;li&gt;CRPC:收到服务器返回的数据，反序列化之后，传递给应用层-&amp;gt;&lt;/li&gt;
+&lt;li&gt;CAPP:得到函数调用结果&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
     
     </summary>
     
