@@ -109,13 +109,13 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
+                        <li>Menu</li>
+                        <li>Tags</li>
                         
-                        <li>友情链接</li>
+                        <li>Friends</li>
                         
                         
-                        <li>关于我</li>
+                        <li>About Me</li>
                         
                     </ul>
                 </div>
@@ -156,7 +156,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a>
+                        <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a>
                     </div>
                 </section>
                 
@@ -233,6 +233,77 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-hexo目录及github管理" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/31/hexo目录及github管理/" class="article-date">
+      <time datetime="2016-03-31T15:06:12.000Z" itemprop="datePublished">2016-03-31</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/31/hexo目录及github管理/">hexo目录及github管理</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <hr>
+<h2 id="git-submodule"><a href="#git-submodule" class="headerlink" title="git submodule"></a>git submodule</h2><p>看名字就知道是什么东西了，在一个repo中添加另一个repo为字模块的命令，具体参考官方文档<br><a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E5%AD%90%E6%A8%A1%E5%9D%97" target="_blank" rel="external">git submodule</a></p>
+<p>主要用到下面几个命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">添加一个字模块</span><br><span class="line">git submodule add &lt;repo url&gt;|&lt;repo dir&gt;</span><br><span class="line"></span><br><span class="line">从git clone之后，需要对字模块进行初始化，</span><br><span class="line">git submodule init</span><br><span class="line">并且clone字模块的代码</span><br><span class="line">git submodule update</span><br></pre></td></tr></table></figure>
+<h2 id="blog-目录结构"><a href="#blog-目录结构" class="headerlink" title="blog 目录结构"></a>blog 目录结构</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">blog						 #1</span><br><span class="line">├── edolphin-ydf.github	 #2</span><br><span class="line">├── pub						#3</span><br></pre></td></tr></table></figure>
+<ol>
+<li>1处存在一个repo， 用于存放整个由hexo init生成的目录</li>
+<li>2处存在一个repo， 对应github pages对应的repo 用于厨房由hexo generate生成的静态页面</li>
+<li>3处存在一个是由hexo generate 生成的文件的目录</li>
+</ol>
+<p>其中，2作为1的子模块</p>
+<p>由于涉及到两个repo，所以发布的时候，没有使用hexo的deploy命令, 而是一个简单的脚本实现</p>
+<p>commit.sh<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#进入到字模块提交</span></span><br><span class="line"><span class="built_in">cd</span> edolphin-ydf.github.io/</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"<span class="variable">$1</span>"</span></span><br><span class="line">git push</span><br><span class="line"><span class="built_in">cd</span> ../		<span class="comment">#返回到根目录</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#提交根目录</span></span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"<span class="variable">$1</span>"</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure></p>
+<p>deploy.sh<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo g  		<span class="comment">#发布前生成最文件</span></span><br><span class="line">cp -rf public/* edolphin-ydf.github.io/			<span class="comment">#拷贝最新的文件到字模块中</span></span><br><span class="line">./commit.sh <span class="string">"commit"</span>	<span class="comment">#调用commit脚本，因为博客的提交都很随意，所以这里提交信息也就写死为commit了</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="关于字模块一点注意"><a href="#关于字模块一点注意" class="headerlink" title="关于字模块一点注意"></a>关于字模块一点注意</h2><p>通过git clone blog, git submodule init, git submodule update 之后，字模块所在的分支是一个单独的分支，<br>需要使用git checkout master切换到主分支或者其他用到的分支上去</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-maven版本管理" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -395,14 +466,14 @@
                 &copy; 2016 edolphin
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo">Yelee</a> by MOxFIVE
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" >本站到访数: 
+                        <span id="site-visit" >Site Visitors: 
                             <span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
@@ -412,7 +483,7 @@
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit">本页阅读量: 
+                        <span id="page-visit">Page Hits: 
                             <span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
@@ -466,9 +537,9 @@ MathJax.Hub.Queue(function() {
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
 </div>
 
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
