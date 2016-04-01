@@ -251,7 +251,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/01/vim-build-in-ubuntu/">vim-build-in-ubuntu</a>
+      <a class="article-title" href="/2016/04/01/vim-build-in-ubuntu/">build vim in ubuntu with lua, python</a>
     </h1>
   
 
@@ -510,7 +510,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>&#x53EA;&#x6709;&#x4E00;&#x4E24;&#x4E2A;&#x9879;&#x76EE;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x6A21;&#x5757;&#x7248;&#x672C;&#x7BA1;&#x7406;&#x8FD8;&#x7B97;&#x5BB9;&#x6613;&#xFF0C;&#x4F46;&#x662F;&#x5F53;&#x6A21;&#x5757;&#x591A;&#x4E86;&#x4E4B;&#x540E;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x590D;&#x6742;&#x7684;&#x8BA9;&#x4EBA;&#x6293;&#x72C2;&#x4E86;</p>
+              <p>只有一两个项目的情况下，模块版本管理还算容易，但是当模块多了之后，那么就复杂的让人抓狂了</p>
           
       
     </div>
@@ -572,34 +572,34 @@
       
           
               <hr>
-<p>Rpc&#x5E94;&#x8BE5;&#x5EFA;&#x7ACB;&#x5728;</p>
+<p>Rpc应该建立在</p>
 <ul>
-<li>&#x7F51;&#x7EDC;&#x901A;&#x4FE1;&#xFF08;socket&#xFF0C;netty&#x2026;&#x2026;&#xFF09;</li>
-<li>&#x6D88;&#x606F;&#xFF08;protobuf&#xFF0C;thrift&#x2026;&#x2026;&#xFF09;</li>
+<li>网络通信（socket，netty……）</li>
+<li>消息（protobuf，thrift……）</li>
 </ul>
-<p>&#x7684;&#x57FA;&#x7840;&#x4E4B;&#x4E0A;</p>
+<p>的基础之上</p>
 <hr>
-<p>&#x5206;&#x5C42;</p>
+<p>分层</p>
 <ul>
-<li>&#x5E94;&#x7528;&#x5C42;</li>
-<li>RPC&#x5C42;</li>
-<li>&#x6D88;&#x606F;&#x4F20;&#x8F93;&#x5C42;(protobuf on netty)</li>
-<li>&#x7F51;&#x7EDC;&#x6846;&#x67B6;&#x5C42;(netty)</li>
-<li>&#x7F51;&#x7EDC;&#x901A;&#x4FE1;&#x5C42;(socket)</li>
+<li>应用层</li>
+<li>RPC层</li>
+<li>消息传输层(protobuf on netty)</li>
+<li>网络框架层(netty)</li>
+<li>网络通信层(socket)</li>
 </ul>
 <hr>
-<p>&#x5148;&#x6682;&#x65F6;&#x5FFD;&#x7565;&#x6389;&#x5E95;&#x5C42; &#x4E1C;&#x897F;&#xFF0C;&#x8003;&#x8651;&#x4E00;&#x4E2A;Rpc&#x6D41;&#x7A0B;&#x2026;&#x2026;</p>
-<p>C(&#x5BA2;&#x6237;&#x7AEF;)&#xFF0C; S(&#x670D;&#x52A1;&#x5668;)</p>
-<p>APP(&#x5E94;&#x7528;&#x5C42;), RPC(Rpc&#x5C42;)</p>
+<p>先暂时忽略掉底层 东西，考虑一个Rpc流程……</p>
+<p>C(客户端)， S(服务器)</p>
+<p>APP(应用层), RPC(Rpc层)</p>
 <hr>
 <ul>
-<li>CAPP:&#x8C03;&#x7528;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;-&gt;</li>
-<li>CRPC:&#x5C06;&#x65B9;&#x6CD5;&#x53C2;&#x6570;&#x5E8F;&#x5217;&#x5316;&#x901A;&#x8FC7;&#x7F51;&#x7EDC;&#x4F20;&#x8F93;&#x5230;&#x670D;&#x52A1;&#x5668;-&gt;</li>
-<li>SRPC:&#x6536;&#x5230;&#x6570;&#x636E;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x4E3A;&#x6D88;&#x606F;&#xFF0C;&#x7136;&#x540E;&#x8C03;&#x7528;&#x76F8;&#x5E94;&#x5904;&#x7406;&#x65B9;&#x6CD5;-&gt;</li>
-<li>SAPP:&#x4E00;&#x4E2A;&#x666E;&#x901A;&#x65B9;&#x6CD5;&#x88AB;&#x8C03;&#x7528;&#xFF0C;&#x5E76;&#x8FD4;&#x56DE;&#x6570;&#x636E;-&gt;</li>
-<li>SRPC:&#x5C06;&#x5E94;&#x7528;&#x5C42;&#x8FD4;&#x56DE;&#x7684;&#x6570;&#x636E;&#x5E8F;&#x5217;&#x5316;&#xFF0C;&#x901A;&#x8FC7;&#x7F51;&#x7EDC;&#x8FD4;&#x56DE;&#x7ED9;&#x5BA2;&#x6237;&#x7AEF;-&gt;</li>
-<li>CRPC:&#x6536;&#x5230;&#x670D;&#x52A1;&#x5668;&#x8FD4;&#x56DE;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x4E4B;&#x540E;&#xFF0C;&#x4F20;&#x9012;&#x7ED9;&#x5E94;&#x7528;&#x5C42;-&gt;</li>
-<li>CAPP:&#x5F97;&#x5230;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x7ED3;&#x679C;</li>
+<li>CAPP:调用一个方法-&gt;</li>
+<li>CRPC:将方法参数序列化通过网络传输到服务器-&gt;</li>
+<li>SRPC:收到数据反序列化为消息，然后调用相应处理方法-&gt;</li>
+<li>SAPP:一个普通方法被调用，并返回数据-&gt;</li>
+<li>SRPC:将应用层返回的数据序列化，通过网络返回给客户端-&gt;</li>
+<li>CRPC:收到服务器返回的数据，反序列化之后，传递给应用层-&gt;</li>
+<li>CAPP:得到函数调用结果</li>
 </ul>
 <hr>
           
