@@ -156,7 +156,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/vim/" style="font-size: 20px;">vim</a>
+                        <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/java/" style="font-size: 15px;">java</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/vim/" style="font-size: 20px;">vim</a>
                     </div>
                 </section>
                 
@@ -233,6 +233,64 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-vim-build-in-ubuntu" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/01/vim-build-in-ubuntu/" class="article-date">
+      <time datetime="2016-04-01T15:09:18.000Z" itemprop="datePublished">2016-04-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/01/vim-build-in-ubuntu/">vim-build-in-ubuntu</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>this build step make the vim with features python, lua, clientserver and so on<br>and exclude luajit(a plugin color_coded need lua but not luajit)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">#remove the default vim in ubuntu</span><br><span class="line">sudo apt-get remove vim vim-runtime vim-gnome vim-tiny vim-common vim-gui-common</span><br><span class="line"></span><br><span class="line">#and some depency for vim</span><br><span class="line">sudo apt-get purge vim vim-runtime vim-gnome vim-tiny vim-common vim-gui-common</span><br><span class="line">sudo apt-get build-dep vim-gnome</span><br><span class="line">sudo apt-get install libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev ruby-dev mercurial</span><br><span class="line">sudo apt-get install lua5.3 liblua5.3-dev	#i need build vim with lua, so install liblua first</span><br><span class="line"></span><br><span class="line">#build the lua lib directory</span><br><span class="line">cd /usr/include/lua5.3/</span><br><span class="line">mkdir include</span><br><span class="line">cp ./*.h ./include</span><br><span class="line">mkdir lib</span><br><span class="line">cd lib</span><br><span class="line">ln -s /usr/lib/x86_64-linux-gnu/liblua5.2.so ./liblua.so</span><br><span class="line">ln -s /usr/lib/x86_64-linux-gnu/liblua5.2.a ./liblua.a 	#maybe this is not nessary</span><br><span class="line"></span><br><span class="line"># so the /usr/include/lua5.3/ looks like this, anyway, make it like this</span><br><span class="line">.</span><br><span class="line">&#x251C;&#x2500;&#x2500; include</span><br><span class="line">&#x2502;&#xA0;&#xA0; &#x251C;&#x2500;&#x2500; lauxlib.h</span><br><span class="line">&#x2502;&#xA0;&#xA0; &#x251C;&#x2500;&#x2500; luaconf.h</span><br><span class="line">&#x2502;&#xA0;&#xA0; &#x251C;&#x2500;&#x2500; lua.h</span><br><span class="line">&#x2502;&#xA0;&#xA0; &#x2514;&#x2500;&#x2500; lualib.h</span><br><span class="line">&#x251C;&#x2500;&#x2500; lauxlib.h</span><br><span class="line">&#x251C;&#x2500;&#x2500; lib</span><br><span class="line">&#x2502;&#xA0;&#xA0; &#x251C;&#x2500;&#x2500; liblua.a -&gt; /usr/lib/x86_64-linux-gnu/liblua5.3.a</span><br><span class="line">&#x2502;&#xA0;&#xA0; &#x2514;&#x2500;&#x2500; liblua.so -&gt; /usr/lib/x86_64-linux-gnu/liblua5.3.so</span><br><span class="line"></span><br><span class="line">#goto any directory you like, then download and build the vim</span><br><span class="line">git clone https://github.com/vim/vim.git</span><br><span class="line">cd vim/src</span><br><span class="line">./configure -with-features=huge \</span><br><span class="line">-enable-cscope \</span><br><span class="line">-enable-rubyinterp \</span><br><span class="line">-enable-largefile \</span><br><span class="line">-disable-netbeans \</span><br><span class="line">-enable-pythoninterp \</span><br><span class="line">-with-python-config-dir=/usr/lib/python2.7/config \</span><br><span class="line">-enable-perlinterp \</span><br><span class="line">-enable-luainterp \</span><br><span class="line">-enable-fail-if-missing \</span><br><span class="line">-with-lua-prefix=/usr/include/lua5.3 \</span><br><span class="line">-enable-gui=gnome2 -enable-cscope -prefix=/usr</span><br><span class="line">make -j20</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-write-blog-with-vim" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -452,7 +510,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>只有一两个项目的情况下，模块版本管理还算容易，但是当模块多了之后，那么就复杂的让人抓狂了</p>
+              <p>&#x53EA;&#x6709;&#x4E00;&#x4E24;&#x4E2A;&#x9879;&#x76EE;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x6A21;&#x5757;&#x7248;&#x672C;&#x7BA1;&#x7406;&#x8FD8;&#x7B97;&#x5BB9;&#x6613;&#xFF0C;&#x4F46;&#x662F;&#x5F53;&#x6A21;&#x5757;&#x591A;&#x4E86;&#x4E4B;&#x540E;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x590D;&#x6742;&#x7684;&#x8BA9;&#x4EBA;&#x6293;&#x72C2;&#x4E86;</p>
           
       
     </div>
@@ -514,34 +572,34 @@
       
           
               <hr>
-<p>Rpc应该建立在</p>
+<p>Rpc&#x5E94;&#x8BE5;&#x5EFA;&#x7ACB;&#x5728;</p>
 <ul>
-<li>网络通信（socket，netty……）</li>
-<li>消息（protobuf，thrift……）</li>
+<li>&#x7F51;&#x7EDC;&#x901A;&#x4FE1;&#xFF08;socket&#xFF0C;netty&#x2026;&#x2026;&#xFF09;</li>
+<li>&#x6D88;&#x606F;&#xFF08;protobuf&#xFF0C;thrift&#x2026;&#x2026;&#xFF09;</li>
 </ul>
-<p>的基础之上</p>
+<p>&#x7684;&#x57FA;&#x7840;&#x4E4B;&#x4E0A;</p>
 <hr>
-<p>分层</p>
+<p>&#x5206;&#x5C42;</p>
 <ul>
-<li>应用层</li>
-<li>RPC层</li>
-<li>消息传输层(protobuf on netty)</li>
-<li>网络框架层(netty)</li>
-<li>网络通信层(socket)</li>
+<li>&#x5E94;&#x7528;&#x5C42;</li>
+<li>RPC&#x5C42;</li>
+<li>&#x6D88;&#x606F;&#x4F20;&#x8F93;&#x5C42;(protobuf on netty)</li>
+<li>&#x7F51;&#x7EDC;&#x6846;&#x67B6;&#x5C42;(netty)</li>
+<li>&#x7F51;&#x7EDC;&#x901A;&#x4FE1;&#x5C42;(socket)</li>
 </ul>
 <hr>
-<p>先暂时忽略掉底层 东西，考虑一个Rpc流程……</p>
-<p>C(客户端)， S(服务器)</p>
-<p>APP(应用层), RPC(Rpc层)</p>
+<p>&#x5148;&#x6682;&#x65F6;&#x5FFD;&#x7565;&#x6389;&#x5E95;&#x5C42; &#x4E1C;&#x897F;&#xFF0C;&#x8003;&#x8651;&#x4E00;&#x4E2A;Rpc&#x6D41;&#x7A0B;&#x2026;&#x2026;</p>
+<p>C(&#x5BA2;&#x6237;&#x7AEF;)&#xFF0C; S(&#x670D;&#x52A1;&#x5668;)</p>
+<p>APP(&#x5E94;&#x7528;&#x5C42;), RPC(Rpc&#x5C42;)</p>
 <hr>
 <ul>
-<li>CAPP:调用一个方法-&gt;</li>
-<li>CRPC:将方法参数序列化通过网络传输到服务器-&gt;</li>
-<li>SRPC:收到数据反序列化为消息，然后调用相应处理方法-&gt;</li>
-<li>SAPP:一个普通方法被调用，并返回数据-&gt;</li>
-<li>SRPC:将应用层返回的数据序列化，通过网络返回给客户端-&gt;</li>
-<li>CRPC:收到服务器返回的数据，反序列化之后，传递给应用层-&gt;</li>
-<li>CAPP:得到函数调用结果</li>
+<li>CAPP:&#x8C03;&#x7528;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;-&gt;</li>
+<li>CRPC:&#x5C06;&#x65B9;&#x6CD5;&#x53C2;&#x6570;&#x5E8F;&#x5217;&#x5316;&#x901A;&#x8FC7;&#x7F51;&#x7EDC;&#x4F20;&#x8F93;&#x5230;&#x670D;&#x52A1;&#x5668;-&gt;</li>
+<li>SRPC:&#x6536;&#x5230;&#x6570;&#x636E;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x4E3A;&#x6D88;&#x606F;&#xFF0C;&#x7136;&#x540E;&#x8C03;&#x7528;&#x76F8;&#x5E94;&#x5904;&#x7406;&#x65B9;&#x6CD5;-&gt;</li>
+<li>SAPP:&#x4E00;&#x4E2A;&#x666E;&#x901A;&#x65B9;&#x6CD5;&#x88AB;&#x8C03;&#x7528;&#xFF0C;&#x5E76;&#x8FD4;&#x56DE;&#x6570;&#x636E;-&gt;</li>
+<li>SRPC:&#x5C06;&#x5E94;&#x7528;&#x5C42;&#x8FD4;&#x56DE;&#x7684;&#x6570;&#x636E;&#x5E8F;&#x5217;&#x5316;&#xFF0C;&#x901A;&#x8FC7;&#x7F51;&#x7EDC;&#x8FD4;&#x56DE;&#x7ED9;&#x5BA2;&#x6237;&#x7AEF;-&gt;</li>
+<li>CRPC:&#x6536;&#x5230;&#x670D;&#x52A1;&#x5668;&#x8FD4;&#x56DE;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x4E4B;&#x540E;&#xFF0C;&#x4F20;&#x9012;&#x7ED9;&#x5E94;&#x7528;&#x5C42;-&gt;</li>
+<li>CAPP:&#x5F97;&#x5230;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x7ED3;&#x679C;</li>
 </ul>
 <hr>
           
