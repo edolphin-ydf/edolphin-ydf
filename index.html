@@ -109,13 +109,13 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>Menu</li>
-                        <li>Tags</li>
+                        <li>菜单</li>
+                        <li>标签</li>
                         
-                        <li>Friends</li>
+                        <li>友情链接</li>
                         
                         
-                        <li>About Me</li>
+                        <li>关于我</li>
                         
                     </ul>
                 </div>
@@ -233,6 +233,73 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-flowcharttest" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/14/flowcharttest/" class="article-date">
+      <time datetime="2016-04-14T15:13:30.000Z" itemprop="datePublished">2016-04-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/14/flowcharttest/">flowcharttest</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <div class="flow">st=&gt;start: Start|past:&gt;http://www.google.com[blank]
+e=&gt;end: End:&gt;http://www.google.com
+op1=&gt;operation: My Operation|past
+op2=&gt;operation: Stuff|current
+sub1=&gt;subroutine: My Subroutine|invalid
+cond=&gt;condition: Yes
+or No?|approved:&gt;http://www.google.com
+c2=&gt;condition: Good idea|rejected
+io=&gt;inputoutput: catch something...|request
+
+st-&gt;op1(right)-&gt;cond
+cond(yes, right)-&gt;c2
+cond(no)-&gt;sub1(left)-&gt;op1
+c2(yes)-&gt;io-&gt;e
+c2(no)-&gt;op2-&gt;e</div>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-vim-build-in-ubuntu" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -510,7 +577,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>只有一两个项目的情况下，模块版本管理还算容易，但是当模块多了之后，那么就复杂的让人抓狂了</p>
+              <p>&#x53EA;&#x6709;&#x4E00;&#x4E24;&#x4E2A;&#x9879;&#x76EE;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x6A21;&#x5757;&#x7248;&#x672C;&#x7BA1;&#x7406;&#x8FD8;&#x7B97;&#x5BB9;&#x6613;&#xFF0C;&#x4F46;&#x662F;&#x5F53;&#x6A21;&#x5757;&#x591A;&#x4E86;&#x4E4B;&#x540E;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x590D;&#x6742;&#x7684;&#x8BA9;&#x4EBA;&#x6293;&#x72C2;&#x4E86;</p>
           
       
     </div>
@@ -572,34 +639,34 @@
       
           
               <hr>
-<p>Rpc应该建立在</p>
+<p>Rpc&#x5E94;&#x8BE5;&#x5EFA;&#x7ACB;&#x5728;</p>
 <ul>
-<li>网络通信（socket，netty……）</li>
-<li>消息（protobuf，thrift……）</li>
+<li>&#x7F51;&#x7EDC;&#x901A;&#x4FE1;&#xFF08;socket&#xFF0C;netty&#x2026;&#x2026;&#xFF09;</li>
+<li>&#x6D88;&#x606F;&#xFF08;protobuf&#xFF0C;thrift&#x2026;&#x2026;&#xFF09;</li>
 </ul>
-<p>的基础之上</p>
+<p>&#x7684;&#x57FA;&#x7840;&#x4E4B;&#x4E0A;</p>
 <hr>
-<p>分层</p>
+<p>&#x5206;&#x5C42;</p>
 <ul>
-<li>应用层</li>
-<li>RPC层</li>
-<li>消息传输层(protobuf on netty)</li>
-<li>网络框架层(netty)</li>
-<li>网络通信层(socket)</li>
+<li>&#x5E94;&#x7528;&#x5C42;</li>
+<li>RPC&#x5C42;</li>
+<li>&#x6D88;&#x606F;&#x4F20;&#x8F93;&#x5C42;(protobuf on netty)</li>
+<li>&#x7F51;&#x7EDC;&#x6846;&#x67B6;&#x5C42;(netty)</li>
+<li>&#x7F51;&#x7EDC;&#x901A;&#x4FE1;&#x5C42;(socket)</li>
 </ul>
 <hr>
-<p>先暂时忽略掉底层 东西，考虑一个Rpc流程……</p>
-<p>C(客户端)， S(服务器)</p>
-<p>APP(应用层), RPC(Rpc层)</p>
+<p>&#x5148;&#x6682;&#x65F6;&#x5FFD;&#x7565;&#x6389;&#x5E95;&#x5C42; &#x4E1C;&#x897F;&#xFF0C;&#x8003;&#x8651;&#x4E00;&#x4E2A;Rpc&#x6D41;&#x7A0B;&#x2026;&#x2026;</p>
+<p>C(&#x5BA2;&#x6237;&#x7AEF;)&#xFF0C; S(&#x670D;&#x52A1;&#x5668;)</p>
+<p>APP(&#x5E94;&#x7528;&#x5C42;), RPC(Rpc&#x5C42;)</p>
 <hr>
 <ul>
-<li>CAPP:调用一个方法-&gt;</li>
-<li>CRPC:将方法参数序列化通过网络传输到服务器-&gt;</li>
-<li>SRPC:收到数据反序列化为消息，然后调用相应处理方法-&gt;</li>
-<li>SAPP:一个普通方法被调用，并返回数据-&gt;</li>
-<li>SRPC:将应用层返回的数据序列化，通过网络返回给客户端-&gt;</li>
-<li>CRPC:收到服务器返回的数据，反序列化之后，传递给应用层-&gt;</li>
-<li>CAPP:得到函数调用结果</li>
+<li>CAPP:&#x8C03;&#x7528;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;-&gt;</li>
+<li>CRPC:&#x5C06;&#x65B9;&#x6CD5;&#x53C2;&#x6570;&#x5E8F;&#x5217;&#x5316;&#x901A;&#x8FC7;&#x7F51;&#x7EDC;&#x4F20;&#x8F93;&#x5230;&#x670D;&#x52A1;&#x5668;-&gt;</li>
+<li>SRPC:&#x6536;&#x5230;&#x6570;&#x636E;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x4E3A;&#x6D88;&#x606F;&#xFF0C;&#x7136;&#x540E;&#x8C03;&#x7528;&#x76F8;&#x5E94;&#x5904;&#x7406;&#x65B9;&#x6CD5;-&gt;</li>
+<li>SAPP:&#x4E00;&#x4E2A;&#x666E;&#x901A;&#x65B9;&#x6CD5;&#x88AB;&#x8C03;&#x7528;&#xFF0C;&#x5E76;&#x8FD4;&#x56DE;&#x6570;&#x636E;-&gt;</li>
+<li>SRPC:&#x5C06;&#x5E94;&#x7528;&#x5C42;&#x8FD4;&#x56DE;&#x7684;&#x6570;&#x636E;&#x5E8F;&#x5217;&#x5316;&#xFF0C;&#x901A;&#x8FC7;&#x7F51;&#x7EDC;&#x8FD4;&#x56DE;&#x7ED9;&#x5BA2;&#x6237;&#x7AEF;-&gt;</li>
+<li>CRPC:&#x6536;&#x5230;&#x670D;&#x52A1;&#x5668;&#x8FD4;&#x56DE;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x4E4B;&#x540E;&#xFF0C;&#x4F20;&#x9012;&#x7ED9;&#x5E94;&#x7528;&#x5C42;-&gt;</li>
+<li>CAPP:&#x5F97;&#x5230;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x7ED3;&#x679C;</li>
 </ul>
 <hr>
           
@@ -644,14 +711,14 @@
                 &copy; 2016 edolphin
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo">Yelee</a> by MOxFIVE
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" >Site Visitors: 
+                        <span id="site-visit" >本站到访数: 
                             <span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
@@ -661,7 +728,7 @@
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit">Page Hits: 
+                        <span id="page-visit">本页阅读量: 
                             <span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
@@ -672,7 +739,12 @@
 </footer>
     </div>
     
-<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.1.22/require.min.js"></script>
+<script src="http://cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+<script src="/js/mobile.js"></script>
+<script src="/js/pc.js"></script>
+<script src="/fancybox/jquery.fancybox.js"></script>
+<script src="/js/jquery.lazyload.js"></script>
+<script src="/js/main.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -715,13 +787,74 @@ MathJax.Hub.Queue(function() {
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" title="Comments"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
 </div>
 
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
+
+<script src="/js/raphael.js"></script>
+<script src="/js/underscore.js"></script>
+<script src="/js/sequence-diagram.js"></script>
+<script src="/js/flowchart.js"></script>
+
+<!-- Chart Render -->
+<script type="text/javascript">
+  $(".sequence").sequenceDiagram({theme: 'simple'});
+  var flowCount = 0;
+  $(".flow").each(function() {
+      var el = $(this);
+      el.hide();
+      el.after('<div id="flow-' + flowCount + '"></div>');
+      var chart = flowchart.parse(el.text());
+      chart.drawSVG('flow-' + flowCount, {
+                      // 'x': 30,
+                      // 'y': 50,
+                      'line-width': 3,
+                      'line-length': 50,
+                      'text-margin': 10,
+                      'font-size': 14,
+                      'font': 'normal',
+                      'font-family': 'Helvetica',
+                      'font-weight': 'normal',
+                      'font-color': 'black',
+                      'line-color': 'black',
+                      'element-color': 'black',
+                      'fill': 'white',
+                      'yes-text': 'yes',
+                      'no-text': 'no',
+                      'arrow-end': 'block',
+                      'scale': 1,
+                      'symbols': {
+                        'start': {
+                          'font-color': 'red',
+                          'element-color': 'green',
+                          'fill': 'yellow'
+                        },
+                        'end':{
+                          'class': 'end-element'
+                        }
+                      },
+                      'flowstate' : {
+                        'past' : { 'fill' : '#CCCCCC', 'font-size' : 12},
+                        'current' : {'fill' : 'yellow', 'font-color' : 'red', 'font-weight' : 'bold'},
+                        'future' : { 'fill' : '#FFFF99'},
+                        'request' : { 'fill' : 'blue'},
+                        'invalid': {'fill' : '#444444'},
+                        'approved' : { 'fill' : '#58C4A3', 'font-size' : 12, 'yes-text' : 'APPROVED', 'no-text' : 'n/a' },
+                        'rejected' : { 'fill' : '#C45879', 'font-size' : 12, 'yes-text' : 'n/a', 'no-text' : 'REJECTED' }
+                      }
+				});
+      flowCount++;
+  });
+</script>
+<!-- End Chart Render -->
+
+
+
+
   </div>
 </body>
 </html>
