@@ -276,6 +276,14 @@ cond(yes, right)-&gt;c2
 cond(no)-&gt;sub1(left)-&gt;op1
 c2(yes)-&gt;io-&gt;e
 c2(no)-&gt;op2-&gt;e</div>
+<div class="sequence">Title:login flow
+User-&gt;Browser: Open Browser
+Browser-&gt;App1Server:  www.appserver.com
+App1Server-&gt;Browser: not signin, redirect to cas server
+Browser-&gt;CasServer: request open cas login view with server=www.appserver.com
+CasServer-&gt;Browser: return login view
+Browser-&gt;CasServer: request login with pwd and uname
+CasServer-&gt;Browser: login success, generate tgt and st, redirect to app1</div>
 
       
     </div>
