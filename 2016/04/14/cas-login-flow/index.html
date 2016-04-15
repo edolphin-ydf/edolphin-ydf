@@ -3,17 +3,36 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: hexo | Server Not Down</title>
+  <title>cas单点登录基本流程 | Server Not Down</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Server Not Down">
-<meta property="og:url" content="http://edolphin.site/tags/hexo/index.html">
+  <meta name="description" content="还有很多细节，待完善st=&amp;gt;start: Start|past
+ulogin=&amp;gt;operation: 用户请求app服务器任意需要登录页面
+www.appserver1.com/testpage|past
+
+hasLogin=&amp;gt;condition: 是否已经登录?
+toFuncPage=&amp;gt;operation: 直接进入请求页面|approved
+retRedirToCasL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cas单点登录基本流程">
+<meta property="og:url" content="http://edolphin.site/2016/04/14/cas-login-flow/index.html">
 <meta property="og:site_name" content="Server Not Down">
-<meta property="og:description">
+<meta property="og:description" content="还有很多细节，待完善st=&amp;gt;start: Start|past
+ulogin=&amp;gt;operation: 用户请求app服务器任意需要登录页面
+www.appserver1.com/testpage|past
+
+hasLogin=&amp;gt;condition: 是否已经登录?
+toFuncPage=&amp;gt;operation: 直接进入请求页面|approved
+retRedirToCasL">
+<meta property="og:updated_time" content="2016-04-15T03:08:40.428Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Server Not Down">
-<meta name="twitter:description">
+<meta name="twitter:title" content="cas单点登录基本流程">
+<meta name="twitter:description" content="还有很多细节，待完善st=&amp;gt;start: Start|past
+ulogin=&amp;gt;operation: 用户请求app服务器任意需要登录页面
+www.appserver1.com/testpage|past
+
+hasLogin=&amp;gt;condition: 是否已经登录?
+toFuncPage=&amp;gt;operation: 直接进入请求页面|approved
+retRedirToCasL">
   
     <link rel="alternative" href="/atom.xml" title="Server Not Down" type="application/atom+xml">
   
@@ -42,9 +61,9 @@
           fancybox: true,
           animate: true,
           isHome: false,
-          isPost: false,
+          isPost: true,
           isArchive: false,
-          isTag: true,
+          isTag: false,
           isCategory: false,
           open_in_new: true,
       }
@@ -227,85 +246,239 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-cas-login-flow" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/04/01/write-blog-with-vim/" class="archive-article-date">
-      <time datetime="2016-04-01T13:19:07.000Z" itemprop="datePublished">04-01</time>
+    <div class="article-meta">
+      <a href="/2016/04/14/cas-login-flow/" class="article-date">
+      <time datetime="2016-04-15T01:48:01.000Z" itemprop="datePublished">2016-04-14</time>
 </a>
-        </div>
-         
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/01/write-blog-with-vim/">在windows下通过xshell连接ubuntu写blog</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      cas单点登录基本流程
     </h1>
   
 
-        <div class="article-info info-on-archive">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 
-          
+        
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cas/">cas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
     </div>
 
-        </div>
         <div class="clearfix"></div>
-    </header>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>还有很多细节，待完善<br><div class="flow">st=&gt;start: Start|past
+ulogin=&gt;operation: 用户请求app服务器任意需要登录页面
+www.appserver1.com/testpage|past
+
+hasLogin=&gt;condition: 是否已经登录?
+toFuncPage=&gt;operation: 直接进入请求页面|approved
+retRedirToCasLoginPage=&gt;operation: 返回重定向到cas server登录页面
+302 www.casserver.com/login
+param service=http://www.appserver1.com|rejected
+
+requestCasLoginpage=&gt;operation: 请求cas server登录页面|past
+isServiceValid=&gt;condition: 验证service参数
+是否有效
+loginFail=&gt;operation: 登录失败|rejected
+
+isTgtIsExist=&gt;condition: tgt(ticketGrantingTicket)
+是否存在?|approved
+
+generateLoginTicket=&gt;operation: 生成LoginTicket| rejected
+returnLoginView=&gt;operation: 返回LoginView with lt
+lt=lt-xxxxxxx|past
+doLogin=&gt;operation: 用户输入用户名密码登录|past
+verifyLoginTicket=&gt;condition: lt是否有效
+generateTgt=&gt;operation: 生成tgt(会验证用户名密码是否有效)|past
+isGenTgtSuccess=&gt;condition: 成功？
+addTgtCookie=&gt;operation: 将tgt添加到cookie|past
+
+isTgtIsValid=&gt;condition: tgt是否未过期?|approved
+destoryInvalidTgt=&gt;operation: 销毁无效的tgt|rejected
+generateServiceTicket=&gt;operation: 生成st|past
+retRedirectToApp1ServerLogin=&gt;operation: 返回重定向到app1 server 登录回调
+302 www.appserver1.com/login
+with st=st-123456|past
+requestAppServer=&gt;operation: 请求www.appserver1.com/login|past
+reqVerifySt=&gt;operation: 请求cas server 验证st|past
+isStValid=&gt;condition: st是否有效
+retStValid=&gt;operation: st有效|past
+retStInValid=&gt;operation: st无效|past
+loginSuccess=&gt;operation: 登录成功|past
+
+
+
+sub1=&gt;subroutine: My Subroutine|rejected
+c2=&gt;condition: Good idea|invalid
+op2=&gt;operation: Stuff|current
+io=&gt;inputoutput: catch something...|request
+
+st-&gt;ulogin-&gt;hasLogin
+hasLogin(yes, right)-&gt;toFuncPage
+hasLogin(no)-&gt;retRedirToCasLoginPage-&gt;requestCasLoginpage-&gt;isServiceValid
+isServiceValid(no, right)-&gt;loginFail
+isServiceValid(yes)-&gt;isTgtIsExist
+isTgtIsExist(no)-&gt;generateLoginTicket-&gt;returnLoginView-&gt;doLogin-&gt;verifyLoginTicket
+verifyLoginTicket(no)-&gt;loginFail
+verifyLoginTicket(yes)-&gt;generateTgt-&gt;isGenTgtSuccess
+isGenTgtSuccess(no)-&gt;loginFail
+isGenTgtSuccess(yes)-&gt;addTgtCookie-&gt;generateServiceTicket
+isTgtIsExist(yes, right)-&gt;isTgtIsValid
+isTgtIsValid(no, right)-&gt;destoryInvalidTgt-&gt;generateLoginTicket
+isTgtIsValid(yes)-&gt;generateServiceTicket-&gt;retRedirectToApp1ServerLogin-&gt;requestAppServer-&gt;reqVerifySt-&gt;isStValid
+isStValid(yes)-&gt;retStValid-&gt;loginSuccess
+isStValid(no, right)-&gt;retStInValid-&gt;loginFail</div></p>
+
+      
+    </div>
+    
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/03/31/hexo目录及github管理/" class="archive-article-date">
-      <time datetime="2016-03-31T15:06:12.000Z" itemprop="datePublished">03-31</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/03/31/hexo目录及github管理/">hexo目录及github管理</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/04/14/cas-login-flow/">cas单点登录基本流程</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">edolphin</a></p>
+        <p><span>发布时间:</span>2016-04-14, 18:48:01</p>
+        <p><span>最后更新:</span>2016-04-14, 20:08:40</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/04/14/cas-login-flow/" title="cas单点登录基本流程">http://edolphin.site/2016/04/14/cas-login-flow/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2016/04/14/cas-login-flow/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
     </div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/04/14/flowcharttest/">
+                    flowcharttest
+                </a>
+            </div>
+        
+    </nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+    <div class="share">
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+    <a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+    <a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+    </div>
+    <script>
+        window._bd_share_config={
+            "common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+</div>
+
+
+
+    
+        <section class="youyan" id="comments">
+  <div id="uyan_frame"></div>
+  <script src="http://v2.uyan.cc/code/uyan.js?uid=2092308"></script>
+</section>
 
     
 
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/04/14/flowcharttest/" title="下一篇: flowcharttest">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/cas-login-flow/">cas单点登录基本流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/flowcharttest/">flowcharttest</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/01/vim-build-in-ubuntu/">build vim in ubuntu with lua, python</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/01/write-blog-with-vim/">在windows下通过xshell连接ubuntu写blog</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/vim-plugin-note/">vim_plugin_note</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/hexo目录及github管理/">hexo目录及github管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/maven版本管理/">maven版本管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/30/rpc-design-and-implement/">Rpc的设计与实现</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
