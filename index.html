@@ -317,69 +317,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>还有很多细节，待完善<br><div class="flow">st=&gt;start: Start|past
-ulogin=&gt;operation: 用户请求app服务器任意需要登录页面
-www.appserver1.com/testpage|past
-
-hasLogin=&gt;condition: 是否已经登录?
-toFuncPage=&gt;operation: 直接进入请求页面|approved
-retRedirToCasLoginPage=&gt;operation: 返回重定向到cas server登录页面
-302 www.casserver.com/login
-param service=http://www.appserver1.com|rejected
-
-requestCasLoginpage=&gt;operation: 请求cas server登录页面|past
-isServiceValid=&gt;condition: 验证service参数
-是否有效
-loginFail=&gt;operation: 登录失败|rejected
-
-isTgtIsExist=&gt;condition: tgt(ticketGrantingTicket)
-是否存在?|approved
-
-generateLoginTicket=&gt;operation: 生成LoginTicket| rejected
-returnLoginView=&gt;operation: 返回LoginView with lt
-lt=lt-xxxxxxx|past
-doLogin=&gt;operation: 用户输入用户名密码登录|past
-verifyLoginTicket=&gt;condition: lt是否有效
-generateTgt=&gt;operation: 生成tgt(会验证用户名密码是否有效)|past
-isGenTgtSuccess=&gt;condition: 成功？
-addTgtCookie=&gt;operation: 将tgt添加到cookie|past
-
-isTgtIsValid=&gt;condition: tgt是否未过期?|approved
-destoryInvalidTgt=&gt;operation: 销毁无效的tgt|rejected
-generateServiceTicket=&gt;operation: 生成st|past
-retRedirectToApp1ServerLogin=&gt;operation: 返回重定向到app1 server 登录回调
-302 www.appserver1.com/login
-with st=st-123456|past
-requestAppServer=&gt;operation: 请求www.appserver1.com/login|past
-reqVerifySt=&gt;operation: 请求cas server 验证st|past
-isStValid=&gt;condition: st是否有效
-retStValid=&gt;operation: st有效|past
-retStInValid=&gt;operation: st无效|past
-loginSuccess=&gt;operation: 登录成功|past
-
-
-
-sub1=&gt;subroutine: My Subroutine|rejected
-c2=&gt;condition: Good idea|invalid
-op2=&gt;operation: Stuff|current
-io=&gt;inputoutput: catch something...|request
-
-st-&gt;ulogin-&gt;hasLogin
-hasLogin(yes, right)-&gt;toFuncPage
-hasLogin(no)-&gt;retRedirToCasLoginPage-&gt;requestCasLoginpage-&gt;isServiceValid
-isServiceValid(no, right)-&gt;loginFail
-isServiceValid(yes)-&gt;isTgtIsExist
-isTgtIsExist(no)-&gt;generateLoginTicket-&gt;returnLoginView-&gt;doLogin-&gt;verifyLoginTicket
-verifyLoginTicket(no)-&gt;loginFail
-verifyLoginTicket(yes)-&gt;generateTgt-&gt;isGenTgtSuccess
-isGenTgtSuccess(no)-&gt;loginFail
-isGenTgtSuccess(yes)-&gt;addTgtCookie-&gt;generateServiceTicket
-isTgtIsExist(yes, right)-&gt;isTgtIsValid
-isTgtIsValid(no, right)-&gt;destoryInvalidTgt-&gt;generateLoginTicket
-isTgtIsValid(yes)-&gt;generateServiceTicket-&gt;retRedirectToApp1ServerLogin-&gt;requestAppServer-&gt;reqVerifySt-&gt;isStValid
-isStValid(yes)-&gt;retStValid-&gt;loginSuccess
-isStValid(no, right)-&gt;retStInValid-&gt;loginFail</div></p>
-
+              <p>还有很多细节，待完善<br>
+          
       
     </div>
     
@@ -392,6 +331,10 @@ isStValid(no, right)-&gt;retStInValid-&gt;loginFail</div></p>
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cas/">cas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/04/14/cas-login-flow/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -435,7 +378,7 @@ isStValid(no, right)-&gt;retStInValid-&gt;loginFail</div></p>
     <div class="article-entry" itemprop="articleBody">
       
           
-        <div class="flow">st=&gt;start: Start|past:&gt;http://www.google.com[blank]
+              <p><a href="http://www.suwey.net/2016/03/27/hexo-sequece-flow-chart/">参考链接</a><br><div class="flow">st=&gt;start: Start|past:&gt;http://www.google.com[blank]
 e=&gt;end: End:&gt;http://www.google.com
 op1=&gt;operation: My Operation|past
 op2=&gt;operation: Stuff|current
@@ -449,16 +392,8 @@ st-&gt;op1(right)-&gt;cond
 cond(yes, right)-&gt;c2
 cond(no)-&gt;sub1(left)-&gt;op1
 c2(yes)-&gt;io-&gt;e
-c2(no)-&gt;op2-&gt;e</div>
-<div class="sequence">Title:中文测试
-User-&gt;Browser: Open Browser
-Browser-&gt;App1Server:  www.appserver.com
-App1Server-&gt;Browser: not signin, redirect to cas server
-Browser-&gt;CasServer: request open cas login view with server=www.appserver.com
-CasServer-&gt;Browser: return login view
-Browser-&gt;CasServer: request login with pwd and uname
-CasServer-&gt;Browser: login success, generate tgt and st, redirect to app1</div>
-
+c2(no)-&gt;op2-&gt;e</div></p>
+          
       
     </div>
     
@@ -467,6 +402,10 @@ CasServer-&gt;Browser: login success, generate tgt and st, redirect to app1</div
       
 
       
+      
+        <p class="article-more-link">
+          <a href="/2016/04/14/flowcharttest/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -510,9 +449,8 @@ CasServer-&gt;Browser: login success, generate tgt and st, redirect to app1</div
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>this build step make the vim with features python, lua, clientserver and so on<br>and exclude luajit(a plugin color_coded need lua but not luajit)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">#remove the default vim in ubuntu</span><br><span class="line">sudo apt-get remove vim vim-runtime vim-gnome vim-tiny vim-common vim-gui-common</span><br><span class="line"></span><br><span class="line">#and some dependency for vim</span><br><span class="line">sudo apt-get purge vim vim-runtime vim-gnome vim-tiny vim-common vim-gui-common</span><br><span class="line">sudo apt-get build-dep vim-gnome</span><br><span class="line">sudo apt-get install libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev ruby-dev mercurial</span><br><span class="line">sudo apt-get install lua5.3 liblua5.3-dev	#i need build vim with lua, so install liblua first</span><br><span class="line"></span><br><span class="line">#build the lua lib directory</span><br><span class="line">cd /usr/include/lua5.3/</span><br><span class="line">mkdir include</span><br><span class="line">cp ./*.h ./include</span><br><span class="line">mkdir lib</span><br><span class="line">cd lib</span><br><span class="line">ln -s /usr/lib/x86_64-linux-gnu/liblua5.2.so ./liblua.so</span><br><span class="line">ln -s /usr/lib/x86_64-linux-gnu/liblua5.2.a ./liblua.a 	#maybe this is not nessary</span><br><span class="line"></span><br><span class="line"># so the /usr/include/lua5.3/ looks like this, anyway, make it like this</span><br><span class="line">.</span><br><span class="line">├── include</span><br><span class="line">│   ├── lauxlib.h</span><br><span class="line">│   ├── luaconf.h</span><br><span class="line">│   ├── lua.h</span><br><span class="line">│   └── lualib.h</span><br><span class="line">├── lauxlib.h</span><br><span class="line">├── lib</span><br><span class="line">│   ├── liblua.a -&gt; /usr/lib/x86_64-linux-gnu/liblua5.3.a</span><br><span class="line">│   └── liblua.so -&gt; /usr/lib/x86_64-linux-gnu/liblua5.3.so</span><br><span class="line"></span><br><span class="line">#goto any directory you like, then download and build the vim</span><br><span class="line">git clone https://github.com/vim/vim.git</span><br><span class="line">cd vim/src</span><br><span class="line">./configure -with-features=huge \</span><br><span class="line">-enable-cscope \</span><br><span class="line">-enable-rubyinterp \</span><br><span class="line">-enable-largefile \</span><br><span class="line">-disable-netbeans \</span><br><span class="line">-enable-pythoninterp \</span><br><span class="line">-with-python-config-dir=/usr/lib/python2.7/config \</span><br><span class="line">-enable-perlinterp \</span><br><span class="line">-enable-luainterp \</span><br><span class="line">-enable-fail-if-missing \</span><br><span class="line">-with-lua-prefix=/usr/include/lua5.3 \</span><br><span class="line">-enable-gui=gnome2 -enable-cscope -prefix=/usr</span><br><span class="line">make -j20</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
-
+              <p>this build step make the vim with features python, lua, clientserver and so on<br>and exclude luajit(a plugin color_coded need lua but not luajit)<br>
+          
       
     </div>
     
@@ -525,6 +463,10 @@ CasServer-&gt;Browser: login success, generate tgt and st, redirect to app1</div
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/04/01/vim-build-in-ubuntu/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -639,8 +581,8 @@ CasServer-&gt;Browser: login success, generate tgt and st, redirect to app1</div
     <div class="article-entry" itemprop="articleBody">
       
           
-        <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">"general</span></span><br><span class="line">Bundle <span class="string">'SirVer/ultisnips'</span></span><br><span class="line">Bundle <span class="string">'honza/vim-snippets'</span></span><br><span class="line">Bundle <span class="string">'Lokaltog/vim-powerline'</span></span><br><span class="line">Bundle <span class="string">'kien/ctrlp.vim'</span></span><br><span class="line">Bundle <span class="string">'rking/ag.vim'</span></span><br><span class="line">Bundle <span class="string">'The-NERD-tree'</span></span><br><span class="line">Bundle <span class="string">'The-NERD-Commenter'</span></span><br><span class="line">Bundle <span class="string">'DoxygenToolkit.vim'</span></span><br><span class="line">Bundle <span class="string">'scrooloose/syntastic'</span></span><br><span class="line"><span class="comment">"quickly select the closest text object </span></span><br><span class="line">Bundle <span class="string">'gcmt/wildfire.vim'</span>		</span><br><span class="line">Bundle <span class="string">'vim-scripts/DrawIt'</span></span><br><span class="line"><span class="comment">"like auto pair</span></span><br><span class="line">Bundle <span class="string">'Raimondi/delimitMate'</span>	</span><br><span class="line"><span class="comment">"Bundle 'tpope/vim-surround'</span></span><br><span class="line"><span class="comment">"git</span></span><br><span class="line">Bundle <span class="string">'tpope/vim-fugitive'</span></span><br><span class="line"><span class="comment">"vimshell depends on me</span></span><br><span class="line">Bundle <span class="string">'Shougo/vimproc.vim'</span></span><br><span class="line">Bundle <span class="string">'Shougo/vimshell.vim'</span></span><br><span class="line"><span class="comment">"Bundle 'ervandew/supertab'</span></span><br><span class="line"><span class="comment">"Bundle 'terryma/vim-multiple-cursors'</span></span><br><span class="line"><span class="comment">"Bundle 'yonchu/accelerated-smooth-scroll'</span></span><br><span class="line"><span class="comment">" 将驼峰命名拆分为单词diw</span></span><br><span class="line">Bundle <span class="string">'bkad/CamelCaseMotion'</span>   	</span><br><span class="line"><span class="comment">" 函数参数作为文本对象</span></span><br><span class="line">Bundle <span class="string">'vim-scripts/argtextobj.vim'</span>  </span><br><span class="line"><span class="comment">"Bundle 'terryma/vim-expand-region'</span></span><br><span class="line"><span class="comment">" db operation, eg:exe sql</span></span><br><span class="line"><span class="comment">"Bundle 'dbext.vim'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">"cpp</span></span><br><span class="line">Bundle <span class="string">'a.vim'</span></span><br><span class="line">Bundle <span class="string">'jeaye/color_coded'</span></span><br><span class="line">Bundle <span class="string">'Valloric/YouCompleteMe'</span></span><br><span class="line">Bundle <span class="string">'rdnetto/YCM-Generator'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">"java</span></span><br><span class="line"><span class="comment">"Bundle 'vim-scripts/java_getset.vim'</span></span><br><span class="line"><span class="comment">"Bundle 'artur-shaik/vim-javacomplete2'</span></span><br><span class="line"><span class="comment">"Bundle 'tpope/vim-classpath'</span></span><br><span class="line"><span class="comment">"Bundle 'maven-plugin'</span></span><br><span class="line"><span class="comment">"Bundle 'vim-scripts/maven-ide'</span></span><br><span class="line"><span class="comment">"Bundle 'JavaDecompiler.vim'</span></span><br><span class="line"><span class="comment">"markdown插件</span></span><br><span class="line">Bundle <span class="string">'plasticboy/vim-markdown'</span></span><br></pre></td></tr></table></figure>
-
+              <p>just a note</p>
+          
       
     </div>
     
@@ -653,6 +595,10 @@ CasServer-&gt;Browser: login success, generate tgt and st, redirect to app1</div
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/03/31/vim-plugin-note/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
