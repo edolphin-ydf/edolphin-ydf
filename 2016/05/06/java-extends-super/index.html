@@ -3,18 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>cas单点登录用户认证流程 | Server Not Down</title>
+  <title>java泛型中，extends和super | Server Not Down</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
+  <meta name="description" content="三个基本类型定义12345class Parent &amp;#123;&amp;#125;class SubA extends Parent &amp;#123;&amp;#125;class SubB extends Parent &amp;#123;&amp;#125;
+extends1234List&amp;lt;? extends Parent&amp;gt; list = new ArrayList&amp;lt;&amp;gt;();// 报错list.add(">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cas单点登录用户认证流程">
-<meta property="og:url" content="http://edolphin.site/2016/04/14/cas-user-auth-flow/index.html">
+<meta property="og:title" content="java泛型中，extends和super">
+<meta property="og:url" content="http://edolphin.site/2016/05/06/java-extends-super/index.html">
 <meta property="og:site_name" content="Server Not Down">
-<meta property="og:description">
-<meta property="og:updated_time" content="2016-04-15T03:23:47.059Z">
+<meta property="og:description" content="三个基本类型定义12345class Parent &amp;#123;&amp;#125;class SubA extends Parent &amp;#123;&amp;#125;class SubB extends Parent &amp;#123;&amp;#125;
+extends1234List&amp;lt;? extends Parent&amp;gt; list = new ArrayList&amp;lt;&amp;gt;();// 报错list.add(">
+<meta property="og:updated_time" content="2016-05-07T03:11:02.726Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="cas单点登录用户认证流程">
-<meta name="twitter:description">
+<meta name="twitter:title" content="java泛型中，extends和super">
+<meta name="twitter:description" content="三个基本类型定义12345class Parent &amp;#123;&amp;#125;class SubA extends Parent &amp;#123;&amp;#125;class SubB extends Parent &amp;#123;&amp;#125;
+extends1234List&amp;lt;? extends Parent&amp;gt; list = new ArrayList&amp;lt;&amp;gt;();// 报错list.add(">
   
     <link rel="alternative" href="/atom.xml" title="Server Not Down" type="application/atom+xml">
   
@@ -228,11 +231,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-cas-user-auth-flow" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-java-extends-super" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/04/14/cas-user-auth-flow/" class="article-date">
-      <time datetime="2016-04-15T03:10:22.000Z" itemprop="datePublished">2016-04-14</time>
+      <a href="/2016/05/06/java-extends-super/" class="article-date">
+      <time datetime="2016-05-07T02:53:56.000Z" itemprop="datePublished">2016-05-06</time>
 </a>
     </div>
   
@@ -245,7 +248,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      cas单点登录用户认证流程
+      java泛型中，extends和super
     </h1>
   
 
@@ -256,7 +259,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cas/">cas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -266,7 +269,13 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        
+        <h3 id="三个基本类型定义"><a href="#三个基本类型定义" class="headerlink" title="三个基本类型定义"></a>三个基本类型定义</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubA</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubB</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="extends"><a href="#extends" class="headerlink" title="extends"></a>extends</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;? extends Parent&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="comment">// 报错</span></span><br><span class="line">list.add(<span class="keyword">new</span> SubA());</span><br><span class="line">list.add(<span class="keyword">new</span> SubB());</span><br></pre></td></tr></table></figure>
+<p>报错原因：<br>extends 指定类型的上界，什么意思呢？<br>即：? extends Parent 表示Parent的子类，但是具体不能确定是哪个子类， 可能是SubA， 也可能是SubB， 所以在add时，编译器会报错</p>
+<h3 id="super"><a href="#super" class="headerlink" title="super"></a>super</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;? <span class="keyword">super</span> Parent&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">list.add(<span class="keyword">new</span> SubA());</span><br><span class="line">list.add(<span class="keyword">new</span> SubB());</span><br></pre></td></tr></table></figure>
+<p>编译通过，原因：<br>super指定类型的下界<br>即： ? super Parent 表示类型只能为Parent或Parent的父类， 那么当添加元素时，由于子类可以转换为父类，所以只要是Parent的子类，都可以添加成功</p>
+<p>Remark:用自己最能理解的方式表达出来！</p>
+
       
     </div>
     
@@ -274,13 +283,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/04/14/cas-user-auth-flow/">cas单点登录用户认证流程</a></p>
+        <p><span>本文标题:</span><a href="/2016/05/06/java-extends-super/">java泛型中，extends和super</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">edolphin</a></p>
-        <p><span>发布时间:</span>2016-04-14, 20:10:22</p>
-        <p><span>最后更新:</span>2016-04-14, 20:23:47</p>
+        <p><span>发布时间:</span>2016-05-06, 19:53:56</p>
+        <p><span>最后更新:</span>2016-05-06, 20:11:02</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/04/14/cas-user-auth-flow/" title="cas单点登录用户认证流程">http://edolphin.site/2016/04/14/cas-user-auth-flow/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2016/04/14/cas-user-auth-flow/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/05/06/java-extends-super/" title="java泛型中，extends和super">http://edolphin.site/2016/05/06/java-extends-super/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2016/05/06/java-extends-super/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -293,16 +302,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/05/06/java-extends-super/">
-                    java泛型中，extends和super
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/04/14/cas-login-flow/">
-                    cas单点登录基本流程
+                <a href="/2016/04/14/cas-user-auth-flow/">
+                    cas单点登录用户认证流程
                 </a>
             </div>
         
@@ -313,7 +316,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#三个基本类型定义"><span class="toc-number">1.</span> <span class="toc-text">三个基本类型定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#extends"><span class="toc-number">2.</span> <span class="toc-text">extends</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#super"><span class="toc-number">3.</span> <span class="toc-text">super</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -385,15 +388,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/05/06/java-extends-super/" title="上一篇: java泛型中，extends和super">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/04/14/cas-login-flow/" title="下一篇: cas单点登录基本流程">
+            <a href="/2016/04/14/cas-user-auth-flow/" title="下一篇: cas单点登录用户认证流程">
                 <i class="fa fa-angle-right"></i>
             </a>
         

@@ -234,6 +234,68 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-java-extends-super" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/06/java-extends-super/" class="article-date">
+      <time datetime="2016-05-07T02:53:56.000Z" itemprop="datePublished">2016-05-06</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/06/java-extends-super/">java泛型中，extends和super</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="三个基本类型定义"><a href="#三个基本类型定义" class="headerlink" title="三个基本类型定义"></a>三个基本类型定义</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubA</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubB</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="extends"><a href="#extends" class="headerlink" title="extends"></a>extends</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;? extends Parent&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="comment">// 报错</span></span><br><span class="line">list.add(<span class="keyword">new</span> SubA());</span><br><span class="line">list.add(<span class="keyword">new</span> SubB());</span><br></pre></td></tr></table></figure>
+<p>报错原因：<br>extends 指定类型的上界，什么意思呢？<br>即：? extends Parent 表示Parent的子类，但是具体不能确定是哪个子类， 可能是SubA， 也可能是SubB， 所以在add时，编译器会报错</p>
+<h3 id="super"><a href="#super" class="headerlink" title="super"></a>super</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;? <span class="keyword">super</span> Parent&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">list.add(<span class="keyword">new</span> SubA());</span><br><span class="line">list.add(<span class="keyword">new</span> SubB());</span><br></pre></td></tr></table></figure>
+<p>编译通过，原因：<br>super指定类型的下界<br>即： ? super Parent 表示类型只能为Parent或Parent的父类， 那么当添加元素时，由于子类可以转换为父类，所以只要是Parent的子类，都可以添加成功</p>
+<p>Remark:用自己最能理解的方式表达出来！</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-cas-user-auth-flow" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -317,7 +379,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>&#x8FD8;&#x6709;&#x5F88;&#x591A;&#x7EC6;&#x8282;&#xFF0C;&#x5F85;&#x5B8C;&#x5584;<br></p>
+              <p>还有很多细节，待完善<br>
           
       
     </div>
@@ -378,7 +440,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p><a href="http://www.suwey.net/2016/03/27/hexo-sequece-flow-chart/">&#x53C2;&#x8003;&#x94FE;&#x63A5;</a><br><div class="flow">st=&gt;start: Start|past:&gt;http://www.google.com[blank]
+              <p><a href="http://www.suwey.net/2016/03/27/hexo-sequece-flow-chart/">参考链接</a><br><div class="flow">st=&gt;start: Start|past:&gt;http://www.google.com[blank]
 e=&gt;end: End:&gt;http://www.google.com
 op1=&gt;operation: My Operation|past
 op2=&gt;operation: Stuff|current
@@ -449,7 +511,7 @@ c2(no)-&gt;op2-&gt;e</div></p>
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>this build step make the vim with features python, lua, clientserver and so on<br>and exclude luajit(a plugin color_coded need lua but not luajit)<br></p>
+              <p>this build step make the vim with features python, lua, clientserver and so on<br>and exclude luajit(a plugin color_coded need lua but not luajit)<br>
           
       
     </div>
@@ -510,17 +572,17 @@ c2(no)-&gt;op2-&gt;e</div></p>
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>&#x597D;&#x5427;&#xFF0C;&#x4F30;&#x8BA1;&#x770B;&#x5230;&#x6807;&#x9898;&#xFF0C;&#x4F60;&#x53EF;&#x80FD;&#x4F1A;&#x8BF4;&#xFF1A;&#x4F60;&#x7279;&#x4E48;&#x4E5F;&#x592A;&#x86CB;&#x75BC;&#x4E86;&#x5427;&#xFF01;&#x6240;&#x4EE5;&#xFF0C;&#x5BF9;&#x4E8E;&#x4E3A;&#x4EC0;&#x4E48;&#x6211;&#x8981;&#x8FD9;&#x4E48;&#x505A;&#xFF0C;&#x6709;&#x5FC5;&#x8981;&#x505A;&#x4E2A;&#x89E3;&#x91CA;.</p>
-<h2 id="Why"><a href="#Why" class="headerlink" title="Why?"></a>Why?</h2><p>&#x9996;&#x5148;&#x5462;&#xFF0C;&#x867D;&#x7136;&#x662F;&#x4E2A;&#x7A0B;&#x5E8F;&#x5458;&#xFF0C;&#x4F46;&#x662F;&#x4ECD;&#x7136;&#x8FD8;&#x662F;&#x79BB;&#x4E0D;&#x5F00;windows&#xFF0C;&#x6BD5;&#x7ADF;&#x73A9;&#x6E38;&#x620F;&#x554A;&#xFF0C;qq&#x554A;&#x4EC0;&#x4E48;&#x7684;&#x8FD8;&#x662F;&#x6709;&#x5FC5;&#x8981;&#x7684;&#xFF0C;&#x5C24;&#x5176;&#x4E0D;&#x80FD;&#x5FCD;&#x7684;&#x662F;&#x4F01;&#x4E1A;qq</p>
-<p>&#x65E2;&#x7136;&#x8FD9;&#x6837;&#xFF0C;&#x88C5;&#x4E2A;&#x53CC;&#x7CFB;&#x7EDF;&#x4E0D;&#x5C31;&#x5B8C;&#x4E86;&#x5417;&#xFF1F;&#x4F55;&#x5FC5;&#x8981;&#x901A;&#x8FC7;xshell&#xFF08;&#x6216;&#x8005;secure-crt&#xFF09;&#x94FE;&#x63A5;&#x5230;ubuntu&#xFF1F;</p>
-<p>&#x8FD9;&#x4E2A;&#x561B;&#xFF0C;&#x4E00;&#x4E2A;&#x5462;&#x662F;&#x56E0;&#x4E3A;&#x53CC;&#x7CFB;&#x7EDF;&#x5207;&#x6362;&#x8D77;&#x6765;&#x592A;&#x9EBB;&#x70E6;&#x4E86;&#xFF0C;&#x6BD4;&#x5982;&#x6211;&#x60F3;&#x4E00;&#x8FB9;&#x7528;ubuntu&#xFF0C;&#x4E00;&#x8FB9;&#x7528;qq&#x554A;&#x4EC0;&#x4E48;&#x7684;&#x3002;&#x53E6;&#x4E00;&#x4E2A;&#x5F88;&#x91CD;&#x8981;&#x7684;&#x539F;&#x56E0;&#x5C31;&#x662F;&#x4EE5;&#x524D;&#x5DE5;&#x4F5C;&#x517B;&#x6210;&#x7684;&#x4E60;&#x60EF;&#x4E86;&#xFF0C;&#x901A;&#x8FC7;secure-crt&#x8FDE;&#x63A5;&#x5230;linux&#xFF0C;&#x901A;&#x8FC7;vim&#x505A;&#x670D;&#x52A1;&#x5668;&#x5F00;&#x53D1;&#xFF0C;&#x771F;&#x7684;&#x662F;&#x4E60;&#x60EF;&#x4E86;&#xFF0C;&#x800C;&#x4E14;&#x559C;&#x6B22;&#x4E0A;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x4E86;&#x3002;&#x53CD;&#x6B63;&#x79CD;&#x79CD;&#x539F;&#x56E0;&#x3002;<br>&#x5F53;&#x7136;&#xFF0C;&#x88C5;&#x903C;&#x8FD8;&#x662F;&#x8981;&#x7684;&#x3002;</p>
-<p>&#x6240;&#x4EE5;&#x5C31;&#x6709;&#x4E86;</p>
+              <p>好吧，估计看到标题，你可能会说：你特么也太蛋疼了吧！所以，对于为什么我要这么做，有必要做个解释.</p>
+<h2 id="Why"><a href="#Why" class="headerlink" title="Why?"></a>Why?</h2><p>首先呢，虽然是个程序员，但是仍然还是离不开windows，毕竟玩游戏啊，qq啊什么的还是有必要的，尤其不能忍的是企业qq</p>
+<p>既然这样，装个双系统不就完了吗？何必要通过xshell（或者secure-crt）链接到ubuntu？</p>
+<p>这个嘛，一个呢是因为双系统切换起来太麻烦了，比如我想一边用ubuntu，一边用qq啊什么的。另一个很重要的原因就是以前工作养成的习惯了，通过secure-crt连接到linux，通过vim做服务器开发，真的是习惯了，而且喜欢上这种方式了。反正种种原因。<br>当然，装逼还是要的。</p>
+<p>所以就有了</p>
 <blockquote>
 <blockquote>
-<p>&#x5728;windows&#x4E0B;&#x901A;&#x8FC7;xshell&#x8FDE;&#x63A5;&#x5230;ubuntu&#xFF0C;&#x4F7F;&#x7528;vim+markdown&#x5199;&#x6587;&#x7AE0;&#xFF0C; &#x518D;&#x901A;&#x8FC7;hexo&#x751F;&#x6210;&#x535A;&#x5BA2;&#xFF0C;&#x6700;&#x540E;&#x901A;&#x8FC7;github&#x8FDB;&#x884C;&#x7248;&#x672C;&#x63A7;&#x5236;&#x5E76;&#x901A;&#x8FC7;git pages&#x53D1;&#x5E03;&#x535A;&#x5BA2;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;, &#x800C;&#x4E14;&#x901A;&#x8FC7;&#x7B80;&#x5355;&#x8BBE;&#x7F6E;&#xFF0C;&#x8FD8;&#x652F;&#x6301;markdown&#x6587;&#x4EF6;&#x5728;windows&#x4E0B;&#x7684;&#x5B9E;&#x65F6;&#x9884;&#x89C8;&#x54DF;~</p>
+<p>在windows下通过xshell连接到ubuntu，使用vim+markdown写文章， 再通过hexo生成博客，最后通过github进行版本控制并通过git pages发布博客的解决方案, 而且通过简单设置，还支持markdown文件在windows下的实时预览哟~</p>
 </blockquote>
 </blockquote>
-<p>&#x770B;&#x8D77;&#x6765;&#x786E;&#x5B9E;&#x597D;&#x86CB;&#x75BC;&#x554A;&#xFF0C;&#x4E0D;&#x8FC7;&#x5728;&#x4E00;&#x5207;&#x914D;&#x7F6E;&#x5C31;&#x7EEA;&#x4E4B;&#x540E;&#xFF0C;&#x5199;&#x8D77;&#x6587;&#x7AE0;&#x6765;&#xFF0C;&#x4E00;&#x4E2A;&#x5B57;&#xFF0C;&#x723D;&#xFF01;</p>
+<p>看起来确实好蛋疼啊，不过在一切配置就绪之后，写起文章来，一个字，爽！</p>
           
       
     </div>
@@ -642,9 +704,9 @@ c2(no)-&gt;op2-&gt;e</div></p>
     <div class="article-entry" itemprop="articleBody">
       
           
-              <h2 id="git-submodule"><a href="#git-submodule" class="headerlink" title="git submodule"></a>git submodule</h2><p>&#x770B;&#x540D;&#x5B57;&#x5C31;&#x77E5;&#x9053;&#x662F;&#x4EC0;&#x4E48;&#x4E1C;&#x897F;&#x4E86;&#xFF0C;&#x5728;&#x4E00;&#x4E2A;repo&#x4E2D;&#x6DFB;&#x52A0;&#x53E6;&#x4E00;&#x4E2A;repo&#x4E3A;&#x5B57;&#x6A21;&#x5757;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x5177;&#x4F53;&#x53C2;&#x8003;&#x5B98;&#x65B9;&#x6587;&#x6863;<br><a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E5%AD%90%E6%A8%A1%E5%9D%97">git submodule</a></p>
-<p>&#x4E3B;&#x8981;&#x7528;&#x5230;&#x4E0B;&#x9762;&#x51E0;&#x4E2A;&#x547D;&#x4EE4;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x5B57;&#x6A21;&#x5757;</span><br><span class="line">git submodule add &lt;repo url&gt;|&lt;repo dir&gt;</span><br><span class="line"></span><br><span class="line">&#x4ECE;git clone&#x4E4B;&#x540E;&#xFF0C;&#x9700;&#x8981;&#x5BF9;&#x5B57;&#x6A21;&#x5757;&#x8FDB;&#x884C;&#x521D;&#x59CB;&#x5316;&#xFF0C;</span><br><span class="line">git submodule init</span><br><span class="line">&#x5E76;&#x4E14;clone&#x5B57;&#x6A21;&#x5757;&#x7684;&#x4EE3;&#x7801;</span><br><span class="line">git submodule update</span><br></pre></td></tr></table></figure>
+              <h2 id="git-submodule"><a href="#git-submodule" class="headerlink" title="git submodule"></a>git submodule</h2><p>看名字就知道是什么东西了，在一个repo中添加另一个repo为字模块的命令，具体参考官方文档<br><a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E5%AD%90%E6%A8%A1%E5%9D%97">git submodule</a></p>
+<p>主要用到下面几个命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">添加一个字模块</span><br><span class="line">git submodule add &lt;repo url&gt;|&lt;repo dir&gt;</span><br><span class="line"></span><br><span class="line">从git clone之后，需要对字模块进行初始化，</span><br><span class="line">git submodule init</span><br><span class="line">并且clone字模块的代码</span><br><span class="line">git submodule update</span><br></pre></td></tr></table></figure>
           
       
     </div>
@@ -705,7 +767,7 @@ c2(no)-&gt;op2-&gt;e</div></p>
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>&#x53EA;&#x6709;&#x4E00;&#x4E24;&#x4E2A;&#x9879;&#x76EE;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x6A21;&#x5757;&#x7248;&#x672C;&#x7BA1;&#x7406;&#x8FD8;&#x7B97;&#x5BB9;&#x6613;&#xFF0C;&#x4F46;&#x662F;&#x5F53;&#x6A21;&#x5757;&#x591A;&#x4E86;&#x4E4B;&#x540E;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x590D;&#x6742;&#x7684;&#x8BA9;&#x4EBA;&#x6293;&#x72C2;&#x4E86;</p>
+              <p>只有一两个项目的情况下，模块版本管理还算容易，但是当模块多了之后，那么就复杂的让人抓狂了</p>
           
       
     </div>
@@ -767,34 +829,34 @@ c2(no)-&gt;op2-&gt;e</div></p>
       
           
               <hr>
-<p>Rpc&#x5E94;&#x8BE5;&#x5EFA;&#x7ACB;&#x5728;</p>
+<p>Rpc应该建立在</p>
 <ul>
-<li>&#x7F51;&#x7EDC;&#x901A;&#x4FE1;&#xFF08;socket&#xFF0C;netty&#x2026;&#x2026;&#xFF09;</li>
-<li>&#x6D88;&#x606F;&#xFF08;protobuf&#xFF0C;thrift&#x2026;&#x2026;&#xFF09;</li>
+<li>网络通信（socket，netty……）</li>
+<li>消息（protobuf，thrift……）</li>
 </ul>
-<p>&#x7684;&#x57FA;&#x7840;&#x4E4B;&#x4E0A;</p>
+<p>的基础之上</p>
 <hr>
-<p>&#x5206;&#x5C42;</p>
+<p>分层</p>
 <ul>
-<li>&#x5E94;&#x7528;&#x5C42;</li>
-<li>RPC&#x5C42;</li>
-<li>&#x6D88;&#x606F;&#x4F20;&#x8F93;&#x5C42;(protobuf on netty)</li>
-<li>&#x7F51;&#x7EDC;&#x6846;&#x67B6;&#x5C42;(netty)</li>
-<li>&#x7F51;&#x7EDC;&#x901A;&#x4FE1;&#x5C42;(socket)</li>
+<li>应用层</li>
+<li>RPC层</li>
+<li>消息传输层(protobuf on netty)</li>
+<li>网络框架层(netty)</li>
+<li>网络通信层(socket)</li>
 </ul>
 <hr>
-<p>&#x5148;&#x6682;&#x65F6;&#x5FFD;&#x7565;&#x6389;&#x5E95;&#x5C42; &#x4E1C;&#x897F;&#xFF0C;&#x8003;&#x8651;&#x4E00;&#x4E2A;Rpc&#x6D41;&#x7A0B;&#x2026;&#x2026;</p>
-<p>C(&#x5BA2;&#x6237;&#x7AEF;)&#xFF0C; S(&#x670D;&#x52A1;&#x5668;)</p>
-<p>APP(&#x5E94;&#x7528;&#x5C42;), RPC(Rpc&#x5C42;)</p>
+<p>先暂时忽略掉底层 东西，考虑一个Rpc流程……</p>
+<p>C(客户端)， S(服务器)</p>
+<p>APP(应用层), RPC(Rpc层)</p>
 <hr>
 <ul>
-<li>CAPP:&#x8C03;&#x7528;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;-&gt;</li>
-<li>CRPC:&#x5C06;&#x65B9;&#x6CD5;&#x53C2;&#x6570;&#x5E8F;&#x5217;&#x5316;&#x901A;&#x8FC7;&#x7F51;&#x7EDC;&#x4F20;&#x8F93;&#x5230;&#x670D;&#x52A1;&#x5668;-&gt;</li>
-<li>SRPC:&#x6536;&#x5230;&#x6570;&#x636E;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x4E3A;&#x6D88;&#x606F;&#xFF0C;&#x7136;&#x540E;&#x8C03;&#x7528;&#x76F8;&#x5E94;&#x5904;&#x7406;&#x65B9;&#x6CD5;-&gt;</li>
-<li>SAPP:&#x4E00;&#x4E2A;&#x666E;&#x901A;&#x65B9;&#x6CD5;&#x88AB;&#x8C03;&#x7528;&#xFF0C;&#x5E76;&#x8FD4;&#x56DE;&#x6570;&#x636E;-&gt;</li>
-<li>SRPC:&#x5C06;&#x5E94;&#x7528;&#x5C42;&#x8FD4;&#x56DE;&#x7684;&#x6570;&#x636E;&#x5E8F;&#x5217;&#x5316;&#xFF0C;&#x901A;&#x8FC7;&#x7F51;&#x7EDC;&#x8FD4;&#x56DE;&#x7ED9;&#x5BA2;&#x6237;&#x7AEF;-&gt;</li>
-<li>CRPC:&#x6536;&#x5230;&#x670D;&#x52A1;&#x5668;&#x8FD4;&#x56DE;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x4E4B;&#x540E;&#xFF0C;&#x4F20;&#x9012;&#x7ED9;&#x5E94;&#x7528;&#x5C42;-&gt;</li>
-<li>CAPP:&#x5F97;&#x5230;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x7ED3;&#x679C;</li>
+<li>CAPP:调用一个方法-&gt;</li>
+<li>CRPC:将方法参数序列化通过网络传输到服务器-&gt;</li>
+<li>SRPC:收到数据反序列化为消息，然后调用相应处理方法-&gt;</li>
+<li>SAPP:一个普通方法被调用，并返回数据-&gt;</li>
+<li>SRPC:将应用层返回的数据序列化，通过网络返回给客户端-&gt;</li>
+<li>CRPC:收到服务器返回的数据，反序列化之后，传递给应用层-&gt;</li>
+<li>CAPP:得到函数调用结果</li>
 </ul>
 <hr>
           
