@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: encrypt | Server Not Down</title>
+  <title>加密博客内容，使用密码访问 | Server Not Down</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Server Not Down">
-<meta property="og:url" content="http://edolphin.site/tags/encrypt/index.html">
+  <meta name="description" content="需求来源今天突然想用hexo博客来记录一些不想公开的内容，仅登录用户可见。显然，由于hexo生成的是静态文件，所以这个需求不大现实，不过如果能通过输入密码访，解密之后，访问博客内容那也是极好的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="加密博客内容，使用密码访问">
+<meta property="og:url" content="http://edolphin.site/2016/05/31/encrypt-post/index.html">
 <meta property="og:site_name" content="Server Not Down">
-<meta property="og:description">
+<meta property="og:description" content="需求来源今天突然想用hexo博客来记录一些不想公开的内容，仅登录用户可见。显然，由于hexo生成的是静态文件，所以这个需求不大现实，不过如果能通过输入密码访，解密之后，访问博客内容那也是极好的">
+<meta property="og:updated_time" content="2016-05-31T10:40:42.309Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Server Not Down">
-<meta name="twitter:description">
+<meta name="twitter:title" content="加密博客内容，使用密码访问">
+<meta name="twitter:description" content="需求来源今天突然想用hexo博客来记录一些不想公开的内容，仅登录用户可见。显然，由于hexo生成的是静态文件，所以这个需求不大现实，不过如果能通过输入密码访，解密之后，访问博客内容那也是极好的">
   
     <link rel="alternative" href="/atom.xml" title="Server Not Down" type="application/atom+xml">
   
@@ -42,9 +43,9 @@
           fancybox: true,
           animate: true,
           isHome: false,
-          isPost: false,
+          isPost: true,
           isArchive: false,
-          isTag: true,
+          isTag: false,
           isCategory: false,
           open_in_new: true,
       }
@@ -227,54 +228,181 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-encrypt-post" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/05/31/encrypt-test/" class="archive-article-date">
-      <time datetime="2016-05-31T09:38:54.000Z" itemprop="datePublished">05-31</time>
+    <div class="article-meta">
+      <a href="/2016/05/31/encrypt-post/" class="article-date">
+      <time datetime="2016-05-31T10:17:58.000Z" itemprop="datePublished">2016-05-31</time>
 </a>
-        </div>
-         
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/31/encrypt-test/">encrypt-test</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      加密博客内容，使用密码访问
     </h1>
   
 
-        <div class="article-info info-on-archive">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
           
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/encrypt/">encrypt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+        <h2 id="需求来源"><a href="#需求来源" class="headerlink" title="需求来源"></a>需求来源</h2><p>今天突然想用hexo博客来记录一些不想公开的内容，仅登录用户可见。显然，由于hexo生成的是静态文件，<br>所以这个需求不大现实，不过如果能通过输入密码访，解密之后，访问博客内容那也是极好的</p>
+<a id="more"></a>
+<h2 id="方案设想"><a href="#方案设想" class="headerlink" title="方案设想"></a>方案设想</h2><p>简单点，打开某一篇博客，先不能看到博客内容或者只能看到加密内容，弹出输入框，输入密码之后，解密，<br>密码正确则解密结果正确，否则解密结果错误，将解密结果替换原加密内容即可</p>
+<h2 id="加密解密"><a href="#加密解密" class="headerlink" title="加密解密"></a>加密解密</h2><p>加解密使用crypto-js.js的AES算法，加解密算法显然不是很了解，直接使用该库中的接口<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">txt = CryptoJS.AES.encrypt(data.content, password).toString(); <span class="comment">// 加密</span></span><br><span class="line">CryptoJS.AES.decrypt(txt, pwd);		<span class="comment">// 解密</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="实现逻辑"><a href="#实现逻辑" class="headerlink" title="实现逻辑"></a>实现逻辑</h2><p>其实逻辑很简单, 制作一个hexo插件，利用hexo filter， <code>after_post_render</code>, 在渲染完成之后，取到data.content 对其进行加密<br>并拼接解密js代码到content中<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> password = getPassword();</span><br><span class="line"><span class="keyword">var</span> ciphertext = CryptoJS.AES.encrypt(data.content, password);	<span class="comment">// 加密</span></span><br><span class="line"><span class="keyword">var</span> txt = ciphertext.toString();	</span><br><span class="line"></span><br><span class="line"><span class="comment">// 拼接加密后的内容及解密的js代码</span></span><br><span class="line">data.content = <span class="string">'&lt;div id="enc_content"&gt;'</span> + txt + <span class="string">'&lt;/div&gt;'</span>;</span><br><span class="line">data.content = data.content + <span class="string">'&lt;script src="/js/crypto-js.js"&gt;&lt;/script&gt;'</span>;</span><br><span class="line">data.content = data.content + <span class="string">'&lt;script&gt;'</span>+</span><br><span class="line"><span class="string">'var pwd = window.prompt("please input password","");'</span> + 			<span class="comment">// 弹出输入密码框</span></span><br><span class="line"><span class="string">'var txt = document.getElementById("enc_content").innerHTML;'</span> +</span><br><span class="line"><span class="string">'var bytes  = CryptoJS.AES.decrypt(txt, pwd);'</span> +</span><br><span class="line"><span class="string">'var plaintext = bytes.toString(CryptoJS.enc.Utf8);'</span> +</span><br><span class="line"><span class="string">'document.getElementById("enc_content").innerHTML = plaintext'</span> +</span><br><span class="line"><span class="string">'&lt;/script&gt;'</span>;</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://github.com/edolphin-ydf/hexo-encrypt" target="_blank" rel="external">源代码在这里</a>, 里边也有具体使用的说明<br>测试页面在<a href="http://edolphin.site/2016/05/31/encrypt-test/">这里</a>， 密码么，因为目前插件不能针对页面单独设置密码，所以就不说了(偷笑)</p>
+<p>这只是个完成基本功能的插件，另外还可以做更多更强大的功能，当有需求的时候，再去完善</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>需要注意的是，如果使用github来同步备份你的原始文件(md, hexo相关配置), 那么这个加密没什么卵用(因为github不付费的话只能创建public的仓库)<br>所以，要么github付费，设置repo为private， 要么就用其他方式(我选择使用了coding.net，可以免费创建私有仓库)</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>Title:</span><a href="/2016/05/31/encrypt-post/">加密博客内容，使用密码访问</a></p>
+        <p><span>Author:</span><a href="/" title="Back to Homepage">edolphin</a></p>
+        <p><span>Created:</span>2016-05-31, 03:17:58</p>
+        <p><span>Updated:</span>2016-05-31, 03:40:42</p>
+        <p>
+            <span>Full URL:</span><a class="post-url" href="/2016/05/31/encrypt-post/" title="加密博客内容，使用密码访问">http://edolphin.site/2016/05/31/encrypt-post/</a>
+            <span class="copy-path" data-clipboard-text="From http://edolphin.site/2016/05/31/encrypt-post/　　By edolphin" title="Copy Article&#39;s Link &amp; Author"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>License:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"CC BY-NC-SA 4.0"</a> Keep Link &amp; Author if Distribute.
+        </p>
     </div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/05/31/encrypt-test/">
+                    encrypt-test
+                </a>
+            </div>
+        
+    </nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#需求来源"><span class="toc-number">1.</span> <span class="toc-text">需求来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方案设想"><span class="toc-number">2.</span> <span class="toc-text">方案设想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#加密解密"><span class="toc-number">3.</span> <span class="toc-text">加密解密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现逻辑"><span class="toc-number">4.</span> <span class="toc-text">实现逻辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后"><span class="toc-number">5.</span> <span class="toc-text">最后</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="Hide"  title="Show or Hide Table of Contents">
+<script>
+    var valueHide = "Hide";
+    var valueShow = "Show";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+    <div class="share">
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+    <a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+    <a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+    </div>
+    <script>
+        window._bd_share_config={
+            "common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+</div>
+
+
+
+    
+        <section class="youyan" id="comments">
+  <div id="uyan_frame"></div>
+  <script src="http://v2.uyan.cc/code/uyan.js?uid=2092308"></script>
+</section>
 
     
 
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="Back to Homepage"><i class="fa fa-home"></i></a>
+        
+
+        <a title="Mini Archives"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/05/31/encrypt-test/" title="Next: encrypt-test">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/31/encrypt-post/">加密博客内容，使用密码访问</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/31/encrypt-test/">encrypt-test</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/generate-increament-timestamp-with-redis/">利用redis在集群的情况下生成全局唯一时间戳</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/java-extends-super/">java泛型中，extends和super</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/cas-user-auth-flow/">cas单点登录用户认证流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/cas-login-flow/">cas单点登录基本流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/flowcharttest/">flowcharttest</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/01/vim-build-in-ubuntu/">build vim in ubuntu with lua, python</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/01/write-blog-with-vim/">在windows下通过xshell连接ubuntu写blog</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/vim-plugin-note/">vim_plugin_note</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/hexo目录及github管理/">hexo目录及github管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/maven版本管理/">maven版本管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/30/rpc-design-and-implement/">Rpc的设计与实现</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
