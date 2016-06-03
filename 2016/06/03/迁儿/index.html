@@ -3,21 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>java泛型中，extends和super | Server Not Down</title>
+  <title>迁儿 | Server Not Down</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="三个基本类型定义12345class Parent &amp;#123;&amp;#125;class SubA extends Parent &amp;#123;&amp;#125;class SubB extends Parent &amp;#123;&amp;#125;
-extends1234List&amp;lt;? extends Parent&amp;gt; list = new ArrayList&amp;lt;&amp;gt;();// 报错list.add(">
+  <meta name="description" content="汪汪汪汪汪汪汪">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java泛型中，extends和super">
-<meta property="og:url" content="http://edolphin.site/2016/05/06/java-extends-super/index.html">
+<meta property="og:title" content="迁儿">
+<meta property="og:url" content="http://edolphin.site/2016/06/03/迁儿/index.html">
 <meta property="og:site_name" content="Server Not Down">
-<meta property="og:description" content="三个基本类型定义12345class Parent &amp;#123;&amp;#125;class SubA extends Parent &amp;#123;&amp;#125;class SubB extends Parent &amp;#123;&amp;#125;
-extends1234List&amp;lt;? extends Parent&amp;gt; list = new ArrayList&amp;lt;&amp;gt;();// 报错list.add(">
-<meta property="og:updated_time" content="2016-04-26T14:56:43.383Z">
+<meta property="og:description" content="汪汪汪汪汪汪汪">
+<meta property="og:updated_time" content="2016-06-03T15:32:29.046Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java泛型中，extends和super">
-<meta name="twitter:description" content="三个基本类型定义12345class Parent &amp;#123;&amp;#125;class SubA extends Parent &amp;#123;&amp;#125;class SubB extends Parent &amp;#123;&amp;#125;
-extends1234List&amp;lt;? extends Parent&amp;gt; list = new ArrayList&amp;lt;&amp;gt;();// 报错list.add(">
+<meta name="twitter:title" content="迁儿">
+<meta name="twitter:description" content="汪汪汪汪汪汪汪">
   
     <link rel="alternative" href="/atom.xml" title="Server Not Down" type="application/atom+xml">
   
@@ -231,11 +228,11 @@ extends1234List&amp;lt;? extends Parent&amp;gt; list = new ArrayList&amp;lt;&amp
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-java-extends-super" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-迁儿" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/05/06/java-extends-super/" class="article-date">
-      <time datetime="2016-05-07T02:53:56.000Z" itemprop="datePublished">2016-05-06</time>
+      <a href="/2016/06/03/迁儿/" class="article-date">
+      <time datetime="2016-06-03T14:17:32.000Z" itemprop="datePublished">2016-06-03</time>
 </a>
     </div>
   
@@ -248,7 +245,7 @@ extends1234List&amp;lt;? extends Parent&amp;gt; list = new ArrayList&amp;lt;&amp
         
   
     <h1 class="article-title" itemprop="name">
-      java泛型中，extends和super
+      迁儿
     </h1>
   
 
@@ -258,10 +255,6 @@ extends1234List&amp;lt;? extends Parent&amp;gt; list = new ArrayList&amp;lt;&amp
         
 
         
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-    </div>
-
         <div class="clearfix"></div>
       </div>
       
@@ -269,13 +262,7 @@ extends1234List&amp;lt;? extends Parent&amp;gt; list = new ArrayList&amp;lt;&amp
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="三个基本类型定义"><a href="#三个基本类型定义" class="headerlink" title="三个基本类型定义"></a>三个基本类型定义</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Parent</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubA</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubB</span> <span class="keyword">extends</span> <span class="title">Parent</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="extends"><a href="#extends" class="headerlink" title="extends"></a>extends</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;? extends Parent&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="comment">// 报错</span></span><br><span class="line">list.add(<span class="keyword">new</span> SubA());</span><br><span class="line">list.add(<span class="keyword">new</span> SubB());</span><br></pre></td></tr></table></figure>
-<p>报错原因：<br>extends 指定类型的上界，什么意思呢？<br>即：? extends Parent 表示Parent的子类，但是具体不能确定是哪个子类<br><code>List&lt;? extends Parent&gt;</code> 可能是<code>List&lt;SubA&gt;</code>, <code>List&lt;SubB&gt;</code>, 所以add报错</p>
-<h3 id="super"><a href="#super" class="headerlink" title="super"></a>super</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;? <span class="keyword">super</span> Parent&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">list.add(<span class="keyword">new</span> SubA());</span><br><span class="line">list.add(<span class="keyword">new</span> SubB());</span><br></pre></td></tr></table></figure>
-<p>编译通过，原因：<br>super指定类型的下界<br>即： ? super Parent 表示类型只能为Parent或Parent的父类， 那么当添加元素时，由于子类可以转换为父类，所以只要是Parent的子类，都可以添加成功<br><code>List&lt;? super Parent&gt;</code> 可能是<code>List&lt;Parent&gt;</code>, <code>List&lt;Object&gt;</code>, 所以，add时，作为Parent的子类, 自然不会报错</p>
-<p>Remark:用自己最能理解的方式表达出来！<br>Remark Again: ? super Parent &amp; ? extends Parent表示的是传给List的泛型参数，将其作为一个整体来看待的话</p>
-
+        <div id="enc_content">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</div><script src="/js/crypto-js.js"></script><script>var pwd = window.prompt("please input password","");var txt = document.getElementById("enc_content").innerHTML;var bytes  = CryptoJS.AES.decrypt(txt, pwd);var plaintext = bytes.toString(CryptoJS.enc.Utf8);document.getElementById("enc_content").innerHTML = plaintext</script>
       
     </div>
     
@@ -283,13 +270,13 @@ extends1234List&amp;lt;? extends Parent&amp;gt; list = new ArrayList&amp;lt;&amp
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/05/06/java-extends-super/">java泛型中，extends和super</a></p>
+        <p><span>本文标题:</span><a href="/2016/06/03/迁儿/">迁儿</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">edolphin</a></p>
-        <p><span>发布时间:</span>2016-05-06, 19:53:56</p>
-        <p><span>最后更新:</span>2016-04-26, 07:56:43</p>
+        <p><span>发布时间:</span>2016-06-03, 07:17:32</p>
+        <p><span>最后更新:</span>2016-06-03, 08:32:29</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/05/06/java-extends-super/" title="java泛型中，extends和super">http://edolphin.site/2016/05/06/java-extends-super/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2016/05/06/java-extends-super/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/06/03/迁儿/" title="迁儿">http://edolphin.site/2016/06/03/迁儿/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2016/06/03/迁儿/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -302,16 +289,10 @@ extends1234List&amp;lt;? extends Parent&amp;gt; list = new ArrayList&amp;lt;&amp
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/05/06/generate-increament-timestamp-with-redis/">
-                    利用redis在集群的情况下生成全局唯一时间戳
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/04/14/cas-user-auth-flow/">
-                    cas单点登录用户认证流程
+                <a href="/2016/06/03/TodoList/">
+                    TodoList
                 </a>
             </div>
         
@@ -322,7 +303,7 @@ extends1234List&amp;lt;? extends Parent&amp;gt; list = new ArrayList&amp;lt;&amp
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#三个基本类型定义"><span class="toc-number">1.</span> <span class="toc-text">三个基本类型定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#extends"><span class="toc-number">2.</span> <span class="toc-text">extends</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#super"><span class="toc-number">3.</span> <span class="toc-text">super</span></a></li></ol>
+    
 </div>
 <style>
     .left-col .switch-btn {
@@ -394,15 +375,13 @@ extends1234List&amp;lt;? extends Parent&amp;gt; list = new ArrayList&amp;lt;&amp
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/05/06/generate-increament-timestamp-with-redis/" title="上一篇: 利用redis在集群的情况下生成全局唯一时间戳">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/04/14/cas-user-auth-flow/" title="下一篇: cas单点登录用户认证流程">
+            <a href="/2016/06/03/TodoList/" title="下一篇: TodoList">
                 <i class="fa fa-angle-right"></i>
             </a>
         
