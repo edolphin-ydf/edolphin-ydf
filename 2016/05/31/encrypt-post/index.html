@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://edolphin.site/2016/05/31/encrypt-post/index.html">
 <meta property="og:site_name" content="Server Not Down">
 <meta property="og:description" content="今天突然想用hexo博客来记录一些不想公开的内容，仅登录用户可见。显然，由于hexo生成的是静态文件，所以这个需求不大现实，不过如果能通过输入密码访，解密之后，访问博客内容那也是极好的">
-<meta property="og:updated_time" content="2016-06-01T06:40:16.143Z">
+<meta property="og:updated_time" content="2016-06-03T06:26:47.114Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="加密博客内容，使用密码访问">
 <meta name="twitter:description" content="今天突然想用hexo博客来记录一些不想公开的内容，仅登录用户可见。显然，由于hexo生成的是静态文件，所以这个需求不大现实，不过如果能通过输入密码访，解密之后，访问博客内容那也是极好的">
@@ -275,8 +275,7 @@
 <p>这只是个完成基本功能的插件，另外还可以做更多更强大的功能，当有需求的时候，再去完善</p>
 <h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>需要注意的是，如果使用github来同步备份你的原始文件(md, hexo相关配置), 那么这个加密没什么卵用(因为github不付费的话只能创建public的仓库)<br>所以，要么github付费，设置repo为private， 要么就用其他方式(我选择使用了coding.net，可以免费创建私有仓库)</p>
 <hr>
-<p>update: 2016/6/1</p>
-<h3 id="新需求："><a href="#新需求：" class="headerlink" title="新需求："></a>新需求：</h3><ol>
+<h1 id="update-2016-6-1"><a href="#update-2016-6-1" class="headerlink" title="update: 2016/6/1"></a>update: 2016/6/1</h1><h3 id="新需求："><a href="#新需求：" class="headerlink" title="新需求："></a>新需求：</h3><ol>
 <li>前边提到的，不支持针对单个文章使用特殊密码的加密方式，那么现在支持了，上边的密码是 123456</li>
 <li>既然是博客，肯定会用到图片，然而需要加密，所以图片不能随便放在一个通过直接的url就能访问的地方</li>
 <li>都有图片了，那么针对自己图床的图片，提供一个base url那是极好的</li>
@@ -292,6 +291,22 @@
 <p>这里的配置具有最高优先级</p>
 <h3 id="3"><a href="#3" class="headerlink" title="3"></a>3</h3><p>url替换都有了，加个baseurl 也不是什么难事了。<br>在配置文件中配置一下，然后跟上边的url拼接一下就好了<br>配置:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">encrypt:</span><br><span class="line">  base_url: your base url</span><br></pre></td></tr></table></figure></p>
 <h3 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h3><p>如果图片在more之前，那么在主页就会出现图片资源找不到的情况，因为more之前的内容没有做替换<br>还不知道这个图片的url有效期是多久</p>
+<hr>
+<h1 id="update-2016-06-03"><a href="#update-2016-06-03" class="headerlink" title="update: 2016/06/03"></a>update: 2016/06/03</h1><h3 id="图片url有效期"><a href="#图片url有效期" class="headerlink" title="图片url有效期"></a>图片url有效期</h3><p>上面提到的图片url的有效期，理论上是3600秒，即1小时, 超过1小时就获取不到图片了，作为博客，可不想这么短，<br>太短了，所以呢，_config.yml中增加配置选项<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img_url_ttl: 86400000 # 1000 days</span><br></pre></td></tr></table></figure></p>
+<p>所以，这个url在1000天内就有效了。</p>
+<h3 id="base64内嵌图片到html"><a href="#base64内嵌图片到html" class="headerlink" title="base64内嵌图片到html"></a>base64内嵌图片到html</h3><p>why？</p>
+<ul>
+<li>我没有图床</li>
+<li>七牛太麻烦了，我不想去弄</li>
+<li>懒</li>
+<li>…</li>
+</ul>
+<p>好吧，其实没啥理由，就是突然发现可以base64图片之后内嵌到html中，所以，我就做了这么个支持</p>
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">encrypt:</span><br><span class="line">	type: base64 	# 只需要配置这个就够了</span><br></pre></td></tr></table></figure>
+<p>然后使用图片<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![](you img path) 		# 注意这里是路劲，绝对路径好说，直接写就是了，相对路径的话，是相对于文章对应的资源路径(就是hexo n 文章名  的时候，会在文章.md文件对应的目录下生成一个 文章名 的新目录, 相对路径的根目录就是这个目录)</span><br></pre></td></tr></table></figure></p>
+<p>需要注意的一点：<br>要确保不会有插件将上面提到的 文章名 目录下的资源在 <code>hexo g</code> 时拷贝到public目录<br>所以建议使用绝对路径，将其放在其他目录下</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>以base64编码的方式读取图片文件，然后替换2016/06/02中提到的url就好了</p>
+<h3 id="more"><a href="#more" class="headerlink" title="more"></a>more</h3><p>具体用法见<a href="https://github.com/edolphin-ydf/hexo-encrypt" target="_blank" rel="external">这里</a></p>
 
       
     </div>
@@ -303,7 +318,7 @@
         <p><span>本文标题:</span><a href="/2016/05/31/encrypt-post/">加密博客内容，使用密码访问</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">edolphin</a></p>
         <p><span>发布时间:</span>2016-05-31, 03:17:58</p>
-        <p><span>最后更新:</span>2016-05-31, 23:40:16</p>
+        <p><span>最后更新:</span>2016-06-02, 23:26:47</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/05/31/encrypt-post/" title="加密博客内容，使用密码访问">http://edolphin.site/2016/05/31/encrypt-post/</a>
             <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2016/05/31/encrypt-post/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -339,7 +354,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#方案设想"><span class="toc-number">1.</span> <span class="toc-text">方案设想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加密解密"><span class="toc-number">2.</span> <span class="toc-text">加密解密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现逻辑"><span class="toc-number">3.</span> <span class="toc-text">实现逻辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最后"><span class="toc-number">4.</span> <span class="toc-text">最后</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新需求："><span class="toc-number">5.</span> <span class="toc-text">新需求：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1"><span class="toc-number">6.</span> <span class="toc-text">1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2"><span class="toc-number">7.</span> <span class="toc-text">2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3"><span class="toc-number">8.</span> <span class="toc-text">3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TODO"><span class="toc-number">9.</span> <span class="toc-text">TODO</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#方案设想"><span class="toc-number">1.</span> <span class="toc-text">方案设想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加密解密"><span class="toc-number">2.</span> <span class="toc-text">加密解密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现逻辑"><span class="toc-number">3.</span> <span class="toc-text">实现逻辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最后"><span class="toc-number">4.</span> <span class="toc-text">最后</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#update-2016-6-1"><span class="toc-number"></span> <span class="toc-text">update: 2016/6/1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#新需求："><span class="toc-number">1.</span> <span class="toc-text">新需求：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1"><span class="toc-number">2.</span> <span class="toc-text">1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2"><span class="toc-number">3.</span> <span class="toc-text">2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3"><span class="toc-number">4.</span> <span class="toc-text">3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TODO"><span class="toc-number">5.</span> <span class="toc-text">TODO</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#update-2016-06-03"><span class="toc-number"></span> <span class="toc-text">update: 2016/06/03</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#图片url有效期"><span class="toc-number">1.</span> <span class="toc-text">图片url有效期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#base64内嵌图片到html"><span class="toc-number">2.</span> <span class="toc-text">base64内嵌图片到html</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用法"><span class="toc-number">3.</span> <span class="toc-text">用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原理"><span class="toc-number">4.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#more"><span class="toc-number">5.</span> <span class="toc-text">more</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
