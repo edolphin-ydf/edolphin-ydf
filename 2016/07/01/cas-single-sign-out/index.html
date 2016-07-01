@@ -15,7 +15,7 @@
 <meta property="og:description" content="情景cas server：casclient server: C1client server: C2
 当用户在C1和C2都登录之后，获取到改用户在两个系统内各自需要的权限之后，在C1做登出操作，按照网上大部分的配置方法(web.xml中增加SingleSignOutFilter和SingleSignOutHttpSessionListener)，可以在效果上看起来是登出了，但是并没有完全登出。
 即">
-<meta property="og:updated_time" content="2016-07-01T10:19:32.031Z">
+<meta property="og:updated_time" content="2016-07-01T10:21:35.894Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cas+shiro单点登出的坑">
 <meta name="twitter:description" content="情景cas server：casclient server: C1client server: C2
@@ -275,6 +275,7 @@
         <h1 id="情景"><a href="#情景" class="headerlink" title="情景"></a>情景</h1><p>cas server：cas<br>client server: C1<br>client server: C2</p>
 <p>当用户在C1和C2都登录之后，获取到改用户在两个系统内各自需要的权限之后，在C1做登出操作，按照网上大部分的配置方法(web.xml中增加SingleSignOutFilter和SingleSignOutHttpSessionListener)，可以在效果上看起来是登出了，但是并没有完全登出。</p>
 <p>即：<br>    C1和C2的JSESSIONID对应在服务器的session被销毁，浏览器两个JSESSIONID失效(看起来登出了)<br>    cas的cookie（TGT）失效<br>    C2服务器上，对应的用户权限清除(C1是完全退出了)<br>    C2服务器上，对应的用户权限没有清除(<strong>没完全退出</strong>)</p>
+<a id="more"></a>
 <h1 id="原理分析"><a href="#原理分析" class="headerlink" title="原理分析"></a>原理分析</h1><div class="sequence">Browser-&gt;C1: logout request(1)
 C1-&gt;Browser: C1 subject.logout(), redirect to cas (2)
 Browser-&gt;cas: cas logout path(3)
@@ -312,7 +313,7 @@ cas-&gt;C2: notify C2 the user had logout(4)</div>
         <p><span>本文标题:</span><a href="/2016/07/01/cas-single-sign-out/">cas+shiro单点登出的坑</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">edolphin</a></p>
         <p><span>发布时间:</span>2016-07-01, 02:15:45</p>
-        <p><span>最后更新:</span>2016-07-01, 03:19:32</p>
+        <p><span>最后更新:</span>2016-07-01, 03:21:35</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/07/01/cas-single-sign-out/" title="cas+shiro单点登出的坑">http://edolphin.site/2016/07/01/cas-single-sign-out/</a>
             <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2016/07/01/cas-single-sign-out/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
