@@ -17,7 +17,7 @@
 12CAS: cas 服务器APP: 应用服务器
 循环重定向由于在CAS验证通过，重定向到APP之后，在APP上校验失败导致再次去CAS请求登录，而CAS上为登录成功状态，于是生成新的service-ticket，再次重定向到APP，如此循环
 客户端代码问题因为我们做的单点登录只在CAS上校验账号密码，APP需要根据从CAS中取到的用户id，加载出用户信息和权限信息，若客户端取用户信息代码">
-<meta property="og:updated_time" content="2016-07-13T06:47:04.099Z">
+<meta property="og:updated_time" content="2016-07-13T06:48:56.873Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cas-循环重定向">
 <meta name="twitter:description" content="设定：
@@ -288,8 +288,9 @@
 <p>而网络不通一般由以下原因导致</p>
 <ol>
 <li>域名解析失败。若域名为内网自己配置的域名，而服务器的hosts中未加入该域名，则由于dns解析失败导致重定向</li>
-<li>防火墙，当两个服务器部署在不同的机器上时，由于防火墙导致网络不通，导致重定向<br>。。。 或许还有很多网络不通的原因，根据各种情况自行检查</li>
+<li>防火墙，当两个服务器部署在不同的机器上时，由于防火墙导致网络不通，导致重定向</li>
 </ol>
+<p>。。。 或许还有很多网络不通的原因，根据各种情况自行检查</p>
 
       
     </div>
@@ -301,7 +302,7 @@
         <p><span>本文标题:</span><a href="/2016/07/12/cas-faq/">cas-循环重定向</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">edolphin</a></p>
         <p><span>发布时间:</span>2016-07-12, 19:55:29</p>
-        <p><span>最后更新:</span>2016-07-12, 23:47:04</p>
+        <p><span>最后更新:</span>2016-07-12, 23:48:56</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/07/12/cas-faq/" title="cas-循环重定向">http://edolphin.site/2016/07/12/cas-faq/</a>
             <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2016/07/12/cas-faq/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
