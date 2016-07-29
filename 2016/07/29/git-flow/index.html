@@ -3,21 +3,33 @@
 <head>
   <meta charset="utf-8">
   
-  <title>encrypt-test | Server Not Down</title>
+  <title>git flow使用经验 | Server Not Down</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="the follow content will be encrypted!!~
-there exist the more tag, so, in home page, the content before more will not be encrypted">
+  <meta name="description" content="分支构成
+master 与线上版本保持绝对一致
+develop 开发分支，由下文提到的release， feature， hotfix分支合并过后的代码
+feature 实际功能点开发分支，建议每个功能新建一个feature， 具有关联关系的功能公用一个feature分支
+release 每一次开发完成之后，从develop创建出来的分支
+hotfix 修复线上bug分支">
 <meta property="og:type" content="article">
-<meta property="og:title" content="encrypt-test">
-<meta property="og:url" content="http://edolphin.site/2016/05/31/encrypt-test/index.html">
+<meta property="og:title" content="git flow使用经验">
+<meta property="og:url" content="http://edolphin.site/2016/07/29/git-flow/index.html">
 <meta property="og:site_name" content="Server Not Down">
-<meta property="og:description" content="the follow content will be encrypted!!~
-there exist the more tag, so, in home page, the content before more will not be encrypted">
-<meta property="og:updated_time" content="2016-06-06T09:09:52.332Z">
+<meta property="og:description" content="分支构成
+master 与线上版本保持绝对一致
+develop 开发分支，由下文提到的release， feature， hotfix分支合并过后的代码
+feature 实际功能点开发分支，建议每个功能新建一个feature， 具有关联关系的功能公用一个feature分支
+release 每一次开发完成之后，从develop创建出来的分支
+hotfix 修复线上bug分支">
+<meta property="og:updated_time" content="2016-07-29T10:08:32.023Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="encrypt-test">
-<meta name="twitter:description" content="the follow content will be encrypted!!~
-there exist the more tag, so, in home page, the content before more will not be encrypted">
+<meta name="twitter:title" content="git flow使用经验">
+<meta name="twitter:description" content="分支构成
+master 与线上版本保持绝对一致
+develop 开发分支，由下文提到的release， feature， hotfix分支合并过后的代码
+feature 实际功能点开发分支，建议每个功能新建一个feature， 具有关联关系的功能公用一个feature分支
+release 每一次开发完成之后，从develop创建出来的分支
+hotfix 修复线上bug分支">
   
     <link rel="alternative" href="/atom.xml" title="Server Not Down" type="application/atom+xml">
   
@@ -231,11 +243,11 @@ there exist the more tag, so, in home page, the content before more will not be 
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-encrypt-test" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-git-flow" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/05/31/encrypt-test/" class="article-date">
-      <time datetime="2016-05-31T09:38:54.000Z" itemprop="datePublished">2016-05-31</time>
+      <a href="/2016/07/29/git-flow/" class="article-date">
+      <time datetime="2016-07-29T09:08:14.000Z" itemprop="datePublished">2016-07-29</time>
 </a>
     </div>
   
@@ -248,7 +260,7 @@ there exist the more tag, so, in home page, the content before more will not be 
         
   
     <h1 class="article-title" itemprop="name">
-      encrypt-test
+      git flow使用经验
     </h1>
   
 
@@ -259,7 +271,7 @@ there exist the more tag, so, in home page, the content before more will not be 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/encrypt/">encrypt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -269,7 +281,52 @@ there exist the more tag, so, in home page, the content before more will not be 
     <div class="article-entry" itemprop="articleBody">
       
           
-        <div id="enc_content">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</div><script src="/js/crypto-js.js"></script><script>var pwd = window.prompt("please input password","");var txt = document.getElementById("enc_content").innerHTML;var bytes  = CryptoJS.AES.decrypt(txt, pwd);var plaintext = bytes.toString(CryptoJS.enc.Utf8);document.getElementById("enc_content").innerHTML = plaintext</script>
+        <h1 id="分支构成"><a href="#分支构成" class="headerlink" title="分支构成"></a>分支构成</h1><ul>
+<li>master 与线上版本保持绝对一致</li>
+<li>develop 开发分支，由下文提到的release， feature， hotfix分支合并过后的代码</li>
+<li>feature 实际功能点开发分支，建议每个功能新建一个feature， 具有关联关系的功能公用一个feature分支</li>
+<li>release 每一次开发完成之后，从develop创建出来的分支</li>
+<li>hotfix 修复线上bug分支</li>
+</ul>
+<a id="more"></a>
+<h2 id="master"><a href="#master" class="headerlink" title="master"></a>master</h2><h3 id="代码来源"><a href="#代码来源" class="headerlink" title="代码来源"></a>代码来源</h3><ul>
+<li>release finish之后，会合并代码到master分支</li>
+<li>hotfix finish之后，会合并代码到master分支<br>即，代码来自release和hotfix分支</li>
+</ul>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>任何时候，都不要直接修改master分支，且master分支一定是线上的代码</p>
+<h2 id="develop"><a href="#develop" class="headerlink" title="develop"></a>develop</h2><h3 id="代码来源-1"><a href="#代码来源-1" class="headerlink" title="代码来源"></a>代码来源</h3><ul>
+<li>feature finish之后，会合并代码到develop分支</li>
+<li>release finish之后，会合并代码到develop分支</li>
+<li>hotfix finish之后，会合并代码到develop分支</li>
+</ul>
+<h3 id="存在目的"><a href="#存在目的" class="headerlink" title="存在目的"></a>存在目的</h3><p>始终保存最新开发完成以及修改bug之后的代码，作为最完整的代码基线</p>
+<p>作为其他feature的基线</p>
+<h3 id="说明-1"><a href="#说明-1" class="headerlink" title="说明"></a>说明</h3><p>最好不要直接修改develop分支，而是通过其他三类分支的finish。</p>
+<h2 id="feature"><a href="#feature" class="headerlink" title="feature"></a>feature</h2><h3 id="分支来源"><a href="#分支来源" class="headerlink" title="分支来源"></a>分支来源</h3><p>当开始新功能时，由start feature，以develop分支为base，创建新分支</p>
+<h3 id="代码来源-2"><a href="#代码来源-2" class="headerlink" title="代码来源"></a>代码来源</h3><p>由开发者提交开发中的代码</p>
+<h3 id="存在目的-1"><a href="#存在目的-1" class="headerlink" title="存在目的"></a>存在目的</h3><p>由于多个功能需要同时开发，但上线时间不同，则需按功能将代码分开，在适当的时候finish以合并到develop分支</p>
+<p>并release，进入测试状态</p>
+<h2 id="release"><a href="#release" class="headerlink" title="release"></a>release</h2><p>当一组feature开发完成，finish合并到develop分支之后，开始进入提测阶段，则start release，创建release分支</p>
+<p>以release分支代码为基准提测，测试过程中若存在bug需要修复，则直接由开发者在release分支修复并提交</p>
+<p>测试完成之后，finish release，合并代码到master和develop分支，此时master为最新代码，用作上线，release分支</p>
+<p>被自动删除。</p>
+<p>注意：合并到develop分支时，可能由于在release过程中有新的feature合并到develop中而导致冲突，解决冲突即可</p>
+<h2 id="hotfix"><a href="#hotfix" class="headerlink" title="hotfix"></a>hotfix</h2><p>用作修复线上bug，以master为基线start hotfix， 修复完成后，finish hotfix，此时hotfix分支代码会被自动合并到</p>
+<p>master和develop分支，hotfix分支被自动删除</p>
+<h1 id="一些特殊情况"><a href="#一些特殊情况" class="headerlink" title="一些特殊情况"></a>一些特殊情况</h1><h2 id="develop已存在一些未上线的feature代码-此时需要紧急上线一个新功能-但develop的代码不能上"><a href="#develop已存在一些未上线的feature代码-此时需要紧急上线一个新功能-但develop的代码不能上" class="headerlink" title="develop已存在一些未上线的feature代码, 此时需要紧急上线一个新功能, 但develop的代码不能上"></a>develop已存在一些未上线的feature代码, 此时需要紧急上线一个新功能, 但develop的代码不能上</h2><p>两种方法</p>
+<h3 id="方案一"><a href="#方案一" class="headerlink" title="方案一:"></a>方案一:</h3><p>以master为基线start feature， 在finish feature之后，代码会自动合并到master，但不会自动合并到develop，所以为了</p>
+<p>保证develop是最新代码，需要手动从master合并到develop分支。</p>
+<h3 id="方案二："><a href="#方案二：" class="headerlink" title="方案二："></a>方案二：</h3><p>将需要紧急上线的功能视为一个bug，start 一个hotfix分支，在hotfix分支被finish之后，代码会自动合并到master和develop分支</p>
+<p>显然方案二要更加方便一些</p>
+<h2 id="以develop为基线创建了f1和f2两个feature分支之后-f1-f2开发一半的时候发现两个分支代码需要有依赖怎么办"><a href="#以develop为基线创建了f1和f2两个feature分支之后-f1-f2开发一半的时候发现两个分支代码需要有依赖怎么办" class="headerlink" title="以develop为基线创建了f1和f2两个feature分支之后, f1, f2开发一半的时候发现两个分支代码需要有依赖怎么办?"></a>以develop为基线创建了f1和f2两个feature分支之后, f1, f2开发一半的时候发现两个分支代码需要有依赖怎么办?</h2><p>最好在开发开始前确定两个功能是否相关,若相关则只创建一个分支,两个功能在一起开发.若出现上边的情况,则可手动将f2分支代码</p>
+<p>合并到f1上,删除f2分支代码,然后一起在f1上开发</p>
+<h2 id="feature分支可以以任何分支为基线-同时finish的时候，会合并到基线分支"><a href="#feature分支可以以任何分支为基线-同时finish的时候，会合并到基线分支" class="headerlink" title="feature分支可以以任何分支为基线, 同时finish的时候，会合并到基线分支"></a>feature分支可以以任何分支为基线, 同时finish的时候，会合并到基线分支</h2><p>所以问题在于，若f1以develop为基线，f2以f1为基线，那么必须先finish f2，再finish f1.</p>
+<p>若反过来，先finish f1，代码合并到develop，f1被删除， 再finish f2， 会由于找不到f1而报错</p>
+<p>补救办法就是手动将f2的代码merge到develop，再手动删除f2分支</p>
+<h1 id="权限问题"><a href="#权限问题" class="headerlink" title="权限问题"></a>权限问题</h1><p>建议master和develop分支设为protected branch， 仅允许项目的master push代码，而developer不允许push，可有效避免错误提交代码的问题</p>
+<p>start feature和start hotfix可由developer来操作，而finish feature， finish hotfix， start release， finish release 由master来操作</p>
+<p>以避免代码管理的混乱</p>
+
       
     </div>
     
@@ -277,13 +334,13 @@ there exist the more tag, so, in home page, the content before more will not be 
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/05/31/encrypt-test/">encrypt-test</a></p>
+        <p><span>本文标题:</span><a href="/2016/07/29/git-flow/">git flow使用经验</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">edolphin</a></p>
-        <p><span>发布时间:</span>2016-05-31, 02:38:54</p>
-        <p><span>最后更新:</span>2016-06-06, 02:09:52</p>
+        <p><span>发布时间:</span>2016-07-29, 02:08:14</p>
+        <p><span>最后更新:</span>2016-07-29, 03:08:32</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/05/31/encrypt-test/" title="encrypt-test">http://edolphin.site/2016/05/31/encrypt-test/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2016/05/31/encrypt-test/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/07/29/git-flow/" title="git flow使用经验">http://edolphin.site/2016/07/29/git-flow/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2016/07/29/git-flow/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -296,16 +353,10 @@ there exist the more tag, so, in home page, the content before more will not be 
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/05/31/encrypt-post/">
-                    加密博客内容，使用密码访问
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/05/06/generate-increament-timestamp-with-redis/">
-                    利用redis在集群的情况下生成全局唯一时间戳
+                <a href="/2016/07/12/cas-faq/">
+                    cas-循环重定向
                 </a>
             </div>
         
@@ -316,7 +367,7 @@ there exist the more tag, so, in home page, the content before more will not be 
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#分支构成"><span class="toc-number">1.</span> <span class="toc-text">分支构成</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#master"><span class="toc-number">1.1.</span> <span class="toc-text">master</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#代码来源"><span class="toc-number">1.1.1.</span> <span class="toc-text">代码来源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明"><span class="toc-number">1.1.2.</span> <span class="toc-text">说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#develop"><span class="toc-number">1.2.</span> <span class="toc-text">develop</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#代码来源-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">代码来源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存在目的"><span class="toc-number">1.2.2.</span> <span class="toc-text">存在目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明-1"><span class="toc-number">1.2.3.</span> <span class="toc-text">说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#feature"><span class="toc-number">1.3.</span> <span class="toc-text">feature</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#分支来源"><span class="toc-number">1.3.1.</span> <span class="toc-text">分支来源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码来源-2"><span class="toc-number">1.3.2.</span> <span class="toc-text">代码来源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存在目的-1"><span class="toc-number">1.3.3.</span> <span class="toc-text">存在目的</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#release"><span class="toc-number">1.4.</span> <span class="toc-text">release</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hotfix"><span class="toc-number">1.5.</span> <span class="toc-text">hotfix</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一些特殊情况"><span class="toc-number">2.</span> <span class="toc-text">一些特殊情况</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#develop已存在一些未上线的feature代码-此时需要紧急上线一个新功能-但develop的代码不能上"><span class="toc-number">2.1.</span> <span class="toc-text">develop已存在一些未上线的feature代码, 此时需要紧急上线一个新功能, 但develop的代码不能上</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#方案一"><span class="toc-number">2.1.1.</span> <span class="toc-text">方案一:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方案二："><span class="toc-number">2.1.2.</span> <span class="toc-text">方案二：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#以develop为基线创建了f1和f2两个feature分支之后-f1-f2开发一半的时候发现两个分支代码需要有依赖怎么办"><span class="toc-number">2.2.</span> <span class="toc-text">以develop为基线创建了f1和f2两个feature分支之后, f1, f2开发一半的时候发现两个分支代码需要有依赖怎么办?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#feature分支可以以任何分支为基线-同时finish的时候，会合并到基线分支"><span class="toc-number">2.3.</span> <span class="toc-text">feature分支可以以任何分支为基线, 同时finish的时候，会合并到基线分支</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#权限问题"><span class="toc-number">3.</span> <span class="toc-text">权限问题</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -388,15 +439,13 @@ there exist the more tag, so, in home page, the content before more will not be 
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/05/31/encrypt-post/" title="上一篇: 加密博客内容，使用密码访问">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/05/06/generate-increament-timestamp-with-redis/" title="下一篇: 利用redis在集群的情况下生成全局唯一时间戳">
+            <a href="/2016/07/12/cas-faq/" title="下一篇: cas-循环重定向">
                 <i class="fa fa-angle-right"></i>
             </a>
         
