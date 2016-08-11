@@ -3,14 +3,30 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: hexo | Server Not Down</title>
+  <title>迁移/usr目录到新的分区 | Server Not Down</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Server Not Down">
-<meta property="og:url" content="http://edolphin.site/tags/hexo/index.html">
+  <meta name="description" content="环境
+ubuntu
+/usr目录与根目录在同一分区
+
+分区使用GParted修改和创建分区，创建完之后，格式化为ext4（或其他你需要的格式）即可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="迁移/usr目录到新的分区">
+<meta property="og:url" content="http://edolphin.site/2016/08/10/mv-usr-dir-to-new-partition/index.html">
 <meta property="og:site_name" content="Server Not Down">
+<meta property="og:description" content="环境
+ubuntu
+/usr目录与根目录在同一分区
+
+分区使用GParted修改和创建分区，创建完之后，格式化为ext4（或其他你需要的格式）即可">
+<meta property="og:updated_time" content="2016-08-11T07:56:34.712Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Server Not Down">
+<meta name="twitter:title" content="迁移/usr目录到新的分区">
+<meta name="twitter:description" content="环境
+ubuntu
+/usr目录与根目录在同一分区
+
+分区使用GParted修改和创建分区，创建完之后，格式化为ext4（或其他你需要的格式）即可">
   
     <link rel="alternative" href="/atom.xml" title="Server Not Down" type="application/atom+xml">
   
@@ -39,9 +55,9 @@
           fancybox: true,
           animate: true,
           isHome: false,
-          isPost: false,
+          isPost: true,
           isArchive: false,
-          isTag: true,
+          isTag: false,
           isCategory: false,
           open_in_new: true,
       }
@@ -224,147 +240,191 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-mv-usr-dir-to-new-partition" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2016/08/10/mv-usr-dir-to-new-partition/" class="article-date">
+      <time datetime="2016-08-10T07:55:34.000Z" itemprop="datePublished">2016-08-10</time>
+</a>
+    </div>
   
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      迁移/usr目录到新的分区
+    </h1>
+  
+
+      </header>
       
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/扩容/">扩容</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/05/31/encrypt-post/" class="archive-article-date">
-      <time datetime="2016-05-30T19:17:58.000Z" itemprop="datePublished">05-31</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/31/encrypt-post/">加密博客内容，使用密码访问</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
+    <div class="article-entry" itemprop="articleBody">
+      
           
+        <h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><ul>
+<li>ubuntu</li>
+<li>/usr目录与根目录在同一分区</li>
+</ul>
+<h1 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h1><p>使用GParted修改和创建分区，创建完之后，格式化为ext4（或其他你需要的格式）即可</p>
+<a id="more"></a>
+<h1 id="迁移"><a href="#迁移" class="headerlink" title="迁移"></a>迁移</h1><h2 id="备份-usr目录"><a href="#备份-usr目录" class="headerlink" title="备份/usr目录"></a>备份/usr目录</h2><p>利用tar打包整个/usr目录即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -cvf usr.tar /usr/*</div></pre></td></tr></table></figure>
+<h2 id="挂载新分区"><a href="#挂载新分区" class="headerlink" title="挂载新分区"></a>挂载新分区</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">fdisk <span class="_">-l</span> <span class="comment">#查看找到新建分区编号 /dev/sd****</span></div><div class="line">mkdir /mnt/sda6</div><div class="line">mount /dev/sda6	/mnt/sda6	<span class="comment">#挂载新建的分区</span></div></pre></td></tr></table></figure>
+<h2 id="将usr-tar放到-mnt-sda6目录下"><a href="#将usr-tar放到-mnt-sda6目录下" class="headerlink" title="将usr.tar放到/mnt/sda6目录下"></a>将usr.tar放到/mnt/sda6目录下</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -xvf usr.tar /mnt/sda6</div></pre></td></tr></table></figure>
+<h2 id="查看信分区uuid，并修改-etc-fstab"><a href="#查看信分区uuid，并修改-etc-fstab" class="headerlink" title="查看信分区uuid，并修改/etc/fstab"></a>查看信分区uuid，并修改/etc/fstab</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">blkid	<span class="comment"># 查看分区uuid</span></div></pre></td></tr></table></figure>
+<p>将下边的uuid替换为上边找到的uuid， 写入/etc/fstab中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UUID=cb8feb29-e413-4ab2-933d-1cbe36f62ff9 /usr 			  ext4    defaults		1		2</div></pre></td></tr></table></figure></p>
+<h2 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h2><p><code>reboot</code></p>
+<h1 id="不出意外此时已经成功，删除原-usr目录下的文件，释放空间"><a href="#不出意外此时已经成功，删除原-usr目录下的文件，释放空间" class="headerlink" title="不出意外此时已经成功，删除原/usr目录下的文件，释放空间"></a>不出意外此时已经成功，删除原/usr目录下的文件，释放空间</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ sudo mount --bind / /mnt</div><div class="line">$ sudo rm -rf /mnt/usr</div><div class="line">$ sudo umount /mnt</div></pre></td></tr></table></figure>
 
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/encrypt/">encrypt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/08/10/mv-usr-dir-to-new-partition/">迁移/usr目录到新的分区</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">edolphin</a></p>
+        <p><span>发布时间:</span>2016-08-10, 15:55:34</p>
+        <p><span>最后更新:</span>2016-08-11, 15:56:34</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/08/10/mv-usr-dir-to-new-partition/" title="迁移/usr目录到新的分区">http://edolphin.site/2016/08/10/mv-usr-dir-to-new-partition/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2016/08/10/mv-usr-dir-to-new-partition/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
     </div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/07/29/git-flow/">
+                    git flow使用经验
+                </a>
+            </div>
+        
+    </nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/05/31/encrypt-test/" class="archive-article-date">
-      <time datetime="2016-05-30T18:38:54.000Z" itemprop="datePublished">05-31</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/31/encrypt-test/">encrypt-test</a>
-    </h1>
-  
 
-        <div class="article-info info-on-archive">
-          
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#环境"><span class="toc-number">1.</span> <span class="toc-text">环境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分区"><span class="toc-number">2.</span> <span class="toc-text">分区</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#迁移"><span class="toc-number">3.</span> <span class="toc-text">迁移</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#备份-usr目录"><span class="toc-number">3.1.</span> <span class="toc-text">备份/usr目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#挂载新分区"><span class="toc-number">3.2.</span> <span class="toc-text">挂载新分区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将usr-tar放到-mnt-sda6目录下"><span class="toc-number">3.3.</span> <span class="toc-text">将usr.tar放到/mnt/sda6目录下</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看信分区uuid，并修改-etc-fstab"><span class="toc-number">3.4.</span> <span class="toc-text">查看信分区uuid，并修改/etc/fstab</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重启"><span class="toc-number">3.5.</span> <span class="toc-text">重启</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#不出意外此时已经成功，删除原-usr目录下的文件，释放空间"><span class="toc-number">4.</span> <span class="toc-text">不出意外此时已经成功，删除原/usr目录下的文件，释放空间</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
 
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/encrypt/">encrypt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+    <div class="share">
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+    <a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+    <a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+    </div>
+    <script>
+        window._bd_share_config={
+            "common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+</div>
+
+
+
+    
+        <section class="youyan" id="comments">
+  <div id="uyan_frame"></div>
+  <script src="http://v2.uyan.cc/code/uyan.js?uid=2092308"></script>
+</section>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/07/29/git-flow/" title="下一篇: git flow使用经验">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
     </div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/04/01/write-blog-with-vim/" class="archive-article-date">
-      <time datetime="2016-03-31T22:19:07.000Z" itemprop="datePublished">04-01</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/01/write-blog-with-vim/">在windows下通过xshell连接ubuntu写blog</a>
-    </h1>
-  
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/08/10/mv-usr-dir-to-new-partition/">迁移/usr目录到新的分区</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/29/git-flow/">git flow使用经验</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/12/cas-faq/">cas-循环重定向</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/01/cas-single-sign-out/">cas+shiro单点登出的坑</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/03/迁儿/">1</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/03/TodoList/">TodoList</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/01/608重庆武隆/">608重庆武隆</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/31/encrypt-post/">加密博客内容，使用密码访问</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/31/encrypt-test/">encrypt-test</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/generate-increament-timestamp-with-redis/">利用redis在集群的情况下生成全局唯一时间戳</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/java-extends-super/">java泛型中，extends和super</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/cas-user-auth-flow/">cas单点登录用户认证流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/cas-login-flow/">cas单点登录基本流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/flowcharttest/">flowcharttest</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/01/vim-build-in-ubuntu/">build vim in ubuntu with lua, python</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/01/write-blog-with-vim/">在windows下通过xshell连接ubuntu写blog</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/vim-plugin-note/">vim_plugin_note</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/hexo目录及github管理/">hexo目录及github管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/maven版本管理/">maven版本管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/30/rpc-design-and-implement/">Rpc的设计与实现</a></li></ul>
 
-        <div class="article-info info-on-archive">
-          
 
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
-    </div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/03/31/hexo目录及github管理/" class="archive-article-date">
-      <time datetime="2016-03-31T00:06:12.000Z" itemprop="datePublished">03-31</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/03/31/hexo目录及github管理/">hexo目录及github管理</a>
-    </h1>
-  
 
-        <div class="article-info info-on-archive">
-          
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">

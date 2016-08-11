@@ -17,7 +17,7 @@
 12CAS: cas 服务器APP: 应用服务器
 循环重定向由于在CAS验证通过，重定向到APP之后，在APP上校验失败导致再次去CAS请求登录，而CAS上为登录成功状态，于是生成新的service-ticket，再次重定向到APP，如此循环
 客户端代码问题因为我们做的单点登录只在CAS上校验账号密码，APP需要根据从CAS中取到的用户id，加载出用户信息和权限信息，若客户端取用户信息代码">
-<meta property="og:updated_time" content="2016-07-13T06:48:56.873Z">
+<meta property="og:updated_time" content="2016-08-02T08:31:34.597Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cas-循环重定向">
 <meta name="twitter:description" content="设定：
@@ -161,7 +161,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/cas/" style="font-size: 16.67px;">cas</a> <a href="/tags/encrypt/" style="font-size: 13.33px;">encrypt</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 16.67px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/lua/" style="font-size: 10px;">lua</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/sso/" style="font-size: 10px;">sso</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/vim/" style="font-size: 13.33px;">vim</a>
+                        <a href="/tags/cas/" style="font-size: 16.67px;">cas</a> <a href="/tags/encrypt/" style="font-size: 13.33px;">encrypt</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 16.67px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/lua/" style="font-size: 10px;">lua</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/sso/" style="font-size: 10px;">sso</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 13.33px;">vim</a> <a href="/tags/扩容/" style="font-size: 10px;">扩容</a>
                     </div>
                 </section>
                 
@@ -241,7 +241,7 @@
   
     <div class="article-meta">
       <a href="/2016/07/12/cas-faq/" class="article-date">
-      <time datetime="2016-07-13T02:55:29.000Z" itemprop="datePublished">2016-07-12</time>
+      <time datetime="2016-07-12T11:55:29.000Z" itemprop="datePublished">2016-07-12</time>
 </a>
     </div>
   
@@ -276,7 +276,7 @@
       
           
         <p>设定：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CAS: cas 服务器</span><br><span class="line">APP: 应用服务器</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CAS: cas 服务器</div><div class="line">APP: 应用服务器</div></pre></td></tr></table></figure>
 <h3 id="循环重定向"><a href="#循环重定向" class="headerlink" title="循环重定向"></a>循环重定向</h3><p>由于在CAS验证通过，重定向到APP之后，在APP上校验失败导致再次去CAS请求登录，而CAS上为登录成功状态，于是生成新的service-ticket，再次重定向到APP，如此循环</p>
 <h4 id="客户端代码问题"><a href="#客户端代码问题" class="headerlink" title="客户端代码问题"></a>客户端代码问题</h4><p>因为我们做的单点登录只在CAS上校验账号密码，APP需要根据从CAS中取到的用户id，加载出用户信息和权限信息，若客户端取用户信息代码出错，则会导致循环重定向</p>
 <h4 id="数据库配置"><a href="#数据库配置" class="headerlink" title="数据库配置"></a>数据库配置</h4><p>若CAS与APP链接的为不同的数据库，两个数据库中用户信息不一致，则客户端找不到用户信息，重定向</p>
@@ -302,7 +302,7 @@
         <p><span>本文标题:</span><a href="/2016/07/12/cas-faq/">cas-循环重定向</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">edolphin</a></p>
         <p><span>发布时间:</span>2016-07-12, 19:55:29</p>
-        <p><span>最后更新:</span>2016-07-12, 23:48:56</p>
+        <p><span>最后更新:</span>2016-08-02, 16:31:34</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/07/12/cas-faq/" title="cas-循环重定向">http://edolphin.site/2016/07/12/cas-faq/</a>
             <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2016/07/12/cas-faq/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -424,7 +424,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/07/29/git-flow/">git flow使用经验</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/12/cas-faq/">cas-循环重定向</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/01/cas-single-sign-out/">cas+shiro单点登出的坑</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/03/迁儿/">1</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/03/TodoList/">TodoList</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/01/608重庆武隆/">608重庆武隆</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/31/encrypt-post/">加密博客内容，使用密码访问</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/31/encrypt-test/">encrypt-test</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/generate-increament-timestamp-with-redis/">利用redis在集群的情况下生成全局唯一时间戳</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/java-extends-super/">java泛型中，extends和super</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/cas-user-auth-flow/">cas单点登录用户认证流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/cas-login-flow/">cas单点登录基本流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/flowcharttest/">flowcharttest</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/01/vim-build-in-ubuntu/">build vim in ubuntu with lua, python</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/01/write-blog-with-vim/">在windows下通过xshell连接ubuntu写blog</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/vim-plugin-note/">vim_plugin_note</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/hexo目录及github管理/">hexo目录及github管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/maven版本管理/">maven版本管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/30/rpc-design-and-implement/">Rpc的设计与实现</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/08/10/mv-usr-dir-to-new-partition/">迁移/usr目录到新的分区</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/29/git-flow/">git flow使用经验</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/12/cas-faq/">cas-循环重定向</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/01/cas-single-sign-out/">cas+shiro单点登出的坑</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/03/迁儿/">1</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/03/TodoList/">TodoList</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/01/608重庆武隆/">608重庆武隆</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/31/encrypt-post/">加密博客内容，使用密码访问</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/31/encrypt-test/">encrypt-test</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/generate-increament-timestamp-with-redis/">利用redis在集群的情况下生成全局唯一时间戳</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/java-extends-super/">java泛型中，extends和super</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/cas-user-auth-flow/">cas单点登录用户认证流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/cas-login-flow/">cas单点登录基本流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/flowcharttest/">flowcharttest</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/01/vim-build-in-ubuntu/">build vim in ubuntu with lua, python</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/01/write-blog-with-vim/">在windows下通过xshell连接ubuntu写blog</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/vim-plugin-note/">vim_plugin_note</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/hexo目录及github管理/">hexo目录及github管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/maven版本管理/">maven版本管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/30/rpc-design-and-implement/">Rpc的设计与实现</a></li></ul>
 
 
 
