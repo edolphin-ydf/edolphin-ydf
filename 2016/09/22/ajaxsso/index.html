@@ -3,24 +3,36 @@
 <head>
   <meta charset="utf-8">
   
-  <title>cas+shiro单点登出的坑 | Server Not Down</title>
+  <title>ajaxsso | Server Not Down</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="情景cas server：casclient server: C1client server: C2
-当用户在C1和C2都登录之后，获取到改用户在两个系统内各自需要的权限之后，在C1做登出操作，按照网上大部分的配置方法(web.xml中增加SingleSignOutFilter和SingleSignOutHttpSessionListener)，可以在效果上看起来是登出了，但是并没有完全登出。
-即">
+  <meta name="description" content="流程jsServer登录Title: App Server1登录
+Browser-&amp;gt;JsServer: 访问首页P
+JsServer-&amp;gt;Browser: 返回不需要权限访问的首页
+Browser-&amp;gt;Cas: 浏览器初始化首页，并请求login ticket(a)
+Cas-&amp;gt;Browser: 返回LT(b)
+User-&amp;gt;Browser: 输入用户名密码并登录
+Brow">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cas+shiro单点登出的坑">
-<meta property="og:url" content="http://edolphin.site/2016/07/01/cas-single-sign-out/index.html">
+<meta property="og:title" content="ajaxsso">
+<meta property="og:url" content="http://edolphin.site/2016/09/22/ajaxsso/index.html">
 <meta property="og:site_name" content="Server Not Down">
-<meta property="og:description" content="情景cas server：casclient server: C1client server: C2
-当用户在C1和C2都登录之后，获取到改用户在两个系统内各自需要的权限之后，在C1做登出操作，按照网上大部分的配置方法(web.xml中增加SingleSignOutFilter和SingleSignOutHttpSessionListener)，可以在效果上看起来是登出了，但是并没有完全登出。
-即">
-<meta property="og:updated_time" content="2016-08-02T08:31:34.597Z">
+<meta property="og:description" content="流程jsServer登录Title: App Server1登录
+Browser-&amp;gt;JsServer: 访问首页P
+JsServer-&amp;gt;Browser: 返回不需要权限访问的首页
+Browser-&amp;gt;Cas: 浏览器初始化首页，并请求login ticket(a)
+Cas-&amp;gt;Browser: 返回LT(b)
+User-&amp;gt;Browser: 输入用户名密码并登录
+Brow">
+<meta property="og:updated_time" content="2016-09-22T08:07:35.282Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="cas+shiro单点登出的坑">
-<meta name="twitter:description" content="情景cas server：casclient server: C1client server: C2
-当用户在C1和C2都登录之后，获取到改用户在两个系统内各自需要的权限之后，在C1做登出操作，按照网上大部分的配置方法(web.xml中增加SingleSignOutFilter和SingleSignOutHttpSessionListener)，可以在效果上看起来是登出了，但是并没有完全登出。
-即">
+<meta name="twitter:title" content="ajaxsso">
+<meta name="twitter:description" content="流程jsServer登录Title: App Server1登录
+Browser-&amp;gt;JsServer: 访问首页P
+JsServer-&amp;gt;Browser: 返回不需要权限访问的首页
+Browser-&amp;gt;Cas: 浏览器初始化首页，并请求login ticket(a)
+Cas-&amp;gt;Browser: 返回LT(b)
+User-&amp;gt;Browser: 输入用户名密码并登录
+Brow">
   
     <link rel="alternative" href="/atom.xml" title="Server Not Down" type="application/atom+xml">
   
@@ -234,11 +246,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-cas-single-sign-out" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-ajaxsso" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/07/01/cas-single-sign-out/" class="article-date">
-      <time datetime="2016-06-30T18:15:45.000Z" itemprop="datePublished">2016-07-01</time>
+      <a href="/2016/09/22/ajaxsso/" class="article-date">
+      <time datetime="2016-09-22T03:32:59.000Z" itemprop="datePublished">2016-09-22</time>
 </a>
     </div>
   
@@ -251,7 +263,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      cas+shiro单点登出的坑
+      ajaxsso
     </h1>
   
 
@@ -262,7 +274,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cas/">cas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sso/">sso</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ajax/">ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cas/">cas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jsonp/">jsonp</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -272,36 +284,103 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="情景"><a href="#情景" class="headerlink" title="情景"></a>情景</h1><p>cas server：cas<br>client server: C1<br>client server: C2</p>
-<p>当用户在C1和C2都登录之后，获取到改用户在两个系统内各自需要的权限之后，在C1做登出操作，按照网上大部分的配置方法(web.xml中增加SingleSignOutFilter和SingleSignOutHttpSessionListener)，可以在效果上看起来是登出了，但是并没有完全登出。</p>
-<p>即：<br>    C1和C2的JSESSIONID对应在服务器的session被销毁，浏览器两个JSESSIONID失效(看起来登出了)<br>    cas的cookie（TGT）失效<br>    C1服务器上，对应的用户权限清除(C1是完全退出了)<br>    C2服务器上，对应的用户权限没有清除(<strong>没完全退出</strong>)</p>
-<a id="more"></a>
-<h1 id="原理分析"><a href="#原理分析" class="headerlink" title="原理分析"></a>原理分析</h1><div class="sequence">Browser-&gt;C1: logout request(1)
-C1-&gt;Browser: C1 subject.logout(), redirect to cas (2)
-Browser-&gt;cas: cas logout path(3)
-cas-&gt;C2: notify C2 the user had logout(4)</div>
-<p>1,2,3都很正常，问题出在第四步。</p>
-<p>第四步仅仅是被SingleSignOutFilter拦截，根据service-ticket销毁掉改用户对应的session，而并没有调用shiro的subject.logout, 显然，subject.logout是做了销毁权限缓存等操作的</p>
-<p>这样就会导致最终C2上的用户权限没有被清除，若在此时用户权限被修改，就会导致即使登出，C2上的权限也没有刷新</p>
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><h3 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h3><p>权限缓存是可以设置过期时间的，那么简单点，只要给权限缓存加上过期时间即可，这样如果权限被修改，即使用户不登出，在过期之后，权限也会被刷新</p>
-<h3 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h3><p><a href="这里">http://howiefh.github.io/2015/05/19/shiro-cas-single-sign-on/</a> 有一个很详细的说明，但是没仔细看，简单的说就是使用ServletContainerSessionManager，即shiro自己的session管理，似乎可以解决问题，但是未验证</p>
-<h3 id="方案三"><a href="#方案三" class="headerlink" title="方案三"></a>方案三</h3><p>思路很简单，重写SingleSignOutFilter， 在登出的时候，调用subject.logout 即可。</p>
-<p>奈何太年轻，这种方案有很多坑</p>
-<h4 id="坑一"><a href="#坑一" class="headerlink" title="坑一"></a>坑一</h4><p>问题：</p>
-<p>Subject是由session中存放的一个key生成的，但是时序图中第四步是有cas发起的请求，而不是用户浏览器，即这个session中没有Subject信息，shiro无法获取到具体信息。</p>
-<p>解决：<br>SingleSignOutFilter中有存储一份 service-ticket与session的映射关系，那么只要在第四步中 利用 service-ticket取到session，再从session中取到SimplePrincipalCollection信息放入subject即可</p>
-<h4 id="坑二"><a href="#坑二" class="headerlink" title="坑二"></a>坑二</h4><p>问题：</p>
-<p>subject不提供设置principal接口，service-ticket session映射关系未提供get接口</p>
-<p>解决：<br>反射搞定，但是总觉得不靠谱呢。。</p>
-<h4 id="坑三"><a href="#坑三" class="headerlink" title="坑三"></a>坑三</h4><p>问题：</p>
-<p>SingleSignOutFilter是在ShiroFilter chain之前，也就是说，如果重写SingleSignOutFilter，在里边连一个不包含Principal的Subject都获取不到，但是如果把这个SimplePrincipalCollection放到 shrioFilter之后，登录的时候又会有问题<br>这是一个鸡生蛋和蛋生鸡的问题啊。。。</p>
-<p>解决：<br>问题总是能解决的，放在前边后边都不行，那么放一起吧。对，把SingleSignOutFilter放到ShiroFilter之中， 原以为ShiroFilter会对符合过滤规则的做一个filter chain，结果并不是。</p>
-<p>shiro会针对配置的filter规则，取第一个匹配的作为最终的filter，而后边符合规则的就会被忽略掉</p>
-<p>所以这里，要把SingleSignOutFilter和Shiro自己提供的CasFilter合并起来，放在一起作为一个filter</p>
-<h3 id="方案三代码"><a href="#方案三代码" class="headerlink" title="方案三代码"></a>方案三代码</h3><p>经过这么一折腾，于是就有了下面的代码了<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilterInternal</span><span class="params">(<span class="keyword">final</span> ServletRequest servletRequest, <span class="keyword">final</span> ServletResponse servletResponse, <span class="keyword">final</span> FilterChain filterChain)</span> <span class="keyword">throws</span> IOException, ServletException </span>&#123;</div><div class="line">       <span class="keyword">final</span> HttpServletRequest request = (HttpServletRequest) servletRequest;</div><div class="line"></div><div class="line">       <span class="keyword">if</span> (handler.isTokenRequest(request)) &#123;</div><div class="line">           handler.recordSession(request);		<span class="comment">// 登录，记录session SingleSignOutFilter做的事情</span></div><div class="line">           <span class="keyword">super</span>.doFilterInternal(servletRequest, servletResponse, filterChain);	<span class="comment">// 记录完了之后，就调用CasFilter自己的doFilterInternal</span></div><div class="line">           <span class="keyword">return</span>;</div><div class="line">       &#125; <span class="keyword">else</span> <span class="keyword">if</span> (handler.isLogoutRequest(request)) &#123;		<span class="comment">// 如果是登出</span></div><div class="line"></div><div class="line">		<span class="comment">// 一堆的代码，就是为了获取SimplePrincipalCollection，设置到Subject里边去，并在最后调用subject.logout()</span></div><div class="line">           <span class="keyword">final</span> String logoutMessage = CommonUtils.safeGetParameter(request, <span class="string">"logoutRequest"</span>);</div><div class="line">           <span class="keyword">final</span> String token = XmlUtils.getTextForElement(logoutMessage, <span class="string">"SessionIndex"</span>);</div><div class="line">           <span class="keyword">if</span> (CommonUtils.isNotBlank(token)) &#123;</div><div class="line">               HttpSession session = <span class="keyword">null</span>;</div><div class="line">               <span class="keyword">try</span> &#123;</div><div class="line">                   Field msField = handler.getSessionMappingStorage().getClass().getDeclaredField(<span class="string">"MANAGED_SESSIONS"</span>);</div><div class="line">                   msField.setAccessible(<span class="keyword">true</span>);</div><div class="line">                   Map&lt;String,HttpSession&gt; MANAGED_SESSIONS = (Map)msField.get(handler.getSessionMappingStorage());</div><div class="line">                   session = MANAGED_SESSIONS.get(token);</div><div class="line">               &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">               &#125;</div><div class="line"></div><div class="line">               <span class="keyword">if</span> (session != <span class="keyword">null</span>) &#123;</div><div class="line">                   Subject subject = getSubject(servletRequest, servletResponse);</div><div class="line">                   ShiroUser shiroUser = (ShiroUser)(((SimplePrincipalCollection)(session.getAttribute(<span class="string">"org.apache.shiro.subject.support.DefaultSubjectContext_PRINCIPALS_SESSION_KEY"</span>))).getPrimaryPrincipal());</div><div class="line">                   SimplePrincipalCollection pc = <span class="keyword">new</span> SimplePrincipalCollection(shiroUser, shiroUser.getName());</div><div class="line">                   <span class="keyword">try</span> &#123;</div><div class="line">                       Field principalsField = subject.getClass().getSuperclass().getDeclaredField(<span class="string">"principals"</span>);</div><div class="line">                       principalsField.setAccessible(<span class="keyword">true</span>);</div><div class="line">                       principalsField.set(subject, pc);</div><div class="line">                   &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">                   &#125;</div><div class="line"></div><div class="line"></div><div class="line">                   <span class="keyword">try</span> &#123;</div><div class="line">                       subject.logout();</div><div class="line">                   &#125; <span class="keyword">catch</span> (SessionException ise) &#123;</div><div class="line">                   &#125;</div><div class="line"></div><div class="line">               &#125;</div><div class="line">           &#125;</div><div class="line"></div><div class="line">		<span class="comment">// logout之后，还要销毁session  SingleSignOutFilter做的事情</span></div><div class="line">           handler.destroySession(request);</div><div class="line">           <span class="keyword">return</span>;</div><div class="line">       &#125; <span class="keyword">else</span> &#123;</div><div class="line">           log.trace(<span class="string">"Ignoring URI "</span> + request.getRequestURI());</div><div class="line">       &#125;</div><div class="line"></div><div class="line">       filterChain.doFilter(servletRequest, servletResponse);</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
-<p>代码逻辑很简单，主要是要找到这么个解决方案，得一点点的调试和摸索，也是蛮有意思。<br>另外web.xml中的SingleSignOutFilter需要去掉，因为我们已经移到Shiro里边了，但是Listener需要保留，并且需要自己重写(里边有调用SingleSignOutFilter的方法，需要改掉)， 代码如下</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"casFilter"</span> <span class="attr">class</span>=<span class="string">"com.simpletour.sso.shiro.STSingleSignOutFilter"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"failureUrl"</span> <span class="attr">value</span>=<span class="string">"$&#123;sso.cas.client&#125;$&#123;sso.cas.client.home&#125;"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"shiroFilter"</span> <span class="attr">class</span>=<span class="string">"com.simpletour.sso.shiro.STShiroFilterFactoryBean"</span> <span class="attr">init-method</span>=<span class="string">"init"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"securityManager"</span> <span class="attr">ref</span>=<span class="string">"securityManager"</span> /&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"loginUrl"</span> <span class="attr">value</span>=<span class="string">"$&#123;sso.cas.server&#125;?service=$&#123;sso.cas.client&#125;/cas/login"</span> /&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"successUrl"</span> <span class="attr">value</span>=<span class="string">"$&#123;sso.cas.client.home&#125;"</span> /&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"filters"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">map</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"cas"</span> <span class="attr">value-ref</span>=<span class="string">"casFilter"</span>/&gt;</span></div><div class="line">               <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"logout"</span> <span class="attr">value-ref</span>=<span class="string">"logoutFilter"</span>/&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">map</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"filterChainDefinitions"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span></div><div class="line">			/static/** = anon</div><div class="line">			/config_* = anon</div><div class="line">			/cas/* = cas		<span class="comment">&lt;!--这里，cas/login, cas/logout 都走我们刚刚写的filter--&gt;</span></div><div class="line">			/logout = logout</div><div class="line">			/** = user</div><div class="line">		<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
-<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>准备找个时间写个cas的faq，毕竟在开发过程中，遇到的很多常见问题，很是烦躁。</p>
+        <a id="more"></a>
+<h1 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h1><h2 id="jsServer登录"><a href="#jsServer登录" class="headerlink" title="jsServer登录"></a>jsServer登录</h2><div class="sequence">Title: App Server1登录
+Browser-&gt;JsServer: 访问首页P
+JsServer-&gt;Browser: 返回不需要权限访问的首页
+Browser-&gt;Cas: 浏览器初始化首页，并请求login ticket(a)
+Cas-&gt;Browser: 返回LT(b)
+User-&gt;Browser: 输入用户名密码并登录
+Browser-&gt;Cas: jsonp或iframe提交登录表单(c)
+Cas-&gt;Browser: 登录并返回TGC， ST(d)
+Browser-&gt;JsServer: (e)用ST请求JsServer登录
+JsServer-&gt;Browser: 登录成功并返回权限列表(f)(1)
+Browser-&gt;User: 根据权限列表，初始化界面</div>
+<p>(a): jsonp 请求 <code>url: https://cashost/fetchlt</code><br>调用示例:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fetchLoginTicket = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	$.ajax(&#123;</div><div class="line">		<span class="keyword">async</span>:<span class="literal">false</span>,</div><div class="line">		url: <span class="string">"https://lc.cas.com:8444/fetchlt"</span>,</div><div class="line">		type: <span class="string">"GET"</span>,</div><div class="line">		dataType: <span class="string">'jsonp'</span>,</div><div class="line">		jsonp: <span class="string">'callback'</span>,</div><div class="line">		timeout: <span class="number">5000</span>,</div><div class="line">		success: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;<span class="comment">//客户端jquery预先定义好的callback函数,成功获取跨域服务器上的json数据后,会动态执行这个callback函数</span></div><div class="line">			$(<span class="string">'#J_LoginTicket'</span>).val(data.lt);	<span class="comment">// 降返回的数据填充到form表单中</span></div><div class="line">		&#125;,</div><div class="line">		error: <span class="function"><span class="keyword">function</span>(<span class="params">xhr</span>)</span>&#123;</div><div class="line">			alert(<span class="string">"请求出错(请检查相关度网络状况.)"</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<hr>
+<p>(b) 返回login ticket<br>data 格式 <code>{&quot;code&quot;:0, &quot;lt&quot;: login-ticket}</code><br>code: </p>
+<ul>
+<li>0 成功</li>
+</ul>
+<p>lt: login ticket在提交登录表单时，一起提交</p>
+<hr>
+<p>(c) 提交登录表单<br>url: <a href="https://cashost/flogin?service=http://127.0.0.1:8090/cas/login" target="_blank" rel="external">https://cashost/flogin?service=http://127.0.0.1:8090/cas/login</a><br>url中service参数可选, 见(d)</p>
+<p><code>userName=10000&amp;password=123456&amp;loginTicket=LT-6-a5mzMcnnFTVi3odCAIBOODHlrmjLK5-simpletour.com&amp;rememberMe=false</code><br>userName: 用户名<br>password: 密码，直接提交<br>loginTicket: 上一步返回的lt<br>rememberMe: 是否自动登录</p>
+<hr>
+<p>(d) 验证登录信息并以cookie的形式返回TGC(Ticket granting ticket cookie)<br>若存在Service， 则返回JSON数据中包含ST(service ticket), 否则为空<br>返回示例：<br><code>{&quot;code&quot;: 0, &quot;msg&quot;: &quot;登录成功&quot;, &quot;st&quot;:&quot;ST-2-KhDgXWulPePADUS51Ssl-simpletour.com&quot;, &quot;service&quot;: &quot;http://127.0.0.1:8090/cas/login&quot;}</code><br>code:</p>
+<ul>
+<li>0 成功</li>
+<li>1 失败， 详细信息使用msg</li>
+</ul>
+<p>若存在ST， 则继续后边的登录应用服务器的步骤</p>
+<hr>
+<p>(e): ajax请求(貌似要用jsonp), JsServer可以替换为其他server，如portal, 根据(c)中的service决定<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$.ajax(&#123;</div><div class="line">	url: <span class="string">"http://127.0.0.1:8090/cas/login?ticket="</span> + data.st,</div><div class="line">	type: <span class="string">"GET"</span>,</div><div class="line">	success: function (data) &#123;</div><div class="line">		console.log(data);</div><div class="line">	&#125;,</div><div class="line">	error: function(err) &#123;</div><div class="line">		console.log(err);</div><div class="line">	&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>url参数<br>ticket: 上一步返回的service ticket<br>needUserInfo: 是否需要返回userInfo</p>
+<ul>
+<li>true 是</li>
+<li>false 否</li>
+</ul>
+<hr>
+<p>(f): 返回登录结果<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="attr">"code"</span>: <span class="number">0</span>, </div><div class="line">	<span class="attr">"msg"</span>:<span class="string">""</span>, </div><div class="line">	<span class="attr">"userInfo"</span>: &#123;</div><div class="line">		<span class="attr">"userName"</span>: <span class="string">""</span>, </div><div class="line">		<span class="attr">"jobNo"</span>: <span class="string">""</span>,</div><div class="line">		<span class="attr">"permissions"</span>: [<span class="string">""</span>, <span class="string">""</span>, ....]</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>code:</p>
+<ul>
+<li>0 成功</li>
+<li>1 失败， 详细信息使用msg</li>
+</ul>
+<h2 id="AppServer-通过浏览器跳转登录-现有流程"><a href="#AppServer-通过浏览器跳转登录-现有流程" class="headerlink" title="AppServer 通过浏览器跳转登录(现有流程)"></a>AppServer 通过浏览器跳转登录(现有流程)</h2><div class="sequence">Title: App Server2 登录(GET, POST 通过浏览器跳转)
+Browser-&gt;AppServer2: get请求App Server2页面P
+AppServer2-&gt;Browser: redirect到Cas
+Browser-&gt;Cas: 请求登录
+Cas-&gt;Browser: 发现已登录，返回redirect &amp; ST
+Browser-&gt;AppServer2: 携带ST登录
+AppServer2-&gt;Cas: 根据ST请求用户信息
+Cas-&gt;AppServer2: 返回用户信息
+AppServer2-&gt;Browser: redirect到登录前页面P
+Browser-&gt;AppServer2: 请求页面P</div>
+<h2 id="AppServer-通过Ajax登录，页面不跳转"><a href="#AppServer-通过Ajax登录，页面不跳转" class="headerlink" title="AppServer 通过Ajax登录，页面不跳转"></a>AppServer 通过Ajax登录，页面不跳转</h2><div class="sequence">Title: App Server2 登录(Ajax, 所有数据交换通过JSON完成)
+Browser-&gt;AppServer2: ajax get | post请求App Server2页面P(a)
+AppServer2-&gt;Browser: 返回JSON， Code=1 未登录(b)
+Browser-&gt;Cas: 携带Server id发起Ajax请求(c)
+Cas-&gt;Browser: 发现已登录，返回JSON Server id &amp; ST(d)
+Browser-&gt;AppServer2: ajax 携带ST登录(e)
+AppServer2-&gt;Cas: 根据ST请求用户信息
+Cas-&gt;AppServer2: 返回用户信息
+AppServer2-&gt;Browser: 返回登录成功，可包含用户信息(f)
+Browser-&gt;AppServer2: 请求页面P</div>
+<p>(a), (e): jsonp 请求中需要指明是否为jsonp请求(用作区分普通请求)(jsonp,还是ajax?)<br>针对ajax, <code>x-requested-with</code> 可以用作区分，但不保证所有浏览器可用，所以最好增加一个自定义header<br>eg: <code>request-jsonp</code></p>
+<hr>
+<p>(b): 返回数据格式(若用户已登录，则不会有此以及下面的步骤, 而是直接返回数据)<br><code>{&quot;code&quot;: 1, &quot;msg&quot;: &quot;未登录&quot;}</code><br>code:</p>
+<ul>
+<li>1 未登录(这里的未登录是指未登录AppServer2, 至于Cas是否登录，在下一步做验证)</li>
+</ul>
+<hr>
+<p>(c): 去cas请求st jsonp请求<br>url: <code>http://cashost/fetchst?service=http://127.0.0.1:8090/cas/login</code></p>
+<hr>
+<p>(d): 返回<br><code>{&quot;code&quot;:0, &quot;msg&quot;=&quot;&quot;, st=&quot;service-ticket&quot;, service=&quot;http://127.0.0.1:8090/cas/login&quot;}</code><br>code:</p>
+<ul>
+<li>0 成功</li>
+<li>1 cas未登录， 需要客户端跳转或弹出登录页面</li>
+<li>2 未知错误，一般不会出现，客户端就处理为重新登录就好</li>
+</ul>
+<p>st: service ticket<br>service: 请求中的service</p>
+<hr>
+<p>(e): 在(d)成功的情况下<br>jsonp请求登录AppServer2<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$.ajax(&#123;</div><div class="line">	url: <span class="string">"http://127.0.0.1:8090/cas/login?ticket="</span> + data.st,</div><div class="line">	type: <span class="string">"GET"</span>,</div><div class="line">	success: function (data) &#123;</div><div class="line">		console.log(data);</div><div class="line">	&#125;,</div><div class="line">	error: function(err) &#123;</div><div class="line">		console.log(err);</div><div class="line">	&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>url参数<br>ticket: 上一步返回的service ticket<br>needUserInfo: 是否需要返回userInfo</p>
+<ul>
+<li>true 是</li>
+<li>false 否</li>
+</ul>
+<hr>
+<p>(f): 返回登录结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	&quot;code&quot;: 0, </div><div class="line">	&quot;msg&quot;:&quot;&quot;, </div><div class="line">	&quot;userInfo&quot;: &#123;</div><div class="line">		&quot;userName&quot;: &quot;&quot;, </div><div class="line">		&quot;jobNo&quot;: &quot;&quot;,</div><div class="line">		&quot;permissions&quot;: [&quot;&quot;, &quot;&quot;, ....]</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>code:</p>
+<ul>
+<li>0 成功</li>
+<li>1 失败， 详细信息使用msg</li>
+</ul>
+<p><strong>所有Jsonp都使用callback</strong></p>
+<p>以上三种方式, 可以完成正常访问流程下的登录逻辑</p>
+<h1 id="问题：以上流程建立在假设所有数据的访问都在首页通过ajax-jsonp-请求完成"><a href="#问题：以上流程建立在假设所有数据的访问都在首页通过ajax-jsonp-请求完成" class="headerlink" title="问题：以上流程建立在假设所有数据的访问都在首页通过ajax(jsonp)请求完成"></a>问题：以上流程建立在假设所有数据的访问都在首页通过ajax(jsonp)请求完成</h1><p>Browser中权限列表若保存在页面js中，则需要单独提供权限查询接口，否则页面关闭后再打开则不再有权限数据<br>如此，(1)处仅需返回登录成功，权限根据查询接口再次查询即可</p>
+<p>对于不通过首页直接get数据的情况，若未登录，则会通过现有方式跳转到现在的登录界面</p>
 
       
     </div>
@@ -310,13 +389,13 @@ cas-&gt;C2: notify C2 the user had logout(4)</div>
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/07/01/cas-single-sign-out/">cas+shiro单点登出的坑</a></p>
+        <p><span>本文标题:</span><a href="/2016/09/22/ajaxsso/">ajaxsso</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">edolphin</a></p>
-        <p><span>发布时间:</span>2016-07-01, 02:15:45</p>
-        <p><span>最后更新:</span>2016-08-02, 16:31:34</p>
+        <p><span>发布时间:</span>2016-09-22, 11:32:59</p>
+        <p><span>最后更新:</span>2016-09-22, 16:07:35</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/07/01/cas-single-sign-out/" title="cas+shiro单点登出的坑">http://edolphin.site/2016/07/01/cas-single-sign-out/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2016/07/01/cas-single-sign-out/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/09/22/ajaxsso/" title="ajaxsso">http://edolphin.site/2016/09/22/ajaxsso/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2016/09/22/ajaxsso/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -329,16 +408,10 @@ cas-&gt;C2: notify C2 the user had logout(4)</div>
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/07/12/cas-faq/">
-                    cas-循环重定向
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/06/03/迁儿/">
-                    1
+                <a href="/2016/08/10/mv-usr-dir-to-new-partition/">
+                    迁移/usr目录到新的分区
                 </a>
             </div>
         
@@ -349,7 +422,7 @@ cas-&gt;C2: notify C2 the user had logout(4)</div>
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#情景"><span class="toc-number">1.</span> <span class="toc-text">情景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#原理分析"><span class="toc-number">2.</span> <span class="toc-text">原理分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解决方案"><span class="toc-number">3.</span> <span class="toc-text">解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#方案一"><span class="toc-number">3.0.1.</span> <span class="toc-text">方案一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方案二"><span class="toc-number">3.0.2.</span> <span class="toc-text">方案二</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方案三"><span class="toc-number">3.0.3.</span> <span class="toc-text">方案三</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#坑一"><span class="toc-number">3.0.3.1.</span> <span class="toc-text">坑一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#坑二"><span class="toc-number">3.0.3.2.</span> <span class="toc-text">坑二</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#坑三"><span class="toc-number">3.0.3.3.</span> <span class="toc-text">坑三</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方案三代码"><span class="toc-number">3.0.4.</span> <span class="toc-text">方案三代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#最后"><span class="toc-number">4.</span> <span class="toc-text">最后</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#流程"><span class="toc-number">1.</span> <span class="toc-text">流程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#jsServer登录"><span class="toc-number">1.1.</span> <span class="toc-text">jsServer登录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AppServer-通过浏览器跳转登录-现有流程"><span class="toc-number">1.2.</span> <span class="toc-text">AppServer 通过浏览器跳转登录(现有流程)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AppServer-通过Ajax登录，页面不跳转"><span class="toc-number">1.3.</span> <span class="toc-text">AppServer 通过Ajax登录，页面不跳转</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#问题：以上流程建立在假设所有数据的访问都在首页通过ajax-jsonp-请求完成"><span class="toc-number">2.</span> <span class="toc-text">问题：以上流程建立在假设所有数据的访问都在首页通过ajax(jsonp)请求完成</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -421,15 +494,13 @@ cas-&gt;C2: notify C2 the user had logout(4)</div>
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/07/12/cas-faq/" title="上一篇: cas-循环重定向">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/06/03/迁儿/" title="下一篇: 1">
+            <a href="/2016/08/10/mv-usr-dir-to-new-partition/" title="下一篇: 迁移/usr目录到新的分区">
                 <i class="fa fa-angle-right"></i>
             </a>
         

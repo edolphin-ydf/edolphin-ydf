@@ -153,7 +153,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/cas/" style="font-size: 16.67px;">cas</a> <a href="/tags/encrypt/" style="font-size: 13.33px;">encrypt</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 16.67px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/lua/" style="font-size: 10px;">lua</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/sso/" style="font-size: 10px;">sso</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 13.33px;">vim</a> <a href="/tags/扩容/" style="font-size: 10px;">扩容</a>
+                        <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/cas/" style="font-size: 17.5px;">cas</a> <a href="/tags/encrypt/" style="font-size: 12.5px;">encrypt</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/jsonp/" style="font-size: 10px;">jsonp</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/lua/" style="font-size: 10px;">lua</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/sso/" style="font-size: 10px;">sso</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 12.5px;">vim</a> <a href="/tags/扩容/" style="font-size: 10px;">扩容</a>
                     </div>
                 </section>
                 
@@ -230,6 +230,70 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-generate-increament-timestamp-with-redis" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/06/generate-increament-timestamp-with-redis/" class="article-date">
+      <time datetime="2016-05-06T12:19:00.000Z" itemprop="datePublished">2016-05-06</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/06/generate-increament-timestamp-with-redis/">利用redis在集群的情况下生成全局唯一时间戳</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>如题，需要保证两点：</p>
+<ul>
+<li>唯一</li>
+<li>原子操作</li>
+</ul>
+<p>当时间戳相同的情况下，需要对其做+1操作以保证唯一<br>使用lua脚本保证原子操作</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">local</span> newTS = <span class="number">0</span>;</div><div class="line"><span class="keyword">if</span> (redis.call(<span class="string">'exists'</span>, KEYS[<span class="number">1</span>]) == <span class="number">1</span>) <span class="keyword">then</span> </div><div class="line">	newTS = redis.call(<span class="string">'get'</span>, KEYS[<span class="number">1</span>]);</div><div class="line"><span class="keyword">end</span></div><div class="line"><span class="keyword">if</span> (newTS &lt; ARGV[<span class="number">1</span>]) <span class="keyword">then</span></div><div class="line">	newTS = ARGV[<span class="number">1</span>];</div><div class="line"><span class="keyword">end</span></div><div class="line">newTS = newTS + <span class="number">1</span>;</div><div class="line">redis.call(<span class="string">'set'</span>, KEYS[<span class="number">1</span>], newTS);</div><div class="line"><span class="keyword">return</span> redis.call(<span class="string">'get'</span>, KEYS[<span class="number">1</span>]);</div></pre></td></tr></table></figure>
+<p>其中KEY[1]为保存时间戳的key， 可自定义任意值<br>ARGV[1] 为客户端本地取得的当前毫秒戳</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-java-extends-super" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -798,100 +862,9 @@ c2(no)-&gt;op2-&gt;e</div></p>
 
 
   
-    <article id="post-rpc-design-and-implement" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/03/30/rpc-design-and-implement/" class="article-date">
-      <time datetime="2016-03-30T11:48:08.000Z" itemprop="datePublished">2016-03-30</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/30/rpc-design-and-implement/">Rpc的设计与实现</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <hr>
-<p>Rpc应该建立在</p>
-<ul>
-<li>网络通信（socket，netty……）</li>
-<li>消息（protobuf，thrift……）</li>
-</ul>
-<p>的基础之上</p>
-<hr>
-<p>分层</p>
-<ul>
-<li>应用层</li>
-<li>RPC层</li>
-<li>消息传输层(protobuf on netty)</li>
-<li>网络框架层(netty)</li>
-<li>网络通信层(socket)</li>
-</ul>
-<hr>
-<p>先暂时忽略掉底层 东西，考虑一个Rpc流程……</p>
-<p>C(客户端)， S(服务器)</p>
-<p>APP(应用层), RPC(Rpc层)</p>
-<hr>
-<ul>
-<li>CAPP:调用一个方法-&gt;</li>
-<li>CRPC:将方法参数序列化通过网络传输到服务器-&gt;</li>
-<li>SRPC:收到数据反序列化为消息，然后调用相应处理方法-&gt;</li>
-<li>SAPP:一个普通方法被调用，并返回数据-&gt;</li>
-<li>SRPC:将应用层返回的数据序列化，通过网络返回给客户端-&gt;</li>
-<li>CRPC:收到服务器返回的数据，反序列化之后，传递给应用层-&gt;</li>
-<li>CAPP:得到函数调用结果</li>
-</ul>
-<hr>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2016/03/30/rpc-design-and-implement/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 </div>
