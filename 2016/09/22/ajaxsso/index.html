@@ -5,34 +5,16 @@
   
   <title>ajaxsso | Server Not Down</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="流程jsServer登录Title: App Server1登录
-Browser-&amp;gt;JsServer: 访问首页P
-JsServer-&amp;gt;Browser: 返回不需要权限访问的首页
-Browser-&amp;gt;Cas: 浏览器初始化首页，并请求login ticket(a)
-Cas-&amp;gt;Browser: 返回LT(b)
-User-&amp;gt;Browser: 输入用户名密码并登录
-Brow">
+  <meta name="description" content="单点登录修改为ajax请求">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ajaxsso">
 <meta property="og:url" content="http://edolphin.site/2016/09/22/ajaxsso/index.html">
 <meta property="og:site_name" content="Server Not Down">
-<meta property="og:description" content="流程jsServer登录Title: App Server1登录
-Browser-&amp;gt;JsServer: 访问首页P
-JsServer-&amp;gt;Browser: 返回不需要权限访问的首页
-Browser-&amp;gt;Cas: 浏览器初始化首页，并请求login ticket(a)
-Cas-&amp;gt;Browser: 返回LT(b)
-User-&amp;gt;Browser: 输入用户名密码并登录
-Brow">
-<meta property="og:updated_time" content="2016-09-22T08:07:35.282Z">
+<meta property="og:description" content="单点登录修改为ajax请求">
+<meta property="og:updated_time" content="2016-09-22T08:10:21.273Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ajaxsso">
-<meta name="twitter:description" content="流程jsServer登录Title: App Server1登录
-Browser-&amp;gt;JsServer: 访问首页P
-JsServer-&amp;gt;Browser: 返回不需要权限访问的首页
-Browser-&amp;gt;Cas: 浏览器初始化首页，并请求login ticket(a)
-Cas-&amp;gt;Browser: 返回LT(b)
-User-&amp;gt;Browser: 输入用户名密码并登录
-Brow">
+<meta name="twitter:description" content="单点登录修改为ajax请求">
   
     <link rel="alternative" href="/atom.xml" title="Server Not Down" type="application/atom+xml">
   
@@ -284,104 +266,7 @@ Brow">
     <div class="article-entry" itemprop="articleBody">
       
           
-        <a id="more"></a>
-<h1 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h1><h2 id="jsServer登录"><a href="#jsServer登录" class="headerlink" title="jsServer登录"></a>jsServer登录</h2><div class="sequence">Title: App Server1登录
-Browser-&gt;JsServer: 访问首页P
-JsServer-&gt;Browser: 返回不需要权限访问的首页
-Browser-&gt;Cas: 浏览器初始化首页，并请求login ticket(a)
-Cas-&gt;Browser: 返回LT(b)
-User-&gt;Browser: 输入用户名密码并登录
-Browser-&gt;Cas: jsonp或iframe提交登录表单(c)
-Cas-&gt;Browser: 登录并返回TGC， ST(d)
-Browser-&gt;JsServer: (e)用ST请求JsServer登录
-JsServer-&gt;Browser: 登录成功并返回权限列表(f)(1)
-Browser-&gt;User: 根据权限列表，初始化界面</div>
-<p>(a): jsonp 请求 <code>url: https://cashost/fetchlt</code><br>调用示例:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fetchLoginTicket = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	$.ajax(&#123;</div><div class="line">		<span class="keyword">async</span>:<span class="literal">false</span>,</div><div class="line">		url: <span class="string">"https://lc.cas.com:8444/fetchlt"</span>,</div><div class="line">		type: <span class="string">"GET"</span>,</div><div class="line">		dataType: <span class="string">'jsonp'</span>,</div><div class="line">		jsonp: <span class="string">'callback'</span>,</div><div class="line">		timeout: <span class="number">5000</span>,</div><div class="line">		success: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;<span class="comment">//客户端jquery预先定义好的callback函数,成功获取跨域服务器上的json数据后,会动态执行这个callback函数</span></div><div class="line">			$(<span class="string">'#J_LoginTicket'</span>).val(data.lt);	<span class="comment">// 降返回的数据填充到form表单中</span></div><div class="line">		&#125;,</div><div class="line">		error: <span class="function"><span class="keyword">function</span>(<span class="params">xhr</span>)</span>&#123;</div><div class="line">			alert(<span class="string">"请求出错(请检查相关度网络状况.)"</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<hr>
-<p>(b) 返回login ticket<br>data 格式 <code>{&quot;code&quot;:0, &quot;lt&quot;: login-ticket}</code><br>code: </p>
-<ul>
-<li>0 成功</li>
-</ul>
-<p>lt: login ticket在提交登录表单时，一起提交</p>
-<hr>
-<p>(c) 提交登录表单<br>url: <a href="https://cashost/flogin?service=http://127.0.0.1:8090/cas/login" target="_blank" rel="external">https://cashost/flogin?service=http://127.0.0.1:8090/cas/login</a><br>url中service参数可选, 见(d)</p>
-<p><code>userName=10000&amp;password=123456&amp;loginTicket=LT-6-a5mzMcnnFTVi3odCAIBOODHlrmjLK5-simpletour.com&amp;rememberMe=false</code><br>userName: 用户名<br>password: 密码，直接提交<br>loginTicket: 上一步返回的lt<br>rememberMe: 是否自动登录</p>
-<hr>
-<p>(d) 验证登录信息并以cookie的形式返回TGC(Ticket granting ticket cookie)<br>若存在Service， 则返回JSON数据中包含ST(service ticket), 否则为空<br>返回示例：<br><code>{&quot;code&quot;: 0, &quot;msg&quot;: &quot;登录成功&quot;, &quot;st&quot;:&quot;ST-2-KhDgXWulPePADUS51Ssl-simpletour.com&quot;, &quot;service&quot;: &quot;http://127.0.0.1:8090/cas/login&quot;}</code><br>code:</p>
-<ul>
-<li>0 成功</li>
-<li>1 失败， 详细信息使用msg</li>
-</ul>
-<p>若存在ST， 则继续后边的登录应用服务器的步骤</p>
-<hr>
-<p>(e): ajax请求(貌似要用jsonp), JsServer可以替换为其他server，如portal, 根据(c)中的service决定<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$.ajax(&#123;</div><div class="line">	url: <span class="string">"http://127.0.0.1:8090/cas/login?ticket="</span> + data.st,</div><div class="line">	type: <span class="string">"GET"</span>,</div><div class="line">	success: function (data) &#123;</div><div class="line">		console.log(data);</div><div class="line">	&#125;,</div><div class="line">	error: function(err) &#123;</div><div class="line">		console.log(err);</div><div class="line">	&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<p>url参数<br>ticket: 上一步返回的service ticket<br>needUserInfo: 是否需要返回userInfo</p>
-<ul>
-<li>true 是</li>
-<li>false 否</li>
-</ul>
-<hr>
-<p>(f): 返回登录结果<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="attr">"code"</span>: <span class="number">0</span>, </div><div class="line">	<span class="attr">"msg"</span>:<span class="string">""</span>, </div><div class="line">	<span class="attr">"userInfo"</span>: &#123;</div><div class="line">		<span class="attr">"userName"</span>: <span class="string">""</span>, </div><div class="line">		<span class="attr">"jobNo"</span>: <span class="string">""</span>,</div><div class="line">		<span class="attr">"permissions"</span>: [<span class="string">""</span>, <span class="string">""</span>, ....]</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>code:</p>
-<ul>
-<li>0 成功</li>
-<li>1 失败， 详细信息使用msg</li>
-</ul>
-<h2 id="AppServer-通过浏览器跳转登录-现有流程"><a href="#AppServer-通过浏览器跳转登录-现有流程" class="headerlink" title="AppServer 通过浏览器跳转登录(现有流程)"></a>AppServer 通过浏览器跳转登录(现有流程)</h2><div class="sequence">Title: App Server2 登录(GET, POST 通过浏览器跳转)
-Browser-&gt;AppServer2: get请求App Server2页面P
-AppServer2-&gt;Browser: redirect到Cas
-Browser-&gt;Cas: 请求登录
-Cas-&gt;Browser: 发现已登录，返回redirect &amp; ST
-Browser-&gt;AppServer2: 携带ST登录
-AppServer2-&gt;Cas: 根据ST请求用户信息
-Cas-&gt;AppServer2: 返回用户信息
-AppServer2-&gt;Browser: redirect到登录前页面P
-Browser-&gt;AppServer2: 请求页面P</div>
-<h2 id="AppServer-通过Ajax登录，页面不跳转"><a href="#AppServer-通过Ajax登录，页面不跳转" class="headerlink" title="AppServer 通过Ajax登录，页面不跳转"></a>AppServer 通过Ajax登录，页面不跳转</h2><div class="sequence">Title: App Server2 登录(Ajax, 所有数据交换通过JSON完成)
-Browser-&gt;AppServer2: ajax get | post请求App Server2页面P(a)
-AppServer2-&gt;Browser: 返回JSON， Code=1 未登录(b)
-Browser-&gt;Cas: 携带Server id发起Ajax请求(c)
-Cas-&gt;Browser: 发现已登录，返回JSON Server id &amp; ST(d)
-Browser-&gt;AppServer2: ajax 携带ST登录(e)
-AppServer2-&gt;Cas: 根据ST请求用户信息
-Cas-&gt;AppServer2: 返回用户信息
-AppServer2-&gt;Browser: 返回登录成功，可包含用户信息(f)
-Browser-&gt;AppServer2: 请求页面P</div>
-<p>(a), (e): jsonp 请求中需要指明是否为jsonp请求(用作区分普通请求)(jsonp,还是ajax?)<br>针对ajax, <code>x-requested-with</code> 可以用作区分，但不保证所有浏览器可用，所以最好增加一个自定义header<br>eg: <code>request-jsonp</code></p>
-<hr>
-<p>(b): 返回数据格式(若用户已登录，则不会有此以及下面的步骤, 而是直接返回数据)<br><code>{&quot;code&quot;: 1, &quot;msg&quot;: &quot;未登录&quot;}</code><br>code:</p>
-<ul>
-<li>1 未登录(这里的未登录是指未登录AppServer2, 至于Cas是否登录，在下一步做验证)</li>
-</ul>
-<hr>
-<p>(c): 去cas请求st jsonp请求<br>url: <code>http://cashost/fetchst?service=http://127.0.0.1:8090/cas/login</code></p>
-<hr>
-<p>(d): 返回<br><code>{&quot;code&quot;:0, &quot;msg&quot;=&quot;&quot;, st=&quot;service-ticket&quot;, service=&quot;http://127.0.0.1:8090/cas/login&quot;}</code><br>code:</p>
-<ul>
-<li>0 成功</li>
-<li>1 cas未登录， 需要客户端跳转或弹出登录页面</li>
-<li>2 未知错误，一般不会出现，客户端就处理为重新登录就好</li>
-</ul>
-<p>st: service ticket<br>service: 请求中的service</p>
-<hr>
-<p>(e): 在(d)成功的情况下<br>jsonp请求登录AppServer2<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$.ajax(&#123;</div><div class="line">	url: <span class="string">"http://127.0.0.1:8090/cas/login?ticket="</span> + data.st,</div><div class="line">	type: <span class="string">"GET"</span>,</div><div class="line">	success: function (data) &#123;</div><div class="line">		console.log(data);</div><div class="line">	&#125;,</div><div class="line">	error: function(err) &#123;</div><div class="line">		console.log(err);</div><div class="line">	&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<p>url参数<br>ticket: 上一步返回的service ticket<br>needUserInfo: 是否需要返回userInfo</p>
-<ul>
-<li>true 是</li>
-<li>false 否</li>
-</ul>
-<hr>
-<p>(f): 返回登录结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	&quot;code&quot;: 0, </div><div class="line">	&quot;msg&quot;:&quot;&quot;, </div><div class="line">	&quot;userInfo&quot;: &#123;</div><div class="line">		&quot;userName&quot;: &quot;&quot;, </div><div class="line">		&quot;jobNo&quot;: &quot;&quot;,</div><div class="line">		&quot;permissions&quot;: [&quot;&quot;, &quot;&quot;, ....]</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>code:</p>
-<ul>
-<li>0 成功</li>
-<li>1 失败， 详细信息使用msg</li>
-</ul>
-<p><strong>所有Jsonp都使用callback</strong></p>
-<p>以上三种方式, 可以完成正常访问流程下的登录逻辑</p>
-<h1 id="问题：以上流程建立在假设所有数据的访问都在首页通过ajax-jsonp-请求完成"><a href="#问题：以上流程建立在假设所有数据的访问都在首页通过ajax-jsonp-请求完成" class="headerlink" title="问题：以上流程建立在假设所有数据的访问都在首页通过ajax(jsonp)请求完成"></a>问题：以上流程建立在假设所有数据的访问都在首页通过ajax(jsonp)请求完成</h1><p>Browser中权限列表若保存在页面js中，则需要单独提供权限查询接口，否则页面关闭后再打开则不再有权限数据<br>如此，(1)处仅需返回登录成功，权限根据查询接口再次查询即可</p>
-<p>对于不通过首页直接get数据的情况，若未登录，则会通过现有方式跳转到现在的登录界面</p>
-
+        <div id="enc_content">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</div><script src="/js/crypto-js.js"></script><script>var pwd = window.prompt("please input password","");var txt = document.getElementById("enc_content").innerHTML;var bytes  = CryptoJS.AES.decrypt(txt, pwd);var plaintext = bytes.toString(CryptoJS.enc.Utf8);document.getElementById("enc_content").innerHTML = plaintext</script>
       
     </div>
     
@@ -392,7 +277,7 @@ Browser-&gt;AppServer2: 请求页面P</div>
         <p><span>本文标题:</span><a href="/2016/09/22/ajaxsso/">ajaxsso</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">edolphin</a></p>
         <p><span>发布时间:</span>2016-09-22, 11:32:59</p>
-        <p><span>最后更新:</span>2016-09-22, 16:07:35</p>
+        <p><span>最后更新:</span>2016-09-22, 16:10:21</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/09/22/ajaxsso/" title="ajaxsso">http://edolphin.site/2016/09/22/ajaxsso/</a>
             <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2016/09/22/ajaxsso/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -422,7 +307,7 @@ Browser-&gt;AppServer2: 请求页面P</div>
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#流程"><span class="toc-number">1.</span> <span class="toc-text">流程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#jsServer登录"><span class="toc-number">1.1.</span> <span class="toc-text">jsServer登录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AppServer-通过浏览器跳转登录-现有流程"><span class="toc-number">1.2.</span> <span class="toc-text">AppServer 通过浏览器跳转登录(现有流程)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AppServer-通过Ajax登录，页面不跳转"><span class="toc-number">1.3.</span> <span class="toc-text">AppServer 通过Ajax登录，页面不跳转</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#问题：以上流程建立在假设所有数据的访问都在首页通过ajax-jsonp-请求完成"><span class="toc-number">2.</span> <span class="toc-text">问题：以上流程建立在假设所有数据的访问都在首页通过ajax(jsonp)请求完成</span></a></li></ol>
+    
 </div>
 <style>
     .left-col .switch-btn {
