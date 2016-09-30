@@ -153,7 +153,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/cas/" style="font-size: 17.5px;">cas</a> <a href="/tags/encrypt/" style="font-size: 12.5px;">encrypt</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/jsonp/" style="font-size: 10px;">jsonp</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/lua/" style="font-size: 10px;">lua</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/sso/" style="font-size: 10px;">sso</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 12.5px;">vim</a> <a href="/tags/扩容/" style="font-size: 10px;">扩容</a>
+                        <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/cas/" style="font-size: 17.5px;">cas</a> <a href="/tags/encrypt/" style="font-size: 12.5px;">encrypt</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/jsonp/" style="font-size: 10px;">jsonp</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/lua/" style="font-size: 10px;">lua</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/serialize/" style="font-size: 10px;">serialize</a> <a href="/tags/sso/" style="font-size: 10px;">sso</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 12.5px;">vim</a> <a href="/tags/扩容/" style="font-size: 10px;">扩容</a>
                     </div>
                 </section>
                 
@@ -230,6 +230,67 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-hessian2-vs-fst" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/09/30/hessian2-vs-fst/" class="article-date">
+      <time datetime="2016-09-30T08:00:31.000Z" itemprop="datePublished">2016-09-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/30/hessian2-vs-fst/">hessian2 vs fst bytecode</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h1 id="class"><a href="#class" class="headerlink" title="class"></a>class</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Simple</span> <span class="keyword">implements</span> <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></span>&#123;</div><div class="line">       <span class="keyword">private</span> String name;</div><div class="line">       <span class="keyword">private</span> <span class="keyword">int</span> age;</div><div class="line"></div><div class="line"></div><div class="line">       <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">           <span class="keyword">return</span> name;</div><div class="line">       &#125;</div><div class="line"></div><div class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">           <span class="keyword">this</span>.name = name;</div><div class="line">       &#125;</div><div class="line"></div><div class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</div><div class="line">           <span class="keyword">return</span> age;</div><div class="line">       &#125;</div><div class="line"></div><div class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</div><div class="line">           <span class="keyword">this</span>.age = age;</div><div class="line">       &#125;</div><div class="line"></div><div class="line">       <span class="function"><span class="keyword">static</span> Simple <span class="title">getSimple</span><span class="params">()</span> </span>&#123;</div><div class="line">           Simple simple = <span class="keyword">new</span> Simple();</div><div class="line">           simple.setAge(<span class="number">10</span>);</div><div class="line">           simple.setName(<span class="string">"XiaoMing"</span>);</div><div class="line">           <span class="keyword">return</span> simple;</div><div class="line">       &#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/serialize/">serialize</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2016/09/30/hessian2-vs-fst/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-ajaxsso" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -782,68 +843,6 @@
       
         <p class="article-more-link">
           <a href="/2016/05/31/encrypt-post/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-encrypt-test" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/05/31/encrypt-test/" class="article-date">
-      <time datetime="2016-05-30T18:38:54.000Z" itemprop="datePublished">2016-05-31</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/31/encrypt-test/">encrypt-test</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>the follow content will be encrypted!!~</p>
-<p>there exist the more tag, so, in home page, the content before more will not be encrypted<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/encrypt/">encrypt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2016/05/31/encrypt-test/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
