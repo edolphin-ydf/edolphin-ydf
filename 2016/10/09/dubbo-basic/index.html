@@ -3,18 +3,51 @@
 <head>
   <meta charset="utf-8">
   
-  <title>ajaxsso | Server Not Down</title>
+  <title>dubbo基础和开发规范 | Server Not Down</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="单点登录修改为ajax请求">
+  <meta name="description" content="基本概念最重要的3个
+
+Provider 服务提供着
+Consumer 服务消费者
+Registry 注册中心，服务提供者注册服务的地方，服务消费者获取可用服务的地方
+
+两个web应用
+
+Admin 服务管理，治理，一个web项目，可对各服务进行管理控制，路由，参数配置，负载均衡等。
+Monitor 监控，RPC调用次数和调用时间监控
+
+一些自己摸索的开发原则模块划分一个Provider包含如下模">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ajaxsso">
-<meta property="og:url" content="http://edolphin.site/2016/09/22/ajaxsso/index.html">
+<meta property="og:title" content="dubbo基础和开发规范">
+<meta property="og:url" content="http://edolphin.site/2016/10/09/dubbo-basic/index.html">
 <meta property="og:site_name" content="Server Not Down">
-<meta property="og:description" content="单点登录修改为ajax请求">
-<meta property="og:updated_time" content="2016-09-22T08:10:21.273Z">
+<meta property="og:description" content="基本概念最重要的3个
+
+Provider 服务提供着
+Consumer 服务消费者
+Registry 注册中心，服务提供者注册服务的地方，服务消费者获取可用服务的地方
+
+两个web应用
+
+Admin 服务管理，治理，一个web项目，可对各服务进行管理控制，路由，参数配置，负载均衡等。
+Monitor 监控，RPC调用次数和调用时间监控
+
+一些自己摸索的开发原则模块划分一个Provider包含如下模">
+<meta property="og:updated_time" content="2016-10-09T07:50:11.941Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ajaxsso">
-<meta name="twitter:description" content="单点登录修改为ajax请求">
+<meta name="twitter:title" content="dubbo基础和开发规范">
+<meta name="twitter:description" content="基本概念最重要的3个
+
+Provider 服务提供着
+Consumer 服务消费者
+Registry 注册中心，服务提供者注册服务的地方，服务消费者获取可用服务的地方
+
+两个web应用
+
+Admin 服务管理，治理，一个web项目，可对各服务进行管理控制，路由，参数配置，负载均衡等。
+Monitor 监控，RPC调用次数和调用时间监控
+
+一些自己摸索的开发原则模块划分一个Provider包含如下模">
   
     <link rel="alternative" href="/atom.xml" title="Server Not Down" type="application/atom+xml">
   
@@ -228,11 +261,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-ajaxsso" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-dubbo-basic" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/09/22/ajaxsso/" class="article-date">
-      <time datetime="2016-09-22T03:32:59.000Z" itemprop="datePublished">2016-09-22</time>
+      <a href="/2016/10/09/dubbo-basic/" class="article-date">
+      <time datetime="2016-10-09T03:00:57.000Z" itemprop="datePublished">2016-10-09</time>
 </a>
     </div>
   
@@ -245,7 +278,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      ajaxsso
+      dubbo基础和开发规范
     </h1>
   
 
@@ -256,7 +289,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ajax/">ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cas/">cas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jsonp/">jsonp</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dubbo/">dubbo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -266,7 +299,53 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <div id="enc_content">U2FsdGVkX1/IJP7yvwjTwM6Gf0g4SnPhGvIeuOcbtxU6eANSSacCYUU6sGafa5lzOZ1JkFpit/40MysSkrixD/o74fRitOdjEDUsDQWnXgsAsNs5gBnpdZ+gt6oSMgZKYNP8p65HZbx3A+ixfDQFnlOxppoqMDAt2ZcvRDnH18F9XCQ5AUqu/rAJA/y75kAfKf3lYCAcJXganigyq7D+3xVDFa7DWp/LitNoKLOVJdcoCQdg6jKhQNV2nKlh7weeWcy5xiFZbntYE/7BaI4DJHblNY7gNVP2wsoUrqEKmPaYsLipj6MFYI1ONM2AF/SrtyO2MJ8UQ8BTG89y9pwIs4ACZtZGi5qckJM5O25Tsn1gIemBpJf4S1Fze4E+O0NygrPcrAjw2b1WpCwC9zzXbg6oD9WCahRGh4foISaDuEfx4NzM7vs1fcA6KRrWrN+rrV28xlXnazTPP7Fbt2A9YKqMH7PB1kSGy3MuzFdk/X0y4RQjug8U7oJdUjI7xs63+SezzI2hAKW4121HNhsvhQm4SMbwehXHShVIb+WwaKIuN/7gekrSPPLUVtJnRFvMUhVXbRgQvwJN5ymCWOjHmfWVNM9f5mbX4A9ECXGtRxy/S+UnbxKLlCHgGWnVR7M0FRyIkAvFCSYKYkqWdjPCmnZhVoWYADCSx/vjIMS6OWSNTCPG3e+tE0wgqIHDDJn/wGuy0z5nY+pkTrcIrzbSMWntZJLnTwbGylqXwCpaa+FZpLrHf83OAFS33PRePaF3nEU6RwslatR3ZzWQq0kJLDsyykEzBoe8fNU29Pl2CkguOjp2hm4DAXx7OUIZSlr+xzlcZz61vvktmZgNBGoT8AF9nNfxP1iCzouEtFQn8HAl2UlpM5DAauLMN0VFEEG980ZrRyDZDt7JTSd+LD3hYY3ioHAIN/aaGS/Z+1DlJrcUA8lb5y+NcIIrFluu5g9GQvSQ9lqNcHfaajxCaSZrsTMDWe6sLcRjVLI2bt738C9UXGCNyYfzkY16TWVK+3LwEb2DCBTwbmCZjzjQh5M5gtWvERCKalcz4RKnKTMZrMFlJ4bk6Npe/DIW76GqMH6EoJ+KUW4PAgHeHw7SEUWFYWRUeHoj76VOsrJX1mBFHzUPFYRwGWJfK3YDEwQ4Jz/djdDbZuyTDbDvc+hjZPRH35s/xvKEKLSz5GTnsvigF+0hAcgnpWpsKEGmPzM9h5177DPoqsc/AGIV3Y1Gt0y4rgRuasQ/KiV3gAYpx2U0XwB6JFp4AQ8dWmzLo2hv2eWmBLdRrNnHU+eyP4ObFjVDpYivSfWAUotWp2ZCHPSBBcS81ymSqJWOagc5HvurHRiM0NQ8r5vCEajTrnRqUnRZHhmleBf+t1hbBpSJV02/4QOM/2Lh3LI5WfyoNVLaR5UdskP9arTTy3cralJ5J3s4KKvsGI66rajng3+sFXjUX5E+r2ZHgqZ8n0q8yhWDTdnnCr5zThwTxpiWPjf3dUll9rtG3NNG0SVOkHDyn/5KMVbSntfRWkEkGRMaS9bT4ShCEWTOD72F2NCUHfujNul7358KrsDb5h6SFLXGQUsgiiqi2VMmwVIFa03XgXN811ZyhTwJY71Qn0J9aUJhlMPmbgD91FNESPs9Y6hsaUZ8BH1/4k92va6c0v1z5mxCKWFcZ0yKj5wSi0vQ5y0jp59pyl7xMlk+2qbSUyd1AMMorC4Z00MxrFSGwKTjYiFesnIBFIA4wr4qp71o4W86H3BiInbSm9IcaDZy/8daYyrRsMNNBknIKagGo/3I2b14m5nGUtGzb0zxiAGsipvotwroxzzzMuWtr0e3WkZoTA3NEhPWAJfiTLfwmDjPX7Xn8BeSo7ktWYn9mZsEItVXE36BVMjyZ7g1qZXpHhXvLbDD2ibR8yCBWD6StrAwGTewtwi8SURTh1HFbM5jeptJ6sS5J72vIiv+otC5VyI08jGNqL+lv0xSlo9s1xDRyd/aqECgcm+4OAPGR3la8qWR+2k411DxG9KLj9e7C0vu9iSSlH5frX80zJziMFe3hVrO6HUVfT8orJqiBLnrpzWsyalQmrL95rsrwawMW5VrA0VpdN2ag2KIUy3M8SGXknYJ5eFJ4Ny8zPl0rZr4kd9IJDJCYHJo+BX0/3DezW5K2PUWoDktwSeyKei0NvuqW1lSfhrplNLmdtF6iIjF0E6Mkwj/QLWg8eTLuveLQ9unp78joqbh8GUwpd2zTJIhQH7ONKAhKFv2Xpaew2BdkTyVXxDToyPqUeb05PdXE727Ss0L9e0o7iI3tkZSselYpgSQJe0qrNQzRWx4cBkauogKzIwzKOgwM9TGPe5DQ5nUx35xtXQjq/RdW+ktFrp/rNBMdBjWDPmFSrMDJ+WkfpROTWZTK9UzrcY6TsRtw+aGd9/8XzNyv8/sB4ZX+oYvix826RRFihkWPtksA+iZQ+2lyXijMyw304eppPhDzPoMHzYkXHT1uzigWjrUBKFb8F8e5L2xonS0d6nyd3kjuoyMnCJdvTPAzM2m3Qa3K/xR8JlnmRBx0LGh/AhxvuuaLImnDs3by6ZATIfdIL8QOWPeZLfMQsVMPkgeWGyh9ZDrObBhPj+Nm/PfpDzNZi47+DogBBQHoF0NvJcxuM8QIW4JXfSAVHvfN+ICR3pQVPiVlE0mZ+eb1qh0RMhB18yluW6LSuGH4LDSJ+moR6LmAGkC9UKB9oiB5Zgnwou6yxnLzpHNlRiZ6BzlxlpssqVDLCc5k8bxjpyfhjvy4y/kV32BV3geAWoQI4BXFNJHiJoffC25fDxJHiouaGC9X75SAFtnx+YpnhU8IG7GRLt6zsYBZPMsD/7gD0NDjbN4GYT6l6DQHajlf1Yqb0pcy9BLRIG3+kRqx72xt+mPKeioB5YkEC25KV1Yx4xnw2FDOXit7HDXH1Cxs5nc4TVIN2e/RnFw6B/2re1qhWr4N3F7Fy2152A6kfRKTaPtBnCNPA07w36rAI2SgFezvxvFV3Ixuj4+lgXCjnctCyvQvymcU8CoW/b7Prs/E7UPz/orf9fC5SELd6cQCad1VK7l0BYvhiDGh1P9bYYMGKn3/LCAGg1C2PVV0Tw7G3GNtjfHdVjWq94BZFf/k2pC3noyD6lQCY5EDT3i1c+CVprfO9cD3Xo48AInKGfv7oSgpRyOq0fBqTVeWILkJLW9B8SfAURy2xreuFd8f4k95rHMV0MqO/8+tOFg1S5hs6T9Pyvh1469v1gyodLFJXJt7z5i1nG1Z++uO4OWU25hAKh7tB1rV5usydruvTTOL1NPhBbLDuxRR/fPPHSriKTSMmZPI+CkhpuvfgJ52TPbgw/ij9d1zLJVgAdwqExlsfyBSjyYFwE+8YnrTCw4TpKKTIi6ANJ1tcggQGLm2J4zqHy0pdDvkpfwSix7w93TaUI7t9Tv1O26JX/30LjgFm9gQOh/VgSD7a7/kSk/3Ukdj2KogdB9bpZ80r5t42gPeQlp6w0zuvVh0EH4P4bVuyKoGPDhmoEscgW3nMfBkThfAyakWyRB4XyllbldSTxnMBHqGWetJMCN3cDT8J9PHq3WUeuuQqemKr59g6UaE82JpSEVS3jJF++SR5v+DS0D8wNIMaH9qlLJEsqhCTn2WGjpxIghobPqwhDUn8kP4TEo1F2G5B33v7gkSCOgyT5xaNKUra9yjCt1XU0qmyQLnEMcON/7bnlFj/vA56lcv7IuUfUSW4zs0JlmX+DC2A8EsatuwceGV8MFtCFQAGYHHTbqlB0dFIy0stg/+sZZ6jNmg2+foQDu4KodUtYevXBI+aH8IXnF98YK2Q25FjxWnAk2HdKlAW6G/x+p0sMk1VxPPhMM6MHUnTA/I/vgZqmG+f5DeMh/4+4D9aZLaSFRTpTu5kUpJdbXg4QNrel0O8FDI3YTnJk/VJRP0tpQJuOOYjl4bO0FJdSu+LhZVF/xwxbAT040w9Ax/W++nvmqzgbIuQn3+jIPouXYweHJA0mqSyG6SsEKrClxo4w3zS/yn4k7TK/3t9q2TKtGrFGRy9pwFeu20XWZebadZzWNZ5lqaVyOaFYQmGAcAnHoyFYPqyxHmwoPCb3RPy+lvJa8NnYSR7JL2QpcAthAJOTg/BpEM/GXlyz3nX+0S4EI0Ky4GfO/tiANlZTZxWKpJPRUimr/y+qtX1NQw/WG/9dmqeCiUboz6sLCpoJU4Q0fYPGTuGqcXXXET3VCZEwjbZdLAdAbzLytAz/mRGKvBU+iMzsTJ1FZObd9XUQ3bq/6tPYteSnTa9gCfLXwvjr4QJzdcV1TmKlKvK1ynFk+A8qRyXrurzn3O1SiEanT+r/pADdL5ru9HDofzn1PMeAeupVVDwXclIKdAHIU6vD1wRt/VQ3RSZnzocZXy47BdfOmIbQlOvp+1uJ/rqkMXqR9sBC3jJr8QiMJQ/jQZUY5zvs+4hSXAPpE93ET9AGHaEiUdM4FL5N5w/RHf7v5Jbi5MEKGxPUja1XY9oIlPfBFLnjf0eCH4yzQxBfi3s1p1/QaPc4Nj4v+Em4769MU78kpn1J/KgAixJ8BhlMY0erMaw/uZXdieIjNtfSdxofth7jFvCn0sLLfzcEKQJ9+/XNS4NnGRGcSS/V3ilp/46oOvU7ZZsrvgFEEuh6d3EwevXaEuK89+reyb1t02Z6vWJDseejITAhdn3OD4mmfq63ljPMtZuQBOAwCgxDNsJpd6p8JK/iTAOsQaAhQJD23sLEDaUy52E+QdqqeuRlJcha3NRajfqK14FIP+lN2TQPt66ftbZWjE9HK2Cvfh+EtE7EjDtl0C5VGwmfHbdeegWTDbyTa541tQVaEAL9cgj7LzmjgASbUBIhwonFCoyY4TG2qd0NFpj1ujZQBfxWdkcPi3C2tIBUc1z2stL0psG37RY+wLPFRFiUT2LOOCg9xfUN/CA7ocK28SFsc98rS/Sym45rhOVpYVSG1blROs8tj5P2JxlokF+KO7GB0VrgfBSGvrJZLGSSEb7okYvk33qFh4t1ZSInUEVUNPtX4MKVRFs7roqrI7GHgjCdQ71EDQy5ze8SO+a1mT9KYGF/26kRQOMr3NY9zrWrC3AhgLTGkmUY4mPs4cw/mZjCtOJkJKf0+asB5p60CY6UCsu2GqxGYYzXtODBuhEzV37XaMWLKAls0w/1bHwVTLOgGRrine0nkEXEVkhvBRkK+kcdP6f+kp78z7sxOKoVYTdq9uZ8a9ZYNFg/m1XJ6GWEa/nUfXQiXVjziwENqlIxy8mwkA0cabsn1xLRst6uz64/+9Sr4MS60gaFtI0tvr09Wjb6OV67ixd+f7UjJsfSzDNmHDnAew0HKklTl8b2h2v5s7NVDfKntGgu2GMZTORIxVNHSgqKxtbiEXXpo71nae3ikzKkgpYddt39c5yY5Bd4Nh1T5TgoQRj9mHlDbzp4nBida7cgrPCTZAKnHBFnmo4AEuhEDDdrYOpF9fV5lIFYk70n1o9UXVIIF8z/SXZLrWawJDiSfhlV8CXI3R+wvudMX3Huy5IpozTkPegPFtHPhZjuiMKYrmCysfNFKmfpiwgHIrM+N6ItbjBzkOE2BJwMgZFOq7qcLaYbsYw5lsUOMtM1lfjl6CRxpqXTGgMs93tiPIrgwcNPG35JBcoluGwkV9pqW8BGK3KMSd+caFtC8xB8sQPzRR2et4VajXjismN+i6hiWIzyTybXAvCSRM8usSwRWLyfwfqSzT2mi/SoZpmO0Xxc6i0+9ir152mmwIaIhWeyPtSnsJJh/4KzPMPWkAXkFSYgKTf5oMspUxmsJRyTOiW96RH2L6clI2brTAOw2A3gLgCWb0bjUvk1jwPeezjwPQIEkpvYZHel9BJFQCf1SkMLjFyZcz+WwaMpdMGZN0/CujIeSuJrXtGwYDHgBZH39/MRo7zUYxQnoJgItvO2xTxN479xckWvIb6aJe0ptEJN/gpNvqNtiFNFdTfKZ+F/9bXKwfXR17po8+hrERLupxslVnhg1xoOf5cnN1eHUz14NEoI2p69akkHl+yp/XBc669gkT3wYsZg2caN9Sdfgu+QzDwEdAbH+NKC2J+tgoSpHEiJVVRzIVorTwqDL/gH0BoAKohNTjP/OBDJNL/dnoDe0Q2qNc64W8VS2ChLfbrfETl43zPFm/RrX/Ey/iFv9KbIvne+qUAEdsDu6loytTePjv4opN6YUQ4OOpRZXN/ojjML0QdMHZmFQkDWKZVSmqDlp+YPS6Wacx6ZtCPC07tXQ4xGtfOfSDkHBi9WadV8Xk+NjCXOTsFgii3nwy6RRA2Z/VCVjDbu8Ix2FrVZhlOoFAZEgGTzD7F8DCMKUYvu+/+RlN6Zz1EZ+2RkBSwn6bh5tqncgD38qcJk9Tw2qlKweSEXhoqh72e/rnas0HGgXKjkpR5jB1wL569RgIT6UCIA4ljSyei3bMtpT63zPirKiytxtYTeQO1UaTSnyijec6R4uszBLgBYUzHxQ5NSBOwI1v+wxG0P5ZEwNFQqcSPDPXXRdRHnhGTrTMX9MZvyddUcSuYGsccdwYLG4YsrcWXboqg+fOUdzYWRgUTkdlO8l3iKSgeI+nHm2NwIfEsrOQYNitr+xYkq0+j0K/eP4Jp8sqsGYiSC5AXoPKcd7xScdc+MxClf4hfLziU0vp1C0KY14yZ211NDVmkKich37qKwjTOLNlc3qfe/3j++9q+F6WuAUYUwXkidSkrGCkhRTM8czUSP/UxPiLPP5YpDzcWs4ABTunoeusGs6pNr0aThRM25hbZMSUBkbX7H+gAxyfS3fsibx9/P8jprz4RPctEaWX9oUF2BWS+RosqdK4kOKXznfM7KKI1VTPsyPse1Z+E+A2m7NqOTlnX/TnYqfr9jiBK9fTQuFri60+FtB0SWozDaWwe2bcPf3848CzFlP279XBTI5N3hpRq8bfxNN+jmZD9uwWFUqwRgWBWicZg6Bw2jsMaZEpwlrKY2qUJRS+hYC44NQ3IVKPK4lGw/aV85hL82B6bZwaAcLftWW28lh0RUMulk7PjdFTEKFUncuEAguHneyVfl2zLE2dfm+4ntY1YfYJsBvz4O1ZdtzUh69Qu49KOC+qGfEo7zjZpo98yJAPLae8q3IVwm3578XbZU7YDfBgaMOEJb3S3v28WKpCD5e2jGyeiFAMDwCpPwPiWyQskGmt7wDXcX7M54ZhCzyyofU5iQxkl/avSmXBV8Xu8TrtTNfw9ddpSVKUeEfG89J/MV3CohUshDQHvnqbz0Fs4zeSP6RMgr/G7mp04VEBWc1X5n1znEWjpfz5r5QL6RkcPCY7nWGtpR6qCfHHTGP8hlVoTojt670BgNyMBvPgU+XN8giAu18kBtS/b7ErGNF7YejLBakLJ5oSkovU3I//G88hxMYJ+RWfUPrFw4XHl6fZX5ssTGYXwBSSWNAHwdHAU+KYApgu4SRs+4pPdEmTN5/1MkX1h9z4z1ABufb2SbvXtGw2QhY3C5CVbyBvjlKzajFC7r2WZ4iWNRvItF0tJFpyeUZ9Ixpbbn3/4J+s15p+64I50hsLtXjqmhrhj5i4nuSqkw+Pvn3FB8P7+1v/RXbUwF0/lBPS8PzjPP+77gcM4qJNIiJy0I5rwzds5ivdjqukrXlzkt2P6x8ummKF/YtM94r4ItWaFAFDEljLpS0HApM67ZTxnpHFEVhpMYQeR9nUxjxKwhbcmfLpx9Q9YLNYfsTMg8nRny3PyUegcECrGEklwd8aiRwQf+fgB7Fzu1x0yNqaoyi4Z94zX0IrkTOyMdFA2pgMNsex9xmk32tTHSsiCYW+SFUiYnp4XxyBGG4g3mSU56Lf8AL5spGwBSwZP4UV0CDCxHvmzG6iqPhWHxMZnbRX5ZkTr5aAy6Oy2Jvcuh77GrnnfWrgQDiWW0+tU97nDivN3jiqqyPW6YoG0JERtLDh6zU6QUrb/8C4pgAuH5HSFde+QOqq9Iyjadbk6TVMZuk9Rm5Bxtc292OtA+nAlnIkGjrMfRW9rmDLIlbBGB9Ou3gnHYtkdMab+vBuUdSg9CNpo8WRrupe2RU2m+HjyEzipVsMnDnPJRZvFnFST9hAuOpF2i1GkvklWfgjhZYdjv/YMfDDgYo9m6Aq3gG3fW0Lxrg72bCf4eE4H8gHseykM9GSNqDyRFDlZHkT/ePxxlX76f7zf2QcC5Lo996d67c5tJrEXYjlhgapmqK9vT4zGwV8NpTU9fuRH8VDCzeFZME+UuHctJvYnS9OysjITOd2xdIAJLAfwb8abGN+fmlLPPOAm/KUs7oDzXZtr/xP+KedXOB+XcU8e9Vgo3JzexLoDKNFcGQvtnyRJH4D10km6oEPIkUlH2EipxLGWX3lxXdt5WhFQ0Ej1nDIWNx+bmDdJc37dvlSPoF1S9IdCOt7+lDji0q/ykalTQi9JDYI3+0seF051ClbmLvnK9hGj9czVAxWWdDxFK3Om4d4xJt5GBicCjre3pK7jUZXM86xtZ+9agmsLH16OrX1mxS8E7GhQ+SxV5Q0+fuKrFD7emgvbmKe+cGtjODGveaJZ6bqAATac48Ys7zeqAJlSeiZkCCo2svVPXG7eH9Yus7mO+Lus0WfLEQ6z758w5TLNyAlBwqAWne+FlRZkv31QBhTG2yfKUA//WoeNOowSnb5vToLHIaDhhYQRieuisYz55WPRs+wdVxMZd2boAwe7s6kJuekG5zQGbejUFvfF1F2ps+dgaMJfQRX/OLdHlblR9MaIeD/7vpPjW1KGQ7DQsTgOHZvCpN1bdFZNOp53saYWtxgwPsDcqgCw8RDlaqCQ6nuzpQkhCpvabEsCXIjIaI2stICSgi4x1HIM21z6l7xO5pnzC95DCEAI1A4KqLBSXCkp32Mvh9uYaZm4EKOeq73iDBrSllLQGBj+ZWUMhVO3QcLYAaOuGnd6RvRrmDJ09/dpR92QdP4j33zQc6or9t98ozLa/5k6P8+FLAf+1i9Yk2zB1bsuBEEizHlxQ8ptwq4FXu8mrFHkxthBnIwVmks/ubr6gTT+cj8vTHzACqE21Hkdy3yxps0RzuiPPcNorbFaVEzAx2sx557uv7jyJ+gIy+Xli2B3mrO7ML2ilwOt4xrGROjP9ip2fycjVilZs/MREsCc9bDICOMYIl/xkyzcbogesVJLkmfO1rpcraLxmIeHVQNdAe6C0BqaahFRsI5q50zCS/bK5EeqpWNma9HBnJccLvY6fx/u42Ky+sl3FKVxjKuEirSMK+TtmMRrjRZcA2gzvCpNLqFUjGnMoB23H441ThVvQO6I1T/EaKYwafJ+VrAGSFvhwWGTdROwSx8LoGtUWMca1pbtOv2MM9npq0ExGNTx77BikUuqpp1qbJOZip9FP+ACoBXTkeLAodJa1y93r7u8o9RBaw4ctwRJUB5QlBxNszDrejq3feTFhk1QgTy1psDi/sl3x9YV/6atOE6ZTWjlbp4Xf0Zj1gfoScSaKJmOilZh1hnnaIeXQJ8gG1auwxKl7tcn/qaB35Ut77OqscH5mRkgHK6PbwlYHoIP78lu/US6/IVQsFmJ6zx1vGwPwGyxL4YCTpdNfh22T3aY7Wm6g2nVmr8Eur2cuEm61p2VQxd0v/H4J6Jaj3wYjS9N/16bev3trKE6WHLdivfEzHPGX1E6ja3d192BQ/Nk+f869ezGKxBP3VjeNDnIPiJTUY8MnUdAq3F05AC7MWoV4/lk8I3DTonzpgwXmt4gdk2O+gNbOx/+8Jr6seBT7ImsaZmD8NO/UwoiRiv//erolXCwJzG6LmqqEexXI0VKtj14Qz2ENYuke5ABqg34Rer+kQdYHvHniavfLz3I/tgXQHihRVPC/5tEpK+v4/lvOIZkZL/Ei35KSy7dz81rF2Y1XZPx+Uvz6kosRjK2Vw9YdobQBzm14j0nNZvQ66H+KXYD2A2fol5adSdDK1gY/1VU7i0rUAaPfaA+p+Dw/1FLgZiv5WlQcQjTn45bzyWOdFfq5S+tdwB0GQQ+8+BMxK3vpbxfwqROgyg04dSTS2xfvjFDzKce6SahNcL4i9tMz2AAWTIIJfb6o45Ga8pgzOi7fBKPYjNYJ9IHGbcl2wLxTYJP3eN4EsMnBqMoyPyZlFV+ok1OYqR0wOQWZcxdt3a6PsGxkZ6H6LeJWPh/oiEPE/fj1kocFTDJRsCqvsEcDMCqAFQ3/xq+P02JNCiLrNrh1YmCNvlkZ+XI7QjbgySHAOFn6lF/o/ee87W624/cHh+1lWIJPBGnaplBNE97V/xGhKtq8OhwAw5Gw7d3QtPxGnMLigS5AqwzdnHPemVa0Ah272mBluo1tFCP6L2XGilW+ydo3vNHvKGh9yMCGfzccYeEI+yBrPWofIJt1ctRjIUtIc4rz9iLMLeQlh0Ruvn6BL9JHp6fQMngaQlZuo2cu0nY6oQTVAHADMkuRTQFeoQyuOy7xJ4XF/Hgq5p2pXDjqAz4j7JUUWpdZgSKSt7gIXwoY5Zt4vCLlL7ny6L/h1XSeNtkqikUUqPT890jWxlyCqNQcf+SCACb2qefGbi0+vvQ9oFQ5D6Kx++JtsLvLmKgFR9Ax+2LE2Xr06l7Zmp9k5j+6XJxWiT+/53zoCNOn5NNiGPOaZzyR636whajGlJAr8+ZjRRbiH4c1dAth/tSyUSz2OnMPmhoMq/4e7S+RwfILRFTbrDtF6BUPqIea6NF4lH8O2l4UH4siY7rkMNx1PZxE/q+bhFU9UfCwMZr0/ik9OBoY2Vq53KrdqPjgu+WwO9L74txJF/wIvuAXkfDfRrkRVysFVJC3sFqbRa5Hwzh/tXeXJhnzKDwN0rXiJvloJARQuf5JaPQ/hkfo7CrATI/Fux7ShEtLZVPajEGgQRbqUIQ+AjLSvZnRF5L9wqIciDgNbZaXOGKTnsBOpWiPopCzgE4Xe3Bez/tG7psQKuPdXe/OZ7Z6vQ9US7poBlNREnZdnX2+wYt6umyl2EqddqmcHl7KMe2SzbTxF0GSs6qA8U2d3j3fcDv+w5SuUWT9StYekjuPAFE8RRF8qSGu8OQrYvGp1z4Ml8X2NIRW36HqQmOxZdaMJz1o9NDQlpXIb038wmiWzuhojrPvVZZ4UkJvas8hZuldQTHlO0dGlySd7WE/FOzcjzBkPbVuQR7XXbygk2w2OqoxlJv0tO7E4w8IRlZZUvlznH3ePs0D1ZPKHmR/8exhSiX68q80P4Cy2H6XM3sCraGRe63tLxMv+lzlyoBRpkeioEGjng2H4OfSss8s4aaCXSTrVbRpDBh6gGvATTiNZofdgqiUFnsgkATKVweUxPElxtlrhyytWylqABHcMrTfaOaDhV1qNmiuGhtlR3uiV9q3cVOTSmBdxEGwu+I0N7o+hIJzBI+Oh//s+VLtHrHED6FYH6LMlwnPAjqXQWdh3xFlWZ82+OcO1PF2hj6EyormPFmZ1IT11W/Lvv2iRou9hW5HhRz50SYkMFFWQ88KpOPtP14Nh+V3ZwYBJKmAwDW4Oa8qyq97uIXQT1Wjt+v6jvMpeTYGtD2hlxw5srFkTwz4jbYNMgH71t4Lf9q38+7UeT7SjPfdY6RpN07UDdyVtgMP/AIWaNCNf3mJVJnwRep1VlV72AEZPwK63trexohmOP27pfYeCVNdyBOdrRNVEpAtNBtlxWxUU/awkkwtbkdRNZQ+bhyu5x1mqzGAQGnaJoSlZ3TdJOqQ0BU3+7p2Tj/ndtLNgTliotSKR3+w9pk8Ks9x7VrMiVVyk4njhTleOre1jBrw2w5xwl4Wo7qdrz2m7B588Jn4uDxUn18E1u5WTHPLmCI8wf/yS95KPj6oV1sjGkdSZAJfVG7wkB9eyq4ukOFKUMXMERL0Mf4h7fBkjWTmGjmXkkLSWmQ0fMsEAcOggtkQWBwSVN2LzNxRiQlkiHTULGnxUWYwVZKbKlS1WLSOM1wrxMqAsjgiYe7Fcx1Joi9HvUeXZuKmby4/XoYx+/pjDI0fLKew5ZlBuUTOhDSXuIfPScihDlJtGQFEG+266dmPFzEXvOXUtBZQxENNxPtsS6PH+4SeDuk7Gqtj5JpYEdAC9brEwhf0zROIlRLUBj0XtU98mvFVQaqQNMrr1TougF7iB4nIRjaTZ3YnF1npo20umd1jQcWKLzdMRE1OmBNkXPS54luUlNhx30ohM9F8z0AW5lAbewNa+dsVJh5nujFmyt6SxW8aK0BXbCpRHMGbuVAMZqc5z5UNMSCqsuum3T9BM6JOwf7DOsdGAYu3/OP5QrT1+CXALyTaMEj1q/+BSIgfkCXSTW+1iS3nKA49vsJUlAU9NjQeY9OY7ARDHqX4bkPR8YPk1pOKxG5QGXBXSQVCxzQBY7syfw4ptQiqylK01xg4EagEXmGuBGS/wS7rmf4SBT/t6LVWN1uZaP2KvsezR3jijyuCe7hTnljkSoQYWwN9b7XZQrWSljvpW6oNnwSvTMcmtPUbRltXwevNuJYwOd67b/akcz7bcn9I5t2EuvHPGeWqbP3LWJUmwLnDsi6Kl7Us/u92ZSE+TKgffcPqvF8gao7oj8JGzjdubU2cvI8hBZ0zQC5gt05+zH5OHcGfQTiPwMjX8AjSjy07dMvWkYtmU7lYtUi8xg6Or+Z8/BvjGX1+hhMy6vAnyCS1Izmvun754z0A5pHrur/TuR6uBDO4b2dk8urY60IadQ+fGqdKfHgNLfAXMjX6aFzzwlODBbRo5QGIkZz/1zXkz2XR1vvOSDUoBRsfAItvuC1mJwE/45y0wEQCrUsaJTkZOi0pCHkSw6dNvvx2GdXntllIFEIUgdZrXcMnP3TZoJwfguQX8FJHbYn73BSONlijWJ2vqCYLHo0UBGVXZTbAy3onfbOwntQNwxU4bCzmNBER6xS0Bs2Rvvh9NJNA/yHrl84KFfB58e/5UeIF7mVBhzbrMozoerM/2eoD36YQC/t6lku7OJdQZ6nWZbsgPZD8C5kjDoXqljT28SUQCHosYmANMx9LVnss9o6AqPBzJcC8OnR52bJKEghQI9dinrNYiaN0QQOZc1qHo25F6qQJCQM4kJVKJhCif+zoTWhaZyfK169B31M3UE+5pdw5m8xGFbgY12we0TH2KHCU+o0wLr/v3nlwbrZjSI+OS9lpb0ooqJeepCfL1TH8CCvWylnL4GIgQPTblpD4krBfRd/FTUQSqTBysfcAHnSZSO0R42SYSZ/7C2QKqhjXcvnGEFLcdZKOvZM8dMNHTpVmcnXXgehVfdBkGl6dbeMiAI+G397rXag7KcZ93nwYjbrtvv7lb6YDI4ar7qkf5MgJycyhFHKNTASZN88rdQT6Fg2hZzQWmT4wdLbgn3OoMLuYevxRw1xdPDq7fDVamYIJiBPqhlks9CkAM7SokLNjH16EasVeaiAWcC2QLhYbD20ikimJv3PrQZExjk5OpGOedXmmacHsHpZxP1gYBmW4W0HQ37hizZXE1E78l7hp6WjF519rYbmhuiaKmP7rJebQQ/5A+tLroMejM1WkpZhTULaOBFp2U6LvUs/YQvpk42DJzVg9M8gE3gr2fN+G1/NqBTglA9J8nOq3A7gGCzF/dA/sMeGoF+SCdHABzylxYdTFNYRPtafNvjBew1HQKvVBeV/vD5LjeSb5p3CMsXVttawnCxYaUiWK6GOC5q0/AaK1UVP9PGyAA9ILoEg4IhKFK4a4GFkEN/1TnkBJVb9Ym2l/nwD7ms1dmWntmaV5BYqPSVKWkMf575qO+/rWiC5VpO0Vh6cuhFFF5kKzQGDcLXZSpY2sBcjVqhumOX7TrASmIHEwZTVj0CuBXIoPjQKGLKXRNpBqErHU0SHxgyFSqG1A+GhlT06V12eA4HbeDIIcreGy2FX9L68heEzoSGRlYcZXIBdZbZqK3MecEo3Jn/sspPwsa9EQpNZ6muSXsP61CqKylVV3dr/ylm/v4OcO+6r67l4LJ5ILfPQkU6ZfqGD0kBuO7M/Pjgct5BgrH258cVaathKuH/vHX8YdXNcngYQrdigNAibfR+Fg4WhAEv6MAtRNwEMBcmGnKx5T4fl5zlT7m5J5UX3lQBKqcwM+322WI0WkFhFykUS45z6Kx9MqKzSool928Tx3O58jx8BubTa50pNfVb38hBqWejX/RsbJKSIfU/fI0rPRS9gV20DECZ8FRbPaf6+ly7ATI8N68Uf8chCl6kbMyR+5bp+vdzzY9jUThGe+FVofAiWVyihMSGOwI0feA0af14K2I+TXSrbi/2y7LxMxF/uTZ6stXY7r3LcYq9YB31g6UQ4wok4IhOzFq1WSWb5I9nOmeN9zzbeIxIekZEiv61zNf31dgxpOc2k49L4YifxmUwBqo7yn36jMRN9g4Swuk6SxQDRzbzRSuq2HwkJAcVYO5RqS5UUS5D6Tls8qxSfxJJEn2cvIqkMgQ9WH4Kz8TpD1qhKZv+Dwt0zF1ckrmRuJ7nP+rp4t3sxCLEqwkOfPEvon3XV0N9bW7gtUC9vfLQVmeLZwA7JIDLCRFUAgt6CRxc0WdvtO1pmfLs1t+/e/6BafFAvfVtEXXG0w6y5i5zjGbGoQlZhvJvOjXsl9mEsjZhDVarciWa3MJqX872LpmJKb0MIzkwkIYe4QllAR7VGh0t6kZAk38tEmtdZutrjhST7HT6LnudykVIbxoIjX+NjfbbmklDYWjtsnzL4uhokfUyvc501hL3RhKxv0TOkssZiuNbvoCdsIDJ4IC0THvwrnLAboBcZMSKjs0+FmPYJiKNiMaLoL2WJveviCQHZiDkugSDXmN/L9Nc9fUJKCUuw4Ya0QnIUpErY/KWfEnlpJ91zZaYFB5EbzO4LICNso5zJKlozxpagnHlPH6uclrqKiNgEn8fMz9jvOfLOgjFD5nmjhYsPKNO5CEDb8mlHsicdrcGkEYAFs9UwRaxEblE0W7GLYU2nMIqZpZgf1emFWsz33WjwcSKVoNMGOOmoFQ0Jhnjd/PvrFid2ALDojqEGrJcq4+0OT1xLKKZTObj9qcahz4QdNplDLEcvfNkHbbLcDSRaxd7Qk1AWwGSs7PvuSvZCoKFrFMsP4/vRaHbW1G7GBDuZzPy2nVDWJtIoqstWsbweHch1auF+/B5imPq0H4YNvpQlqFvGO5+9Y14VqczAnLjFHdJX8iEhU11o5v4CsBDntTA59SgTEBugRddNlHMqf64Ul5CgUuRxKHEIWWYpMEftlSUMKWlN8aYIfkIzWYDQ+zX9aRUWiESD+PQtutb1Zr7w2kQ53i9xhXLTw8KNcumkhwEPXJRp9NWkmcHwpL6TltInCaSLrp7hvHUMCkZZKdNh7fmZqMVnmE9CSq8thhrtvViKZDJ7U5Br1sLo+wCEgM9+oV5b8ddcidUJUWRSJiByl4lmBgWMG9p9R6GWPTAp/Hn8H/9pehxZXJC/hF/xHdldNCrru/yycjCU6EkmYBK+ygf20q8IdghktTyrDGsNrAcFu4aKisFhQ705LldhXU+VVPNy4qLw/gcgHdoe9I3xpEcD23zG81XGti4J/4bx9NYvkJmrrVppqUp7akFcwq1zI+qCwN+I7Rw5pIuwgZrgFev8m1o646ew5/k7eMHQxRDezdGd9gWE3vO120Nb7eAQLOJHBtj49GJOpjZ/tr1biLTKqCsxOziK80B2EZv1F53lCZnUaZAXmyKQSw1dt22YdBQUMEeNdRQLvjLqa0F1yj3updCIDv93mvtHn5jYrPV/ZA3nAZ7TpkkQHf2i5e5YiKcRI89s3lo2Yo/8u3HUAbPXvB8yaQUDAmVry2LJ59wfNA/3YMpjlK8nbqqTu3SRC7ghl4fgg/uNzrWRf9f5KBluB8Uv34rIXjXtSuKDjQBUR7lp39LLpj8H+by6emlt6koWlqVLlksXjSK6O5SQHd7qvlubT2/qTEuLgj+qgCImP8pCgTePhgDCGs1X4kKj7MChkOlQ/RLhKB9SKKJ9aKh+wL82L8PEW8RTtst79kL92lMtqFsnrm2eovbCM1VZ3XyMqf/2l9npv/8t1cPTnHPlXaA4fFpD7yu8cUGWunWbZ4nwhIAuXr8laTdtYnPWL2fCMRdcr1x5pn08sOPHwDt/pOlQoSqQPc/pt/TgeJteOYLWBbovsmoTr5G8wkbKY2p1YNm7oguj0MqiJFCnqkPHldgglbuOfJHAQTq+sl/w2Z66VVQ90sKB/Xa96ZOHRR6mF1YSWUliTG2Bd5d1b38P+fYgRqY5RWJu1eTZjuFuayqE0FnppgyBdfvpk37ivIh5Fah2fz4LNkar3B8VR4oCFwevU9RmaV2sZ+/LDjCVP9+d6oWMR8kj4Phx6EvFBEbJgik10y2sE1iNjeVP15vkmRmupvjGke1nylw16lhREevH5Fu90/PYKDdupI0t1h+Ok1UBvm4RtjigO8ZS1BL19Dw6cmGI6UX0jr1JAsHcjmOBukOZ+3u5ZL7Cg/1SyCt9rW2DfiHUlQosqUcAon3ag1rmtlzdHJghqfCb6fk4hvZQ==</div><script src="/js/crypto-js.js"></script><script>var pwd = window.prompt("please input password","");var txt = document.getElementById("enc_content").innerHTML;var bytes  = CryptoJS.AES.decrypt(txt, pwd);var plaintext = bytes.toString(CryptoJS.enc.Utf8);document.getElementById("enc_content").innerHTML = plaintext</script>
+        <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>最重要的3个</p>
+<ul>
+<li>Provider 服务提供着</li>
+<li>Consumer 服务消费者</li>
+<li>Registry 注册中心，服务提供者注册服务的地方，服务消费者获取可用服务的地方</li>
+</ul>
+<p>两个web应用</p>
+<ul>
+<li>Admin 服务管理，治理，一个web项目，可对各服务进行管理控制，路由，参数配置，负载均衡等。</li>
+<li>Monitor 监控，RPC调用次数和调用时间监控</li>
+</ul>
+<h1 id="一些自己摸索的开发原则"><a href="#一些自己摸索的开发原则" class="headerlink" title="一些自己摸索的开发原则"></a>一些自己摸索的开发原则</h1><h2 id="模块划分"><a href="#模块划分" class="headerlink" title="模块划分"></a>模块划分</h2><p>一个Provider包含如下模块</p>
+<ul>
+<li>domain     对应数据库表格</li>
+<li>dao         和原dao功能一样，使用spring data，大部分情况，仅需定义接口即可    </li>
+<li>biz        和原biz一样</li>
+<li>api        包含api-domain(request, response, 即接口的参数和返回值), 和service接口定义, 作为给Consumer引用的jar包, api不可引用biz, dao, domain,service任意jar包</li>
+<li>service     和原service一样，但不包含service接口<br>引用关系图如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">service---api</div><div class="line">|---------biz----dao---domain</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
+<li>Service， 使用Autowire注解， 被注入字段必须写set方法， xml中定义bean时，需要加上autowire=”byType”(或许时配置问题，寻求解决办法)</li>
+<li>Dubbo 对外提供的Rpc服务，所有用到的请求返回参数，即com.simpletour.blog.api.*.domain 下的POJO，都需要implement Serializable (考虑添加Base对象)</li>
+</ul>
+<h2 id="Consumer"><a href="#Consumer" class="headerlink" title="Consumer"></a>Consumer</h2><h3 id="jar包引用"><a href="#jar包引用" class="headerlink" title="jar包引用"></a>jar包引用</h3><p>Consumer只能引用api包，对于其他service, biz, dao, domain都不可引用，保证Consumer不会直接调用底层未暴露的接口和domain</p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>Consumer基本是存在于rest或web项目中，建议只配置dubbo必须的配置<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">   <span class="tag">&lt;<span class="name">dubbo:registry</span> <span class="attr">address</span>=<span class="string">"zookeeper://localhost:2181"</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">dubbo:application</span> <span class="attr">name</span>=<span class="string">"dubbo-comsumer"</span>/&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 扫描注解包路径，多个包用逗号分隔，不填pacakge表示扫描当前ApplicationContext中所有的类 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dubbo:annotation</span> <span class="attr">package</span>=<span class="string">"com.simpletour.blog.rest.api.controller"</span>/&gt;</span></div></pre></td></tr></table></figure></p>
+<p>而对于Provider的引用使用注解的方式<br>即：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Reference</span>(version = <span class="string">"1.0.0"</span>)</div><div class="line">IBlogService blogService;</div></pre></td></tr></table></figure></p>
+<p>和原来相比，仅将<code>@Resource</code> 替换成<code>@Reference</code></p>
+<h3 id="Consumer若为rest服务"><a href="#Consumer若为rest服务" class="headerlink" title="Consumer若为rest服务"></a>Consumer若为rest服务</h3><ul>
+<li>rest对外提供的接口中用到的pojo，单独一个protocal jar包, 思路同dubbo Provider中的api包，以便rest调用者为web服务时，不需再次定义pojo对象<br>此时Consumer包含protocal, rest两个模块<br>jar包引用关系图如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Consumer---api</div><div class="line">|----------protocal</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>因此最终打包之后，Consumer中不应该存在Provider中，除api以外的任意jar包(domain, dao, biz, service)</p>
+<h1 id="一些官方的开发原则-http-dubbo-io-User-Guide-zh-htm"><a href="#一些官方的开发原则-http-dubbo-io-User-Guide-zh-htm" class="headerlink" title="一些官方的开发原则(http://dubbo.io/User+Guide-zh.htm)"></a>一些官方的开发原则(<a href="http://dubbo.io/User+Guide-zh.htm" target="_blank" rel="external">http://dubbo.io/User+Guide-zh.htm</a>)</h1><h2 id="分包"><a href="#分包" class="headerlink" title="分包"></a>分包</h2><p>建议将<strong>服务接口，服务模型，服务异常</strong>等均放在API包中，因为服务模型及异常也是API的一部分，</p>
+<h2 id="粒度"><a href="#粒度" class="headerlink" title="粒度"></a>粒度</h2><p>服务接口尽可能大粒度，每个服务方法应代表一个功能，而不是某功能的一个步骤，否则将面临分布式事务问题，Dubbo暂未提供分布式事务支持。<br>服务接口建议以业务场景为单位划分，并对相近业务做抽象，防止接口数量爆炸<br>不建议使用过于抽象的通用接口，如：Map query(Map)，这样的接口没有明确语义，会给后期维护带来不便。</p>
+<h2 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h2><p>每个接口都应定义版本号，为后续不兼容升级提供可能，如：<code>&lt;dubbo:service interface=&quot;com.xxx.XxxService&quot; version=&quot;1.0&quot; /&gt;</code><br>建议使用两位版本号，因为第三位版本号通常表示兼容升级，只有不兼容时才需要变更服务版本。<br>当不兼容时，先升级一半提供者为新版本，再将消费者全部升为新版本，然后将剩下的一半提供者升为新版本。</p>
+<h2 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h2><p>服务接口增加方法，或服务模型增加字段，可向后兼容，删除方法或删除字段，将不兼容，枚举类型新增字段也不兼容，需通过变更版本号升级。</p>
+<h2 id="枚举值"><a href="#枚举值" class="headerlink" title="枚举值"></a>枚举值</h2><p>如果是完备集，可以用Enum，比如：ENABLE, DISABLE。<br>如果是业务种类，以后明显会有类型增加，不建议用Enum，可以用String代替。<br>如果是在返回值中用了Enum，并新增了Enum值，建议先升级服务消费方，这样服务提供方不会返回新值。<br>如果是在传入参数中用了Enum，并新增了Enum值，建议先升级服务提供方，这样服务消费方不会传入新值。</p>
+<h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><p>服务参数及返回值建议使用POJO对象，即通过set,get方法表示属性的对象。<br>服务参数及返回值不建议使用接口，因为数据模型抽象的意义不大，并且序列化需要接口实现类的元信息，并不能起到隐藏实现的意图。<br>服务参数及返回值都必需是byValue的，而不能是byRef的，消费方和提供方的参数或返回值引用并不是同一个，只是值相同，Dubbo不支持引用远程对象。</p>
+<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><p>建议使用异常汇报错误，而不是返回错误码，异常信息能携带更多信息，以及语义更友好，<br>如果担心性能问题，在必要时，可以通过override掉异常类的fillInStackTrace()方法为空方法，使其不拷贝栈信息，<br>查询方法不建议抛出checked异常，否则调用方在查询时将过多的try…catch，并且不能进行有效处理，<br>服务提供方不应将DAO或SQL等异常抛给消费方，应在服务实现中对消费方不关心的异常进行包装，否则可能出现消费方无法反序列化相应异常。</p>
+<h2 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h2><p>不要只是因为是Dubbo调用，而把调用Try-Catch起来。Try-Catch应该加上合适的回滚边界上。<br>对于输入参数的校验逻辑在Provider端要有。如有性能上的考虑，服务实现者可以考虑在API包上加上服务Stub类来完成检验。</p>
+<h2 id="推荐用法"><a href="#推荐用法" class="headerlink" title="推荐用法"></a>推荐用法</h2><ul>
+<li>在Provider上尽量多配置Consumer端属性，服务的提供者，比服务使用方更清楚服务性能参数</li>
+<li>Provider上配置合理的Provider端属性, threads，服务线程池大小, executes，一个服务提供者并行执行请求上限</li>
+<li>尽量不要使用重试，超时则返回错误，除非你可以保证你所写的方法是幂等的, 否则很容易导致数据出错(ydf补充)</li>
+</ul>
+
       
     </div>
     
@@ -274,13 +353,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/09/22/ajaxsso/">ajaxsso</a></p>
+        <p><span>本文标题:</span><a href="/2016/10/09/dubbo-basic/">dubbo基础和开发规范</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">edolphin</a></p>
-        <p><span>发布时间:</span>2016-09-22, 11:32:59</p>
-        <p><span>最后更新:</span>2016-09-22, 16:10:21</p>
+        <p><span>发布时间:</span>2016-10-09, 11:00:57</p>
+        <p><span>最后更新:</span>2016-10-09, 15:50:11</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/09/22/ajaxsso/" title="ajaxsso">http://edolphin.site/2016/09/22/ajaxsso/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2016/09/22/ajaxsso/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/10/09/dubbo-basic/" title="dubbo基础和开发规范">http://edolphin.site/2016/10/09/dubbo-basic/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2016/10/09/dubbo-basic/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -294,15 +373,15 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/09/30/hessian2-vs-fst/">
-                    hessian2 vs fst bytecode
+                <a href="/2016/10/26/ubuntu-ieda-input-chinese/">
+                    ubuntu搜狗输入法，idea下无法输入中文
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/08/10/mv-usr-dir-to-new-partition/">
-                    迁移/usr目录到新的分区
+                <a href="/2016/09/30/hessian2-vs-fst/">
+                    hessian2 vs fst bytecode
                 </a>
             </div>
         
@@ -313,7 +392,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基本概念"><span class="toc-number">1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一些自己摸索的开发原则"><span class="toc-number">2.</span> <span class="toc-text">一些自己摸索的开发原则</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#模块划分"><span class="toc-number">2.1.</span> <span class="toc-text">模块划分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">2.2.</span> <span class="toc-text">注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Consumer"><span class="toc-number">2.3.</span> <span class="toc-text">Consumer</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#jar包引用"><span class="toc-number">2.3.1.</span> <span class="toc-text">jar包引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置"><span class="toc-number">2.3.2.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Consumer若为rest服务"><span class="toc-number">2.3.3.</span> <span class="toc-text">Consumer若为rest服务</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一些官方的开发原则-http-dubbo-io-User-Guide-zh-htm"><span class="toc-number">3.</span> <span class="toc-text">一些官方的开发原则(http://dubbo.io/User+Guide-zh.htm)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#分包"><span class="toc-number">3.1.</span> <span class="toc-text">分包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#粒度"><span class="toc-number">3.2.</span> <span class="toc-text">粒度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#版本"><span class="toc-number">3.3.</span> <span class="toc-text">版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#兼容性"><span class="toc-number">3.4.</span> <span class="toc-text">兼容性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#枚举值"><span class="toc-number">3.5.</span> <span class="toc-text">枚举值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#序列化"><span class="toc-number">3.6.</span> <span class="toc-text">序列化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#异常"><span class="toc-number">3.7.</span> <span class="toc-text">异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调用"><span class="toc-number">3.8.</span> <span class="toc-text">调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#推荐用法"><span class="toc-number">3.9.</span> <span class="toc-text">推荐用法</span></a></li></ol></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -385,7 +464,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/09/30/hessian2-vs-fst/" title="上一篇: hessian2 vs fst bytecode">
+            <a href="/2016/10/26/ubuntu-ieda-input-chinese/" title="上一篇: ubuntu搜狗输入法，idea下无法输入中文">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -393,7 +472,7 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/08/10/mv-usr-dir-to-new-partition/" title="下一篇: 迁移/usr目录到新的分区">
+            <a href="/2016/09/30/hessian2-vs-fst/" title="下一篇: hessian2 vs fst bytecode">
                 <i class="fa fa-angle-right"></i>
             </a>
         

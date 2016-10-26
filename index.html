@@ -153,7 +153,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/cas/" style="font-size: 17.5px;">cas</a> <a href="/tags/encrypt/" style="font-size: 12.5px;">encrypt</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/jsonp/" style="font-size: 10px;">jsonp</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/lua/" style="font-size: 10px;">lua</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/serialize/" style="font-size: 10px;">serialize</a> <a href="/tags/sso/" style="font-size: 10px;">sso</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 12.5px;">vim</a> <a href="/tags/扩容/" style="font-size: 10px;">扩容</a>
+                        <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/cas/" style="font-size: 18px;">cas</a> <a href="/tags/dubbo/" style="font-size: 10px;">dubbo</a> <a href="/tags/encrypt/" style="font-size: 14px;">encrypt</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 16px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/jsonp/" style="font-size: 10px;">jsonp</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/lua/" style="font-size: 10px;">lua</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/misc/" style="font-size: 10px;">misc</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/serialize/" style="font-size: 10px;">serialize</a> <a href="/tags/sso/" style="font-size: 10px;">sso</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/ubuntu/" style="font-size: 12px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 14px;">vim</a> <a href="/tags/扩容/" style="font-size: 10px;">扩容</a>
                     </div>
                 </section>
                 
@@ -230,6 +230,168 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-ubuntu-ieda-input-chinese" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/26/ubuntu-ieda-input-chinese/" class="article-date">
+      <time datetime="2016-10-26T07:28:39.000Z" itemprop="datePublished">2016-10-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/26/ubuntu-ieda-input-chinese/">ubuntu搜狗输入法，idea下无法输入中文</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>ubuntu下使用搜狗输入法，fcitx框架，所有地方都输入正常，唯独idea下无法输入中文</p>
+<p>解决：</p>
+<p>在IDEA的bin目录下的idea.sh文件的前面加上<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> XMODIFIERS=@im=fcitx</div><div class="line"><span class="built_in">export</span> QT_IM_MODULE=fcitx</div></pre></td></tr></table></figure></p>
+<p>重启idea，即可输入中文</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/misc/">misc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-dubbo-basic" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/09/dubbo-basic/" class="article-date">
+      <time datetime="2016-10-09T03:00:57.000Z" itemprop="datePublished">2016-10-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/09/dubbo-basic/">dubbo基础和开发规范</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>最重要的3个</p>
+<ul>
+<li>Provider 服务提供着</li>
+<li>Consumer 服务消费者</li>
+<li>Registry 注册中心，服务提供者注册服务的地方，服务消费者获取可用服务的地方</li>
+</ul>
+<p>两个web应用</p>
+<ul>
+<li>Admin 服务管理，治理，一个web项目，可对各服务进行管理控制，路由，参数配置，负载均衡等。</li>
+<li>Monitor 监控，RPC调用次数和调用时间监控</li>
+</ul>
+<h1 id="一些自己摸索的开发原则"><a href="#一些自己摸索的开发原则" class="headerlink" title="一些自己摸索的开发原则"></a>一些自己摸索的开发原则</h1><h2 id="模块划分"><a href="#模块划分" class="headerlink" title="模块划分"></a>模块划分</h2><p>一个Provider包含如下模块</p>
+<ul>
+<li>domain     对应数据库表格</li>
+<li>dao         和原dao功能一样，使用spring data，大部分情况，仅需定义接口即可    </li>
+<li>biz        和原biz一样</li>
+<li>api        包含api-domain(request, response, 即接口的参数和返回值), 和service接口定义, 作为给Consumer引用的jar包, api不可引用biz, dao, domain,service任意jar包</li>
+<li>service     和原service一样，但不包含service接口<br>引用关系图如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">service---api</div><div class="line">|---------biz----dao---domain</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
+<li>Service， 使用Autowire注解， 被注入字段必须写set方法， xml中定义bean时，需要加上autowire=”byType”(或许时配置问题，寻求解决办法)</li>
+<li>Dubbo 对外提供的Rpc服务，所有用到的请求返回参数，即com.simpletour.blog.api.*.domain 下的POJO，都需要implement Serializable (考虑添加Base对象)</li>
+</ul>
+<h2 id="Consumer"><a href="#Consumer" class="headerlink" title="Consumer"></a>Consumer</h2><h3 id="jar包引用"><a href="#jar包引用" class="headerlink" title="jar包引用"></a>jar包引用</h3><p>Consumer只能引用api包，对于其他service, biz, dao, domain都不可引用，保证Consumer不会直接调用底层未暴露的接口和domain</p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>Consumer基本是存在于rest或web项目中，建议只配置dubbo必须的配置<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">   <span class="tag">&lt;<span class="name">dubbo:registry</span> <span class="attr">address</span>=<span class="string">"zookeeper://localhost:2181"</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">dubbo:application</span> <span class="attr">name</span>=<span class="string">"dubbo-comsumer"</span>/&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 扫描注解包路径，多个包用逗号分隔，不填pacakge表示扫描当前ApplicationContext中所有的类 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dubbo:annotation</span> <span class="attr">package</span>=<span class="string">"com.simpletour.blog.rest.api.controller"</span>/&gt;</span></div></pre></td></tr></table></figure></p>
+<p>而对于Provider的引用使用注解的方式<br>即：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Reference</span>(version = <span class="string">"1.0.0"</span>)</div><div class="line">IBlogService blogService;</div></pre></td></tr></table></figure></p>
+<p>和原来相比，仅将<code>@Resource</code> 替换成<code>@Reference</code></p>
+<h3 id="Consumer若为rest服务"><a href="#Consumer若为rest服务" class="headerlink" title="Consumer若为rest服务"></a>Consumer若为rest服务</h3><ul>
+<li>rest对外提供的接口中用到的pojo，单独一个protocal jar包, 思路同dubbo Provider中的api包，以便rest调用者为web服务时，不需再次定义pojo对象<br>此时Consumer包含protocal, rest两个模块<br>jar包引用关系图如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Consumer---api</div><div class="line">|----------protocal</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>因此最终打包之后，Consumer中不应该存在Provider中，除api以外的任意jar包(domain, dao, biz, service)</p>
+<h1 id="一些官方的开发原则-http-dubbo-io-User-Guide-zh-htm"><a href="#一些官方的开发原则-http-dubbo-io-User-Guide-zh-htm" class="headerlink" title="一些官方的开发原则(http://dubbo.io/User+Guide-zh.htm)"></a>一些官方的开发原则(<a href="http://dubbo.io/User+Guide-zh.htm" target="_blank" rel="external">http://dubbo.io/User+Guide-zh.htm</a>)</h1><h2 id="分包"><a href="#分包" class="headerlink" title="分包"></a>分包</h2><p>建议将<strong>服务接口，服务模型，服务异常</strong>等均放在API包中，因为服务模型及异常也是API的一部分，</p>
+<h2 id="粒度"><a href="#粒度" class="headerlink" title="粒度"></a>粒度</h2><p>服务接口尽可能大粒度，每个服务方法应代表一个功能，而不是某功能的一个步骤，否则将面临分布式事务问题，Dubbo暂未提供分布式事务支持。<br>服务接口建议以业务场景为单位划分，并对相近业务做抽象，防止接口数量爆炸<br>不建议使用过于抽象的通用接口，如：Map query(Map)，这样的接口没有明确语义，会给后期维护带来不便。</p>
+<h2 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h2><p>每个接口都应定义版本号，为后续不兼容升级提供可能，如：<code>&lt;dubbo:service interface=&quot;com.xxx.XxxService&quot; version=&quot;1.0&quot; /&gt;</code><br>建议使用两位版本号，因为第三位版本号通常表示兼容升级，只有不兼容时才需要变更服务版本。<br>当不兼容时，先升级一半提供者为新版本，再将消费者全部升为新版本，然后将剩下的一半提供者升为新版本。</p>
+<h2 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h2><p>服务接口增加方法，或服务模型增加字段，可向后兼容，删除方法或删除字段，将不兼容，枚举类型新增字段也不兼容，需通过变更版本号升级。</p>
+<h2 id="枚举值"><a href="#枚举值" class="headerlink" title="枚举值"></a>枚举值</h2><p>如果是完备集，可以用Enum，比如：ENABLE, DISABLE。<br>如果是业务种类，以后明显会有类型增加，不建议用Enum，可以用String代替。<br>如果是在返回值中用了Enum，并新增了Enum值，建议先升级服务消费方，这样服务提供方不会返回新值。<br>如果是在传入参数中用了Enum，并新增了Enum值，建议先升级服务提供方，这样服务消费方不会传入新值。</p>
+<h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><p>服务参数及返回值建议使用POJO对象，即通过set,get方法表示属性的对象。<br>服务参数及返回值不建议使用接口，因为数据模型抽象的意义不大，并且序列化需要接口实现类的元信息，并不能起到隐藏实现的意图。<br>服务参数及返回值都必需是byValue的，而不能是byRef的，消费方和提供方的参数或返回值引用并不是同一个，只是值相同，Dubbo不支持引用远程对象。</p>
+<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><p>建议使用异常汇报错误，而不是返回错误码，异常信息能携带更多信息，以及语义更友好，<br>如果担心性能问题，在必要时，可以通过override掉异常类的fillInStackTrace()方法为空方法，使其不拷贝栈信息，<br>查询方法不建议抛出checked异常，否则调用方在查询时将过多的try…catch，并且不能进行有效处理，<br>服务提供方不应将DAO或SQL等异常抛给消费方，应在服务实现中对消费方不关心的异常进行包装，否则可能出现消费方无法反序列化相应异常。</p>
+<h2 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h2><p>不要只是因为是Dubbo调用，而把调用Try-Catch起来。Try-Catch应该加上合适的回滚边界上。<br>对于输入参数的校验逻辑在Provider端要有。如有性能上的考虑，服务实现者可以考虑在API包上加上服务Stub类来完成检验。</p>
+<h2 id="推荐用法"><a href="#推荐用法" class="headerlink" title="推荐用法"></a>推荐用法</h2><ul>
+<li>在Provider上尽量多配置Consumer端属性，服务的提供者，比服务使用方更清楚服务性能参数</li>
+<li>Provider上配置合理的Provider端属性, threads，服务线程池大小, executes，一个服务提供者并行执行请求上限</li>
+<li>尽量不要使用重试，超时则返回错误，除非你可以保证你所写的方法是幂等的, 否则很容易导致数据出错(ydf补充)</li>
+</ul>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dubbo/">dubbo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-hessian2-vs-fst" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -721,128 +883,6 @@
       
         <p class="article-more-link">
           <a href="/2016/06/03/TodoList/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-608重庆武隆" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/06/01/608重庆武隆/" class="article-date">
-      <time datetime="2016-05-31T16:23:03.000Z" itemprop="datePublished">2016-06-01</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/01/608重庆武隆/">608重庆武隆</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>真的，没密码你只能看这么多了<br>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/travel/">travel</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2016/06/01/608重庆武隆/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-encrypt-post" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/05/31/encrypt-post/" class="article-date">
-      <time datetime="2016-05-30T19:17:58.000Z" itemprop="datePublished">2016-05-31</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/31/encrypt-post/">加密博客内容，使用密码访问</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>今天突然想用hexo博客来记录一些不想公开的内容，仅登录用户可见。显然，由于hexo生成的是静态文件，<br>所以这个需求不大现实，不过如果能通过输入密码访，解密之后，访问博客内容那也是极好的</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/encrypt/">encrypt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2016/05/31/encrypt-post/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
