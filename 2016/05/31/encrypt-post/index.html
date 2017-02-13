@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://edolphin.site/2016/05/31/encrypt-post/index.html">
 <meta property="og:site_name" content="Server Not Down">
 <meta property="og:description" content="今天突然想用hexo博客来记录一些不想公开的内容，仅登录用户可见。显然，由于hexo生成的是静态文件，所以这个需求不大现实，不过如果能通过输入密码访，解密之后，访问博客内容那也是极好的">
-<meta property="og:updated_time" content="2016-08-02T08:31:34.597Z">
+<meta property="og:updated_time" content="2017-02-13T06:58:25.323Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="加密博客内容，使用密码访问">
 <meta name="twitter:description" content="今天突然想用hexo博客来记录一些不想公开的内容，仅登录用户可见。显然，由于hexo生成的是静态文件，所以这个需求不大现实，不过如果能通过输入密码访，解密之后，访问博客内容那也是极好的">
@@ -307,6 +307,22 @@
 <p>需要注意的一点：<br>要确保不会有插件将上面提到的 文章名 目录下的资源在 <code>hexo g</code> 时拷贝到public目录<br>所以建议使用绝对路径，将其放在其他目录下</p>
 <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>以base64编码的方式读取图片文件，然后替换2016/06/02中提到的url就好了</p>
 <h3 id="more"><a href="#more" class="headerlink" title="more"></a>more</h3><p>具体用法见<a href="https://github.com/edolphin-ydf/hexo-encrypt" target="_blank" rel="external">这里</a></p>
+<hr>
+<h1 id="update-2017-02-13"><a href="#update-2017-02-13" class="headerlink" title="update: 2017/02/13"></a>update: 2017/02/13</h1><p>早就该更新了的，但是因为懒，一直没写</p>
+<p>在更新之前，一个最大的问题，解密弹出框太丑了，开始因为时自己用也就忍了，但是想了想，还是做各模板支持吧，所以就有了</p>
+<h3 id="新加配置支持-template"><a href="#新加配置支持-template" class="headerlink" title="新加配置支持 template"></a>新加配置支持 template</h3><p>首先，如果你已经使用了此插件，并且不想在做任何修改，那么只需要升级插件即可</p>
+<p>如果你觉得解密的输入框按钮等和你的主题不太搭调，你又会写html css， 那么自己动手，定义template吧</p>
+<p>使用方式：</p>
+<p>_config.yml中用法如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">encrypt:</div><div class="line">	template: &apos;你的模板html和js，或许还有css&apos;</div></pre></td></tr></table></figure>
+<p>单独的post中用法如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">enc_template: &apos;你的模板html和js，或许还有css&apos;</div></pre></td></tr></table></figure>
+<p>还有一点：<br>在你模板中，一定要有一行js代码，调用<code>doDecrypt(password)</code>函数完成解密</p>
+<p>最后一点：<br>博主css和html都是一边搜索一边写出来的，所以默认的模板很丑，但是能用。如果你有更好的模板，欢迎提fork源码修改并添加pull request，或留言告诉我</p>
+<h3 id="TODO-1"><a href="#TODO-1" class="headerlink" title="TODO:"></a>TODO:</h3><ul>
+<li>模板文件支持，方便扩展不同模板</li>
+<li>…</li>
+</ul>
 
       
     </div>
@@ -318,7 +334,7 @@
         <p><span>本文标题:</span><a href="/2016/05/31/encrypt-post/">加密博客内容，使用密码访问</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">edolphin</a></p>
         <p><span>发布时间:</span>2016-05-31, 03:17:58</p>
-        <p><span>最后更新:</span>2016-08-02, 16:31:34</p>
+        <p><span>最后更新:</span>2017-02-13, 14:58:25</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/05/31/encrypt-post/" title="加密博客内容，使用密码访问">http://edolphin.site/2016/05/31/encrypt-post/</a>
             <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2016/05/31/encrypt-post/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -354,7 +370,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#方案设想"><span class="toc-number">1.</span> <span class="toc-text">方案设想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加密解密"><span class="toc-number">2.</span> <span class="toc-text">加密解密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现逻辑"><span class="toc-number">3.</span> <span class="toc-text">实现逻辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最后"><span class="toc-number">4.</span> <span class="toc-text">最后</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#update-2016-6-1"><span class="toc-number"></span> <span class="toc-text">update: 2016/6/1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#新需求："><span class="toc-number">1.</span> <span class="toc-text">新需求：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1"><span class="toc-number">2.</span> <span class="toc-text">1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2"><span class="toc-number">3.</span> <span class="toc-text">2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3"><span class="toc-number">4.</span> <span class="toc-text">3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TODO"><span class="toc-number">5.</span> <span class="toc-text">TODO</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#update-2016-06-03"><span class="toc-number"></span> <span class="toc-text">update: 2016/06/03</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#图片url有效期"><span class="toc-number">1.</span> <span class="toc-text">图片url有效期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#base64内嵌图片到html"><span class="toc-number">2.</span> <span class="toc-text">base64内嵌图片到html</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用法"><span class="toc-number">3.</span> <span class="toc-text">用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原理"><span class="toc-number">4.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#more"><span class="toc-number">5.</span> <span class="toc-text">more</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#方案设想"><span class="toc-number">1.</span> <span class="toc-text">方案设想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加密解密"><span class="toc-number">2.</span> <span class="toc-text">加密解密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现逻辑"><span class="toc-number">3.</span> <span class="toc-text">实现逻辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最后"><span class="toc-number">4.</span> <span class="toc-text">最后</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#update-2016-6-1"><span class="toc-number"></span> <span class="toc-text">update: 2016/6/1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#新需求："><span class="toc-number">1.</span> <span class="toc-text">新需求：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1"><span class="toc-number">2.</span> <span class="toc-text">1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2"><span class="toc-number">3.</span> <span class="toc-text">2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3"><span class="toc-number">4.</span> <span class="toc-text">3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TODO"><span class="toc-number">5.</span> <span class="toc-text">TODO</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#update-2016-06-03"><span class="toc-number"></span> <span class="toc-text">update: 2016/06/03</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#图片url有效期"><span class="toc-number">1.</span> <span class="toc-text">图片url有效期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#base64内嵌图片到html"><span class="toc-number">2.</span> <span class="toc-text">base64内嵌图片到html</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用法"><span class="toc-number">3.</span> <span class="toc-text">用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原理"><span class="toc-number">4.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#more"><span class="toc-number">5.</span> <span class="toc-text">more</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#update-2017-02-13"><span class="toc-number"></span> <span class="toc-text">update: 2017/02/13</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#新加配置支持-template"><span class="toc-number">1.</span> <span class="toc-text">新加配置支持 template</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TODO-1"><span class="toc-number">2.</span> <span class="toc-text">TODO:</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
