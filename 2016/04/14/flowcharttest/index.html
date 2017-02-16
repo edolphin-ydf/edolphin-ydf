@@ -5,16 +5,28 @@
   
   <title>flowcharttest | Server Not Down</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="参考链接123456789101112131415st=&amp;gt;start: Start|past:&amp;gt;http://www.google.com[blank]e=&amp;gt;end: End:&amp;gt;http://www.google.comop1=&amp;gt;operation: My Operation|pastop2=&amp;gt;operation: Stuff|currentsub1=&amp;gt;s">
+  <meta name="description" content="参考链接st=&amp;gt;start: Start|past:&amp;gt;http://www.google.com[blank]
+e=&amp;gt;end: End:&amp;gt;http://www.google.com
+op1=&amp;gt;operation: My Operation|past
+op2=&amp;gt;operation: Stuff|current
+sub1=&amp;gt;subroutine: My Sub">
 <meta property="og:type" content="article">
 <meta property="og:title" content="flowcharttest">
 <meta property="og:url" content="http://edolphin.site/2016/04/14/flowcharttest/index.html">
 <meta property="og:site_name" content="Server Not Down">
-<meta property="og:description" content="参考链接123456789101112131415st=&amp;gt;start: Start|past:&amp;gt;http://www.google.com[blank]e=&amp;gt;end: End:&amp;gt;http://www.google.comop1=&amp;gt;operation: My Operation|pastop2=&amp;gt;operation: Stuff|currentsub1=&amp;gt;s">
+<meta property="og:description" content="参考链接st=&amp;gt;start: Start|past:&amp;gt;http://www.google.com[blank]
+e=&amp;gt;end: End:&amp;gt;http://www.google.com
+op1=&amp;gt;operation: My Operation|past
+op2=&amp;gt;operation: Stuff|current
+sub1=&amp;gt;subroutine: My Sub">
 <meta property="og:updated_time" content="2017-02-13T12:51:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="flowcharttest">
-<meta name="twitter:description" content="参考链接123456789101112131415st=&amp;gt;start: Start|past:&amp;gt;http://www.google.com[blank]e=&amp;gt;end: End:&amp;gt;http://www.google.comop1=&amp;gt;operation: My Operation|pastop2=&amp;gt;operation: Stuff|currentsub1=&amp;gt;s">
+<meta name="twitter:description" content="参考链接st=&amp;gt;start: Start|past:&amp;gt;http://www.google.com[blank]
+e=&amp;gt;end: End:&amp;gt;http://www.google.com
+op1=&amp;gt;operation: My Operation|past
+op2=&amp;gt;operation: Stuff|current
+sub1=&amp;gt;subroutine: My Sub">
   
     <link rel="alternative" href="/atom.xml" title="Server Not Down" type="application/atom+xml">
   
@@ -262,9 +274,30 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><a href="http://www.suwey.net/2016/03/27/hexo-sequece-flow-chart/" target="_blank" rel="external">参考链接</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">st=&gt;start: Start|past:&gt;http://www.google.com[blank]</div><div class="line">e=&gt;end: End:&gt;http://www.google.com</div><div class="line">op1=&gt;operation: My Operation|past</div><div class="line">op2=&gt;operation: Stuff|current</div><div class="line">sub1=&gt;subroutine: My Subroutine|invalid</div><div class="line">cond=&gt;condition: Yes</div><div class="line">or No?|approved:&gt;http://www.google.com</div><div class="line">c2=&gt;condition: Good idea|rejected</div><div class="line">io=&gt;inputoutput: catch something...|request</div><div class="line"></div><div class="line">st-&gt;op1(right)-&gt;cond</div><div class="line">cond(yes, right)-&gt;c2</div><div class="line">cond(no)-&gt;sub1(left)-&gt;op1</div><div class="line">c2(yes)-&gt;io-&gt;e</div><div class="line">c2(no)-&gt;op2-&gt;e</div></pre></td></tr></table></figure></p>
+        <p><a href="http://www.suwey.net/2016/03/27/hexo-sequece-flow-chart/" target="_blank" rel="external">参考链接</a><br><div class="flow">st=&gt;start: Start|past:&gt;http://www.google.com[blank]
+e=&gt;end: End:&gt;http://www.google.com
+op1=&gt;operation: My Operation|past
+op2=&gt;operation: Stuff|current
+sub1=&gt;subroutine: My Subroutine|invalid
+cond=&gt;condition: Yes
+or No?|approved:&gt;http://www.google.com
+c2=&gt;condition: Good idea|rejected
+io=&gt;inputoutput: catch something...|request
+
+st-&gt;op1(right)-&gt;cond
+cond(yes, right)-&gt;c2
+cond(no)-&gt;sub1(left)-&gt;op1
+c2(yes)-&gt;io-&gt;e
+c2(no)-&gt;op2-&gt;e</div></p>
 <a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Title:中文测试</div><div class="line">User-&gt;Browser: Open Browser</div><div class="line">Browser-&gt;App1Server:  www.appserver.com</div><div class="line">App1Server-&gt;Browser: not signin, redirect to cas server</div><div class="line">Browser-&gt;CasServer: request open cas login view with server=www.appserver.com</div><div class="line">CasServer-&gt;Browser: return login view</div><div class="line">Browser-&gt;CasServer: request login with pwd and uname</div><div class="line">CasServer-&gt;Browser: login success, generate tgt and st, redirect to app1</div></pre></td></tr></table></figure>
+<div class="sequence">Title:中文测试
+User-&gt;Browser: Open Browser
+Browser-&gt;App1Server:  www.appserver.com
+App1Server-&gt;Browser: not signin, redirect to cas server
+Browser-&gt;CasServer: request open cas login view with server=www.appserver.com
+CasServer-&gt;Browser: return login view
+Browser-&gt;CasServer: request login with pwd and uname
+CasServer-&gt;Browser: login success, generate tgt and st, redirect to app1</div>
 
       
     </div>

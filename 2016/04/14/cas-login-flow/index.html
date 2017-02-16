@@ -266,7 +266,68 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>还有很多细节，待完善<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line">st=&gt;start: Start|past</div><div class="line">ulogin=&gt;operation: 用户请求app服务器任意需要登录页面</div><div class="line">www.appserver1.com/testpage|past</div><div class="line"></div><div class="line">hasLogin=&gt;condition: 是否已经登录?</div><div class="line">toFuncPage=&gt;operation: 直接进入请求页面|approved</div><div class="line">retRedirToCasLoginPage=&gt;operation: 返回重定向到cas server登录页面</div><div class="line">302 www.casserver.com/login</div><div class="line">param service=http://www.appserver1.com|rejected</div><div class="line"></div><div class="line">requestCasLoginpage=&gt;operation: 请求cas server登录页面|past</div><div class="line">isServiceValid=&gt;condition: 验证service参数</div><div class="line">是否有效</div><div class="line">loginFail=&gt;operation: 登录失败|rejected</div><div class="line"></div><div class="line">isTgtIsExist=&gt;condition: tgt(ticketGrantingTicket)</div><div class="line">是否存在?|approved</div><div class="line"></div><div class="line">generateLoginTicket=&gt;operation: 生成LoginTicket| rejected</div><div class="line">returnLoginView=&gt;operation: 返回LoginView with lt</div><div class="line">lt=lt-xxxxxxx|past</div><div class="line">doLogin=&gt;operation: 用户输入用户名密码登录|past</div><div class="line">verifyLoginTicket=&gt;condition: lt是否有效</div><div class="line">generateTgt=&gt;operation: 生成tgt(会验证用户名密码是否有效)|past</div><div class="line">isGenTgtSuccess=&gt;condition: 成功？</div><div class="line">addTgtCookie=&gt;operation: 将tgt添加到cookie|past</div><div class="line"></div><div class="line">isTgtIsValid=&gt;condition: tgt是否未过期?|approved</div><div class="line">destoryInvalidTgt=&gt;operation: 销毁无效的tgt|rejected</div><div class="line">generateServiceTicket=&gt;operation: 生成st|past</div><div class="line">retRedirectToApp1ServerLogin=&gt;operation: 返回重定向到app1 server 登录回调</div><div class="line">302 www.appserver1.com/login</div><div class="line">with st=st-123456|past</div><div class="line">requestAppServer=&gt;operation: 请求www.appserver1.com/login|past</div><div class="line">reqVerifySt=&gt;operation: 请求cas server 验证st|past</div><div class="line">isStValid=&gt;condition: st是否有效</div><div class="line">retStValid=&gt;operation: st有效|past</div><div class="line">retStInValid=&gt;operation: st无效|past</div><div class="line">loginSuccess=&gt;operation: 登录成功|past</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">sub1=&gt;subroutine: My Subroutine|rejected</div><div class="line">c2=&gt;condition: Good idea|invalid</div><div class="line">op2=&gt;operation: Stuff|current</div><div class="line">io=&gt;inputoutput: catch something...|request</div><div class="line"></div><div class="line">st-&gt;ulogin-&gt;hasLogin</div><div class="line">hasLogin(yes, right)-&gt;toFuncPage</div><div class="line">hasLogin(no)-&gt;retRedirToCasLoginPage-&gt;requestCasLoginpage-&gt;isServiceValid</div><div class="line">isServiceValid(no, right)-&gt;loginFail</div><div class="line">isServiceValid(yes)-&gt;isTgtIsExist</div><div class="line">isTgtIsExist(no)-&gt;generateLoginTicket-&gt;returnLoginView-&gt;doLogin-&gt;verifyLoginTicket</div><div class="line">verifyLoginTicket(no)-&gt;loginFail</div><div class="line">verifyLoginTicket(yes)-&gt;generateTgt-&gt;isGenTgtSuccess</div><div class="line">isGenTgtSuccess(no)-&gt;loginFail</div><div class="line">isGenTgtSuccess(yes)-&gt;addTgtCookie-&gt;generateServiceTicket</div><div class="line">isTgtIsExist(yes, right)-&gt;isTgtIsValid</div><div class="line">isTgtIsValid(no, right)-&gt;destoryInvalidTgt-&gt;generateLoginTicket</div><div class="line">isTgtIsValid(yes)-&gt;generateServiceTicket-&gt;retRedirectToApp1ServerLogin-&gt;requestAppServer-&gt;reqVerifySt-&gt;isStValid</div><div class="line">isStValid(yes)-&gt;retStValid-&gt;loginSuccess</div><div class="line">isStValid(no, right)-&gt;retStInValid-&gt;loginFail</div></pre></td></tr></table></figure></p>
+        <p>还有很多细节，待完善<br><a id="more"></a><br><div class="flow">st=&gt;start: Start|past
+ulogin=&gt;operation: 用户请求app服务器任意需要登录页面
+www.appserver1.com/testpage|past
+
+hasLogin=&gt;condition: 是否已经登录?
+toFuncPage=&gt;operation: 直接进入请求页面|approved
+retRedirToCasLoginPage=&gt;operation: 返回重定向到cas server登录页面
+302 www.casserver.com/login
+param service=http://www.appserver1.com|rejected
+
+requestCasLoginpage=&gt;operation: 请求cas server登录页面|past
+isServiceValid=&gt;condition: 验证service参数
+是否有效
+loginFail=&gt;operation: 登录失败|rejected
+
+isTgtIsExist=&gt;condition: tgt(ticketGrantingTicket)
+是否存在?|approved
+
+generateLoginTicket=&gt;operation: 生成LoginTicket| rejected
+returnLoginView=&gt;operation: 返回LoginView with lt
+lt=lt-xxxxxxx|past
+doLogin=&gt;operation: 用户输入用户名密码登录|past
+verifyLoginTicket=&gt;condition: lt是否有效
+generateTgt=&gt;operation: 生成tgt(会验证用户名密码是否有效)|past
+isGenTgtSuccess=&gt;condition: 成功？
+addTgtCookie=&gt;operation: 将tgt添加到cookie|past
+
+isTgtIsValid=&gt;condition: tgt是否未过期?|approved
+destoryInvalidTgt=&gt;operation: 销毁无效的tgt|rejected
+generateServiceTicket=&gt;operation: 生成st|past
+retRedirectToApp1ServerLogin=&gt;operation: 返回重定向到app1 server 登录回调
+302 www.appserver1.com/login
+with st=st-123456|past
+requestAppServer=&gt;operation: 请求www.appserver1.com/login|past
+reqVerifySt=&gt;operation: 请求cas server 验证st|past
+isStValid=&gt;condition: st是否有效
+retStValid=&gt;operation: st有效|past
+retStInValid=&gt;operation: st无效|past
+loginSuccess=&gt;operation: 登录成功|past
+
+
+
+sub1=&gt;subroutine: My Subroutine|rejected
+c2=&gt;condition: Good idea|invalid
+op2=&gt;operation: Stuff|current
+io=&gt;inputoutput: catch something...|request
+
+st-&gt;ulogin-&gt;hasLogin
+hasLogin(yes, right)-&gt;toFuncPage
+hasLogin(no)-&gt;retRedirToCasLoginPage-&gt;requestCasLoginpage-&gt;isServiceValid
+isServiceValid(no, right)-&gt;loginFail
+isServiceValid(yes)-&gt;isTgtIsExist
+isTgtIsExist(no)-&gt;generateLoginTicket-&gt;returnLoginView-&gt;doLogin-&gt;verifyLoginTicket
+verifyLoginTicket(no)-&gt;loginFail
+verifyLoginTicket(yes)-&gt;generateTgt-&gt;isGenTgtSuccess
+isGenTgtSuccess(no)-&gt;loginFail
+isGenTgtSuccess(yes)-&gt;addTgtCookie-&gt;generateServiceTicket
+isTgtIsExist(yes, right)-&gt;isTgtIsValid
+isTgtIsValid(no, right)-&gt;destoryInvalidTgt-&gt;generateLoginTicket
+isTgtIsValid(yes)-&gt;generateServiceTicket-&gt;retRedirectToApp1ServerLogin-&gt;requestAppServer-&gt;reqVerifySt-&gt;isStValid
+isStValid(yes)-&gt;retStValid-&gt;loginSuccess
+isStValid(no, right)-&gt;retStInValid-&gt;loginFail</div></p>
 
       
     </div>

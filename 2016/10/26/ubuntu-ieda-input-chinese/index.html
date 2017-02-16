@@ -277,7 +277,7 @@
           
         <p>ubuntu下使用搜狗输入法，fcitx框架，所有地方都输入正常，唯独idea下无法输入中文</p>
 <p>解决：</p>
-<p>在IDEA的bin目录下的idea.sh文件的前面加上<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> XMODIFIERS=@im=fcitx</div><div class="line"><span class="built_in">export</span> QT_IM_MODULE=fcitx</div></pre></td></tr></table></figure></p>
+<p>在IDEA的bin目录下的idea.sh文件的前面加上<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> XMODIFIERS=@im=fcitx</span><br><span class="line"><span class="built_in">export</span> QT_IM_MODULE=fcitx</span><br></pre></td></tr></table></figure></p>
 <p>重启idea，即可输入中文</p>
 
       
