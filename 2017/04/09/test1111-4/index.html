@@ -3,18 +3,15 @@
 <head>
   <meta charset="utf-8">
   
-  <title>cas单点登录基本流程 | Server Not Down</title>
+  <title>test1111 | Server Not Down</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="还有很多细节，待完善">
-<meta property="og:type" content="article">
-<meta property="og:title" content="cas单点登录基本流程">
-<meta property="og:url" content="http://edolphin.site/2016/04/14/cas-login-flow/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="test1111">
+<meta property="og:url" content="http://edolphin.site/2017/04/09/test1111-4/index.html">
 <meta property="og:site_name" content="Server Not Down">
-<meta property="og:description" content="还有很多细节，待完善">
-<meta property="og:updated_time" content="2017-02-13T12:51:32.000Z">
+<meta property="og:updated_time" content="2017-04-09T09:52:59.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="cas单点登录基本流程">
-<meta name="twitter:description" content="还有很多细节，待完善">
+<meta name="twitter:title" content="test1111">
   
     <link rel="alternative" href="/atom.xml" title="Server Not Down" type="application/atom+xml">
   
@@ -228,11 +225,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-cas-login-flow" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-test1111-4" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/04/14/cas-login-flow/" class="article-date">
-      <time datetime="2016-04-14T10:48:01.000Z" itemprop="datePublished">2016-04-14</time>
+      <a href="/2017/04/09/test1111-4/" class="article-date">
+      <time datetime="2017-04-09T09:52:59.000Z" itemprop="datePublished">2017-04-09</time>
 </a>
     </div>
   
@@ -245,7 +242,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      cas单点登录基本流程
+      test1111
     </h1>
   
 
@@ -255,10 +252,6 @@
         
 
         
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cas/">cas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-    </div>
-
         <div class="clearfix"></div>
       </div>
       
@@ -266,69 +259,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>还有很多细节，待完善<br><a id="more"></a><br><div class="flow">st=&gt;start: Start|past
-ulogin=&gt;operation: 用户请求app服务器任意需要登录页面
-www.appserver1.com/testpage|past
-
-hasLogin=&gt;condition: 是否已经登录?
-toFuncPage=&gt;operation: 直接进入请求页面|approved
-retRedirToCasLoginPage=&gt;operation: 返回重定向到cas server登录页面
-302 www.casserver.com/login
-param service=http://www.appserver1.com|rejected
-
-requestCasLoginpage=&gt;operation: 请求cas server登录页面|past
-isServiceValid=&gt;condition: 验证service参数
-是否有效
-loginFail=&gt;operation: 登录失败|rejected
-
-isTgtIsExist=&gt;condition: tgt(ticketGrantingTicket)
-是否存在?|approved
-
-generateLoginTicket=&gt;operation: 生成LoginTicket| rejected
-returnLoginView=&gt;operation: 返回LoginView with lt
-lt=lt-xxxxxxx|past
-doLogin=&gt;operation: 用户输入用户名密码登录|past
-verifyLoginTicket=&gt;condition: lt是否有效
-generateTgt=&gt;operation: 生成tgt(会验证用户名密码是否有效)|past
-isGenTgtSuccess=&gt;condition: 成功？
-addTgtCookie=&gt;operation: 将tgt添加到cookie|past
-
-isTgtIsValid=&gt;condition: tgt是否未过期?|approved
-destoryInvalidTgt=&gt;operation: 销毁无效的tgt|rejected
-generateServiceTicket=&gt;operation: 生成st|past
-retRedirectToApp1ServerLogin=&gt;operation: 返回重定向到app1 server 登录回调
-302 www.appserver1.com/login
-with st=st-123456|past
-requestAppServer=&gt;operation: 请求www.appserver1.com/login|past
-reqVerifySt=&gt;operation: 请求cas server 验证st|past
-isStValid=&gt;condition: st是否有效
-retStValid=&gt;operation: st有效|past
-retStInValid=&gt;operation: st无效|past
-loginSuccess=&gt;operation: 登录成功|past
-
-
-
-sub1=&gt;subroutine: My Subroutine|rejected
-c2=&gt;condition: Good idea|invalid
-op2=&gt;operation: Stuff|current
-io=&gt;inputoutput: catch something...|request
-
-st-&gt;ulogin-&gt;hasLogin
-hasLogin(yes, right)-&gt;toFuncPage
-hasLogin(no)-&gt;retRedirToCasLoginPage-&gt;requestCasLoginpage-&gt;isServiceValid
-isServiceValid(no, right)-&gt;loginFail
-isServiceValid(yes)-&gt;isTgtIsExist
-isTgtIsExist(no)-&gt;generateLoginTicket-&gt;returnLoginView-&gt;doLogin-&gt;verifyLoginTicket
-verifyLoginTicket(no)-&gt;loginFail
-verifyLoginTicket(yes)-&gt;generateTgt-&gt;isGenTgtSuccess
-isGenTgtSuccess(no)-&gt;loginFail
-isGenTgtSuccess(yes)-&gt;addTgtCookie-&gt;generateServiceTicket
-isTgtIsExist(yes, right)-&gt;isTgtIsValid
-isTgtIsValid(no, right)-&gt;destoryInvalidTgt-&gt;generateLoginTicket
-isTgtIsValid(yes)-&gt;generateServiceTicket-&gt;retRedirectToApp1ServerLogin-&gt;requestAppServer-&gt;reqVerifySt-&gt;isStValid
-isStValid(yes)-&gt;retStValid-&gt;loginSuccess
-isStValid(no, right)-&gt;retStInValid-&gt;loginFail</div></p>
-
+        
       
     </div>
     
@@ -336,13 +267,13 @@ isStValid(no, right)-&gt;retStInValid-&gt;loginFail</div></p>
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/04/14/cas-login-flow/">cas单点登录基本流程</a></p>
+        <p><span>本文标题:</span><a href="/2017/04/09/test1111-4/">test1111</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">edolphin</a></p>
-        <p><span>发布时间:</span>2016-04-14, 18:48:01</p>
-        <p><span>最后更新:</span>2017-02-13, 20:51:32</p>
+        <p><span>发布时间:</span>2017-04-09, 17:52:59</p>
+        <p><span>最后更新:</span>2017-04-09, 17:52:59</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/04/14/cas-login-flow/" title="cas单点登录基本流程">http://edolphin.site/2016/04/14/cas-login-flow/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2016/04/14/cas-login-flow/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/04/09/test1111-4/" title="test1111">http://edolphin.site/2017/04/09/test1111-4/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2017/04/09/test1111-4/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -355,16 +286,10 @@ isStValid(no, right)-&gt;retStInValid-&gt;loginFail</div></p>
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/04/14/cas-user-auth-flow/">
-                    cas单点登录用户认证流程
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/04/14/flowcharttest/">
-                    flowcharttest
+                <a href="/2017/04/09/test1111-3/">
+                    test1111
                 </a>
             </div>
         
@@ -447,15 +372,13 @@ isStValid(no, right)-&gt;retStInValid-&gt;loginFail</div></p>
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/04/14/cas-user-auth-flow/" title="上一篇: cas单点登录用户认证流程">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/04/14/flowcharttest/" title="下一篇: flowcharttest">
+            <a href="/2017/04/09/test1111-3/" title="下一篇: test1111">
                 <i class="fa fa-angle-right"></i>
             </a>
         
