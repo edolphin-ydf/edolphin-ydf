@@ -3,15 +3,14 @@
 <head>
   <meta charset="utf-8">
   
-  <title>cas单点登录用户认证流程 | Server Not Down</title>
+  <title>Server Not Down</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="cas单点登录用户认证流程">
-<meta property="og:url" content="http://edolphin.site/2016/04/14/cas-user-auth-flow/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Server Not Down">
+<meta property="og:url" content="http://edolphin.site/page/4/index.html">
 <meta property="og:site_name" content="Server Not Down">
-<meta property="og:updated_time" content="2017-02-13T12:51:32.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="cas单点登录用户认证流程">
+<meta name="twitter:title" content="Server Not Down">
   
     <link rel="alternative" href="/atom.xml" title="Server Not Down" type="application/atom+xml">
   
@@ -28,8 +27,13 @@
   
   <link rel="stylesheet" href="/css/style.css">
   
+      <style> .article { opacity: 0;} </style>
+  
   <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+    
+    
   
   
     <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
@@ -39,8 +43,8 @@
       var yiliaConfig = {
           fancybox: true,
           animate: true,
-          isHome: false,
-          isPost: true,
+          isHome: true,
+          isPost: false,
           isArchive: false,
           isTag: false,
           isCategory: false,
@@ -225,11 +229,13 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-cas-user-auth-flow" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap">
+  
+    <article id="post-rpc-design-and-implement" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/04/14/cas-user-auth-flow/" class="article-date">
-      <time datetime="2016-04-14T12:10:22.000Z" itemprop="datePublished">2016-04-14</time>
+      <a href="/2016/03/30/rpc-design-and-implement/" class="article-date">
+      <time datetime="2016-03-30T11:48:08.000Z" itemprop="datePublished">2016-03-30</time>
 </a>
     </div>
   
@@ -241,169 +247,86 @@
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      cas单点登录用户认证流程
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/30/rpc-design-and-implement/">Rpc的设计与实现</a>
     </h1>
   
 
       </header>
       
-      <div class="article-info article-info-post">
-        
-
-        
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cas/">cas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
-    </div>
-
-        <div class="clearfix"></div>
-      </div>
-      
     
     <div class="article-entry" itemprop="articleBody">
       
           
-        
+              <hr>
+<p>Rpc应该建立在</p>
+<ul>
+<li>网络通信（socket，netty……）</li>
+<li>消息（protobuf，thrift……）</li>
+</ul>
+<p>的基础之上</p>
+<hr>
+<p>分层</p>
+<ul>
+<li>应用层</li>
+<li>RPC层</li>
+<li>消息传输层(protobuf on netty)</li>
+<li>网络框架层(netty)</li>
+<li>网络通信层(socket)</li>
+</ul>
+<hr>
+<p>先暂时忽略掉底层 东西，考虑一个Rpc流程……</p>
+<p>C(客户端)， S(服务器)</p>
+<p>APP(应用层), RPC(Rpc层)</p>
+<hr>
+<ul>
+<li>CAPP:调用一个方法-&gt;</li>
+<li>CRPC:将方法参数序列化通过网络传输到服务器-&gt;</li>
+<li>SRPC:收到数据反序列化为消息，然后调用相应处理方法-&gt;</li>
+<li>SAPP:一个普通方法被调用，并返回数据-&gt;</li>
+<li>SRPC:将应用层返回的数据序列化，通过网络返回给客户端-&gt;</li>
+<li>CRPC:收到服务器返回的数据，反序列化之后，传递给应用层-&gt;</li>
+<li>CAPP:得到函数调用结果</li>
+</ul>
+<hr>
+          
       
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2016/03/30/rpc-design-and-implement/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
     </div>
     
   </div>
   
-    
-    <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/04/14/cas-user-auth-flow/">cas单点登录用户认证流程</a></p>
-        <p><span>文章作者:</span><a href="/" title="回到主页">edolphin</a></p>
-        <p><span>发布时间:</span>2016-04-14, 20:10:22</p>
-        <p><span>最后更新:</span>2017-02-13, 20:51:32</p>
-        <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/04/14/cas-user-auth-flow/" title="cas单点登录用户认证流程">http://edolphin.site/2016/04/14/cas-user-auth-flow/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2016/04/14/cas-user-auth-flow/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
-            <script src="/js/clipboard.min.js"></script>
-            <script> var clipboard = new Clipboard('.copy-path'); </script>
-        </p>
-        <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
-        </p>
-    </div>
-
-
-
-    <nav id="article-nav">
-        
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/05/06/java-extends-super/">
-                    java泛型中，extends和super
-                </a>
-            </div>
-        
-        
-            <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/04/14/cas-login-flow/">
-                    cas单点登录基本流程
-                </a>
-            </div>
-        
-    </nav>
-
-  
 </article>
 
-    <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
-    
-</div>
-<style>
-    .left-col .switch-btn {
-        display: none;
-    }
-    .left-col .switch-area {
-        display: none;
-    }
-</style>
-
-<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
-<script>
-    var valueHide = "隐藏目录";
-    var valueShow = "显示目录";
-
-    if ($(".left-col").is(":hidden")) {
-        $("#tocButton").attr("value", valueShow);
-    }
-
-    $("#tocButton").click(function() {
-        if ($("#toc").is(":hidden")) {
-            $("#tocButton").attr("value", valueHide);
-            $("#toc").slideDown(320);
-            $(".switch-btn, .switch-area").fadeOut(300);
-        }
-        else {
-            $("#tocButton").attr("value", valueShow);
-            $("#toc").slideUp(350);
-            $(".switch-btn, .switch-area").fadeIn(500);
-        }
-    })
-
-    if ($(".toc").length < 1) {
-        $("#toc, #tocButton").hide();
-        $(".switch-btn, .switch-area").show();
-    }
-</script>
 
 
 
 
-    <div class="share">
-    <div class="bdsharebuttonbox">
-    <a href="#" class="bds_more" data-cmd="more"></a>
-    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
-    <a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
-    <a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
-    <a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
-    </div>
-    <script>
-        window._bd_share_config={
-            "common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-    </script>
-</div>
 
 
 
-    
-        <section class="youyan" id="comments">
-  <div id="uyan_frame"></div>
-  <script src="http://v2.uyan.cc/code/uyan.js?uid=2092308"></script>
-</section>
-
-    
-
-
-
-
-    <div class="scroll" id="post-nav-button">
-        
-            <a href="/2016/05/06/java-extends-super/" title="上一篇: java泛型中，extends和super">
-                <i class="fa fa-angle-left"></i>
-            </a>
-        
-
-        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
-
-        
-            <a href="/2016/04/14/cas-login-flow/" title="下一篇: cas单点登录基本流程">
-                <i class="fa fa-angle-right"></i>
-            </a>
-        
-    </div>
-
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/04/09/test1111/">test1111</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/05/git-cheat-sheet/">git-cheat-sheet</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/28/order-lock/">订单锁</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/06/read-redis-source-code-2/">redis源码阅读2-线程模型和event-loop</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/06/read-redis-source-code-1/">redis源码阅读1-开始</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/26/总结/">总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/09/learing-rvalue-start-with-an-requirement/">从一个需求出发理解rvalue</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/26/ubuntu-ieda-input-chinese/">ubuntu搜狗输入法，idea下无法输入中文</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/09/dubbo-basic/">dubbo基础和开发规范</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/30/hessian2-vs-fst/">hessian2 vs fst bytecode</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/22/ajaxsso/">ajaxsso</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/10/mv-usr-dir-to-new-partition/">迁移/usr目录到新的分区</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/29/git-flow/">git flow使用经验</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/12/cas-faq/">cas-循环重定向</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/01/cas-single-sign-out/">cas+shiro单点登出的坑</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/03/迁儿/">1</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/03/TodoList/">TodoList</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/01/608重庆武隆/">608重庆武隆</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/31/encrypt-post/">加密博客内容，使用密码访问</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/31/encrypt-test/">encrypt-test</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/generate-increament-timestamp-with-redis/">利用redis在集群的情况下生成全局唯一时间戳</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/java-extends-super/">java泛型中，extends和super</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/cas-user-auth-flow/">cas单点登录用户认证流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/cas-login-flow/">cas单点登录基本流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/flowcharttest/">flowcharttest</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/01/vim-build-in-ubuntu/">build vim in ubuntu and os x with lua, python, clientserver feature</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/01/write-blog-with-vim/">在windows下通过xshell连接ubuntu写blog</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/vim-plugin-note/">vim_plugin_note</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/hexo目录及github管理/">hexo目录及github管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/maven版本管理/">maven版本管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/30/rpc-design-and-implement/">Rpc的设计与实现</a></li></ul>
-
-
-
-
-    <script>
-        
-    </script>
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    </nav>
+  
 </div>
       <footer id="footer">
     <div class="outer">
