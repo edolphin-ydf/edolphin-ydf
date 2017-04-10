@@ -29,7 +29,7 @@ Registry 注册中心，服务提供者注册服务的地方，服务消费者�
 
 Admin 服务管理，治理，一个web项目，可对各服务进行管理控制，路由，参数配置，负载均衡等。
 Monitor 监控，RPC调用次数和调用时间监控">
-<meta property="og:updated_time" content="2017-02-13T12:51:32.000Z">
+<meta property="og:updated_time" content="2017-02-09T04:45:58.337Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="dubbo基础和开发规范">
 <meta name="twitter:description" content="基本概念最重要的3个
@@ -311,7 +311,7 @@ Monitor 监控，RPC调用次数和调用时间监控">
 <li>dao         和原dao功能一样，使用spring data，大部分情况，仅需定义接口即可    </li>
 <li>biz        和原biz一样</li>
 <li>api        包含api-domain(request, response, 即接口的参数和返回值), 和service接口定义, 作为给Consumer引用的jar包, api不可引用biz, dao, domain,service任意jar包</li>
-<li>service     和原service一样，但不包含service接口<br>引用关系图如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service---api</span><br><span class="line">|---------biz----dao---domain</span><br></pre></td></tr></table></figure>
+<li>service     和原service一样，但不包含service接口<br>引用关系图如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">service---api</div><div class="line">|---------biz----dao---domain</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
@@ -319,11 +319,11 @@ Monitor 监控，RPC调用次数和调用时间监控">
 <li>Dubbo 对外提供的Rpc服务，所有用到的请求返回参数，即com.simpletour.blog.api.*.domain 下的POJO，都需要implement Serializable (考虑添加Base对象)</li>
 </ul>
 <h2 id="Consumer"><a href="#Consumer" class="headerlink" title="Consumer"></a>Consumer</h2><h3 id="jar包引用"><a href="#jar包引用" class="headerlink" title="jar包引用"></a>jar包引用</h3><p>Consumer只能引用api包，对于其他service, biz, dao, domain都不可引用，保证Consumer不会直接调用底层未暴露的接口和domain</p>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>Consumer基本是存在于rest或web项目中，建议只配置dubbo必须的配置<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   <span class="tag">&lt;<span class="name">dubbo:registry</span> <span class="attr">address</span>=<span class="string">"zookeeper://localhost:2181"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dubbo:application</span> <span class="attr">name</span>=<span class="string">"dubbo-comsumer"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 扫描注解包路径，多个包用逗号分隔，不填pacakge表示扫描当前ApplicationContext中所有的类 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dubbo:annotation</span> <span class="attr">package</span>=<span class="string">"com.simpletour.blog.rest.api.controller"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>而对于Provider的引用使用注解的方式<br>即：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Reference</span>(version = <span class="string">"1.0.0"</span>)</span><br><span class="line">IBlogService blogService;</span><br></pre></td></tr></table></figure></p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>Consumer基本是存在于rest或web项目中，建议只配置dubbo必须的配置<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">   <span class="tag">&lt;<span class="name">dubbo:registry</span> <span class="attr">address</span>=<span class="string">"zookeeper://localhost:2181"</span> /&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">dubbo:application</span> <span class="attr">name</span>=<span class="string">"dubbo-comsumer"</span>/&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 扫描注解包路径，多个包用逗号分隔，不填pacakge表示扫描当前ApplicationContext中所有的类 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dubbo:annotation</span> <span class="attr">package</span>=<span class="string">"com.simpletour.blog.rest.api.controller"</span>/&gt;</span></div></pre></td></tr></table></figure></p>
+<p>而对于Provider的引用使用注解的方式<br>即：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Reference</span>(version = <span class="string">"1.0.0"</span>)</div><div class="line">IBlogService blogService;</div></pre></td></tr></table></figure></p>
 <p>和原来相比，仅将<code>@Resource</code> 替换成<code>@Reference</code></p>
 <h3 id="Consumer若为rest服务"><a href="#Consumer若为rest服务" class="headerlink" title="Consumer若为rest服务"></a>Consumer若为rest服务</h3><ul>
-<li>rest对外提供的接口中用到的pojo，单独一个protocal jar包, 思路同dubbo Provider中的api包，以便rest调用者为web服务时，不需再次定义pojo对象<br>此时Consumer包含protocal, rest两个模块<br>jar包引用关系图如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Consumer---api</span><br><span class="line">|----------protocal</span><br></pre></td></tr></table></figure>
+<li>rest对外提供的接口中用到的pojo，单独一个protocal jar包, 思路同dubbo Provider中的api包，以便rest调用者为web服务时，不需再次定义pojo对象<br>此时Consumer包含protocal, rest两个模块<br>jar包引用关系图如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Consumer---api</div><div class="line">|----------protocal</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>因此最终打包之后，Consumer中不应该存在Provider中，除api以外的任意jar包(domain, dao, biz, service)</p>
@@ -351,7 +351,7 @@ Monitor 监控，RPC调用次数和调用时间监控">
         <p><span>本文标题:</span><a href="/2016/10/09/dubbo-basic/">dubbo基础和开发规范</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">edolphin</a></p>
         <p><span>发布时间:</span>2016-10-09, 11:00:57</p>
-        <p><span>最后更新:</span>2017-02-13, 20:51:32</p>
+        <p><span>最后更新:</span>2017-02-09, 12:45:58</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/10/09/dubbo-basic/" title="dubbo基础和开发规范">http://edolphin.site/2016/10/09/dubbo-basic/</a>
             <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2016/10/09/dubbo-basic/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
