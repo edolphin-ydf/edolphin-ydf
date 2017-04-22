@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://edolphin.site/2017/03/06/read-redis-source-code-2/index.html">
 <meta property="og:site_name" content="Server Not Down">
 <meta property="og:description" content="这一篇将从lldb入手，分析redis的线程模型以及上一篇中提到的ae事件循环, 最好参照源码看本文以加深理解">
-<meta property="og:updated_time" content="2017-03-06T15:16:20.000Z">
+<meta property="og:updated_time" content="2017-04-22T16:03:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redis源码阅读2-线程模型和event-loop">
 <meta name="twitter:description" content="这一篇将从lldb入手，分析redis的线程模型以及上一篇中提到的ae事件循环, 最好参照源码看本文以加深理解">
@@ -152,7 +152,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/c/" style="font-size: 12px;">c</a> <a href="/tags/c/" style="font-size: 12px;">c++</a> <a href="/tags/cas/" style="font-size: 18px;">cas</a> <a href="/tags/cpp/" style="font-size: 10px;">cpp</a> <a href="/tags/dubbo/" style="font-size: 10px;">dubbo</a> <a href="/tags/encrypt/" style="font-size: 14px;">encrypt</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 16px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/jsonp/" style="font-size: 10px;">jsonp</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/lock/" style="font-size: 10px;">lock</a> <a href="/tags/lua/" style="font-size: 10px;">lua</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/misc/" style="font-size: 10px;">misc</a> <a href="/tags/redis/" style="font-size: 14px;">redis</a> <a href="/tags/reids/" style="font-size: 10px;">reids</a> <a href="/tags/rvalue/" style="font-size: 10px;">rvalue</a> <a href="/tags/serialize/" style="font-size: 10px;">serialize</a> <a href="/tags/sso/" style="font-size: 10px;">sso</a> <a href="/tags/transaction/" style="font-size: 10px;">transaction</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/ubuntu/" style="font-size: 12px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 14px;">vim</a> <a href="/tags/扩容/" style="font-size: 10px;">扩容</a> <a href="/tags/服务器/" style="font-size: 10px;">服务器</a>
+                        <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/c/" style="font-size: 14px;">c</a> <a href="/tags/c/" style="font-size: 12px;">c++</a> <a href="/tags/cas/" style="font-size: 18px;">cas</a> <a href="/tags/cpp/" style="font-size: 10px;">cpp</a> <a href="/tags/dubbo/" style="font-size: 10px;">dubbo</a> <a href="/tags/encrypt/" style="font-size: 14px;">encrypt</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 16px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/jsonp/" style="font-size: 10px;">jsonp</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/lock/" style="font-size: 10px;">lock</a> <a href="/tags/lua/" style="font-size: 10px;">lua</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/misc/" style="font-size: 10px;">misc</a> <a href="/tags/redis/" style="font-size: 16px;">redis</a> <a href="/tags/rvalue/" style="font-size: 10px;">rvalue</a> <a href="/tags/serialize/" style="font-size: 10px;">serialize</a> <a href="/tags/sso/" style="font-size: 10px;">sso</a> <a href="/tags/transaction/" style="font-size: 10px;">transaction</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/ubuntu/" style="font-size: 12px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 14px;">vim</a> <a href="/tags/扩容/" style="font-size: 10px;">扩容</a> <a href="/tags/服务器/" style="font-size: 10px;">服务器</a>
                     </div>
                 </section>
                 
@@ -256,7 +256,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reids/">reids</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -322,7 +322,7 @@
         <p><span>本文标题:</span><a href="/2017/03/06/read-redis-source-code-2/">redis源码阅读2-线程模型和event-loop</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">edolphin</a></p>
         <p><span>发布时间:</span>2017-03-06, 20:52:45</p>
-        <p><span>最后更新:</span>2017-03-06, 23:16:20</p>
+        <p><span>最后更新:</span>2017-04-23, 00:03:08</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/03/06/read-redis-source-code-2/" title="redis源码阅读2-线程模型和event-loop">http://edolphin.site/2017/03/06/read-redis-source-code-2/</a>
             <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2017/03/06/read-redis-source-code-2/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
