@@ -3,30 +3,42 @@
 <head>
   <meta charset="utf-8">
   
-  <title>迁移/usr目录到新的分区 | Server Not Down</title>
+  <title>spring data jpa + hibernate + redis二级缓存 | Server Not Down</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="环境
-ubuntu
-/usr目录与根目录在同一分区
+  <meta name="description" content="目的在spring data jpa + hibernate项目中，使用redis做二级缓存, 在使用过程中，存在很多的细节上的问题，在此做个记录
+支持的缓存类型
+单个Domain按id缓存
+对Domain中的集合类型的缓存
+针对一个查询，根据查询和查询参数做缓存
+Transaction类型，不是太懂
 
-分区使用GParted修改和创建分区，创建完之后，格式化为ext4（或其他你需要的格式）即可">
+配置使用hibernate-redis作为hibernate和redis之间的桥梁。
+由于hi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="迁移/usr目录到新的分区">
-<meta property="og:url" content="http://edolphin.site/2016/08/10/mv-usr-dir-to-new-partition/index.html">
+<meta property="og:title" content="spring data jpa + hibernate + redis二级缓存">
+<meta property="og:url" content="http://edolphin.site/2017/05/18/enable-hibernate-second-level-cache-with-hibernate-redis-in-spring-data-jpa/index.html">
 <meta property="og:site_name" content="Server Not Down">
-<meta property="og:description" content="环境
-ubuntu
-/usr目录与根目录在同一分区
+<meta property="og:description" content="目的在spring data jpa + hibernate项目中，使用redis做二级缓存, 在使用过程中，存在很多的细节上的问题，在此做个记录
+支持的缓存类型
+单个Domain按id缓存
+对Domain中的集合类型的缓存
+针对一个查询，根据查询和查询参数做缓存
+Transaction类型，不是太懂
 
-分区使用GParted修改和创建分区，创建完之后，格式化为ext4（或其他你需要的格式）即可">
-<meta property="og:updated_time" content="2017-02-13T12:51:32.000Z">
+配置使用hibernate-redis作为hibernate和redis之间的桥梁。
+由于hi">
+<meta property="og:updated_time" content="2017-05-18T07:45:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="迁移/usr目录到新的分区">
-<meta name="twitter:description" content="环境
-ubuntu
-/usr目录与根目录在同一分区
+<meta name="twitter:title" content="spring data jpa + hibernate + redis二级缓存">
+<meta name="twitter:description" content="目的在spring data jpa + hibernate项目中，使用redis做二级缓存, 在使用过程中，存在很多的细节上的问题，在此做个记录
+支持的缓存类型
+单个Domain按id缓存
+对Domain中的集合类型的缓存
+针对一个查询，根据查询和查询参数做缓存
+Transaction类型，不是太懂
 
-分区使用GParted修改和创建分区，创建完之后，格式化为ext4（或其他你需要的格式）即可">
+配置使用hibernate-redis作为hibernate和redis之间的桥梁。
+由于hi">
   
     <link rel="alternative" href="/atom.xml" title="Server Not Down" type="application/atom+xml">
   
@@ -240,11 +252,11 @@ ubuntu
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-mv-usr-dir-to-new-partition" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-enable-hibernate-second-level-cache-with-hibernate-redis-in-spring-data-jpa" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/08/10/mv-usr-dir-to-new-partition/" class="article-date">
-      <time datetime="2016-08-10T07:55:34.000Z" itemprop="datePublished">2016-08-10</time>
+      <a href="/2017/05/18/enable-hibernate-second-level-cache-with-hibernate-redis-in-spring-data-jpa/" class="article-date">
+      <time datetime="2017-05-18T03:37:54.000Z" itemprop="datePublished">2017-05-18</time>
 </a>
     </div>
   
@@ -257,7 +269,7 @@ ubuntu
         
   
     <h1 class="article-title" itemprop="name">
-      迁移/usr目录到新的分区
+      spring data jpa + hibernate + redis二级缓存
     </h1>
   
 
@@ -268,7 +280,7 @@ ubuntu
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/扩容/">扩容</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cache/">cache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hibernate/">hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-data-jpa/">spring-data-jpa</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -278,20 +290,38 @@ ubuntu
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><ul>
-<li>ubuntu</li>
-<li>/usr目录与根目录在同一分区</li>
+        <h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>在spring data jpa + hibernate项目中，使用redis做二级缓存, 在使用过程中，存在很多的细节上的问题，在此做个记录</p>
+<h1 id="支持的缓存类型"><a href="#支持的缓存类型" class="headerlink" title="支持的缓存类型"></a>支持的缓存类型</h1><ul>
+<li>单个Domain按id缓存</li>
+<li>对Domain中的集合类型的缓存</li>
+<li>针对一个查询，根据查询和查询参数做缓存</li>
+<li>Transaction类型，不是太懂</li>
 </ul>
-<h1 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h1><p>使用GParted修改和创建分区，创建完之后，格式化为ext4（或其他你需要的格式）即可</p>
-<a id="more"></a>
-<h1 id="迁移"><a href="#迁移" class="headerlink" title="迁移"></a>迁移</h1><h2 id="备份-usr目录"><a href="#备份-usr目录" class="headerlink" title="备份/usr目录"></a>备份/usr目录</h2><p>利用tar打包整个/usr目录即可</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -cvf usr.tar /usr/*</span><br></pre></td></tr></table></figure>
-<h2 id="挂载新分区"><a href="#挂载新分区" class="headerlink" title="挂载新分区"></a>挂载新分区</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fdisk <span class="_">-l</span> <span class="comment">#查看找到新建分区编号 /dev/sd****</span></span><br><span class="line">mkdir /mnt/sda6</span><br><span class="line">mount /dev/sda6	/mnt/sda6	<span class="comment">#挂载新建的分区</span></span><br></pre></td></tr></table></figure>
-<h2 id="将usr-tar放到-mnt-sda6目录下"><a href="#将usr-tar放到-mnt-sda6目录下" class="headerlink" title="将usr.tar放到/mnt/sda6目录下"></a>将usr.tar放到/mnt/sda6目录下</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf usr.tar /mnt/sda6</span><br></pre></td></tr></table></figure>
-<h2 id="查看信分区uuid，并修改-etc-fstab"><a href="#查看信分区uuid，并修改-etc-fstab" class="headerlink" title="查看信分区uuid，并修改/etc/fstab"></a>查看信分区uuid，并修改/etc/fstab</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blkid	<span class="comment"># 查看分区uuid</span></span><br></pre></td></tr></table></figure>
-<p>将下边的uuid替换为上边找到的uuid， 写入/etc/fstab中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UUID=cb8feb29-e413-4ab2-933d-1cbe36f62ff9 /usr 			  ext4    defaults		1		2</span><br></pre></td></tr></table></figure></p>
-<h2 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h2><p><code>reboot</code></p>
-<h1 id="不出意外此时已经成功，删除原-usr目录下的文件，释放空间"><a href="#不出意外此时已经成功，删除原-usr目录下的文件，释放空间" class="headerlink" title="不出意外此时已经成功，删除原/usr目录下的文件，释放空间"></a>不出意外此时已经成功，删除原/usr目录下的文件，释放空间</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo mount --bind / /mnt</span><br><span class="line">$ sudo rm -rf /mnt/usr</span><br><span class="line">$ sudo umount /mnt</span><br></pre></td></tr></table></figure>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><p>使用<a href="https://github.com/debop/hibernate-redis" target="_blank" rel="external">hibernate-redis</a>作为hibernate和redis之间的桥梁。</p>
+<p>由于hibernate存在接口频繁变动的问题，所以<code>hibernate-redis</code>只针对hibernate的特定版本有效, 根据此项目中的pom文件，可确定hibernate在以下三个版本中可用</p>
+<ul>
+<li>4.3.11.Final</li>
+<li>5.1.4.Final</li>
+<li>5.2.8.Final</li>
+</ul>
+<p>具体代码中的配置，可参考<code>hibernate-redis</code>的<a href="https://github.com/debop/hibernate-redis" target="_blank" rel="external">README</a>文件，其中有几个注意点</p>
+<h2 id="SingletonRedisRegionFactory的使用"><a href="#SingletonRedisRegionFactory的使用" class="headerlink" title="SingletonRedisRegionFactory的使用"></a>SingletonRedisRegionFactory的使用</h2><p><code>SingletonRedisRegionFactory</code>与hibernate版本对应关系如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">4.3.11.Final	: org.hibernate.cache.redis.hibernate4.SingletonRedisRegionFactory</span><br><span class="line">5.1.4.Final		: org.hibernate.cache.redis.hibernate5.SingletonRedisRegionFactory</span><br><span class="line">5.2.8.Final		: org.hibernate.cache.redis.hibernate52.SingletonRedisRegionFactory</span><br></pre></td></tr></table></figure>
+<h2 id="redis序列化的选择与配置"><a href="#redis序列化的选择与配置" class="headerlink" title="redis序列化的选择与配置"></a>redis序列化的选择与配置</h2><p>在redisson.yaml文件中，存在如下配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">codec: !&lt;org.redisson.codec.SnappyCodec&gt; &#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其中&lt;>之间为redisson所使用的序列化方案，虽然redisson支持很多种方案，但不是每一种都可以用在hibernate二级缓存中，测试过程中若存在类型转换错误，请尝试更换序列化方案<br>具体可用的序列化方案见<code>org.redisson.codec</code>包下的文件</p>
+<h2 id="org-hibernate-annotations-Cache的使用"><a href="#org-hibernate-annotations-Cache的使用" class="headerlink" title="@org.hibernate.annotations.Cache的使用"></a>@org.hibernate.annotations.Cache的使用</h2><p>简单用法就是在每一个Domain上加上此注解<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Cache(region=&quot;common&quot;, usage = CacheConcurrencyStrategy.READ_WRITE)  // or @Cacheable(true) for JPA</span><br></pre></td></tr></table></figure></p>
+<p>其中<br>region可以不配，则默认为类全名(class.getName)<br>usage为读还是写等相关控制，其中涉及到是否加锁，对性能有影响，所以根据实际情况确定其取值</p>
+<p>另外，<code>Cache</code>注解可使用在属性上，主要用作级联对象的缓存, 例如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Entity</span><br><span class="line">class ClassDomain &#123;</span><br><span class="line">	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)</span><br><span class="line">	List&lt;StudentDomain&gt; students;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Entity</span><br><span class="line">class StudentDomain &#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>若上例中,<code>List&lt;StudentDomain&gt; students</code>中不添加<code>Cache</code>注解，则不会自动做二级缓存</p>
+<h2 id="Domain中需要注意的问题"><a href="#Domain中需要注意的问题" class="headerlink" title="Domain中需要注意的问题"></a>Domain中需要注意的问题</h2><p>因为redisson需要做序列化，所以对于Domain及其所有的UserType属性，都需要实现Serializable接口，例如:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@Entity</span><br><span class="line">@TypeDefs(value = &#123;</span><br><span class="line">		@TypeDef(name = &quot;RuleItems&quot;, typeClass = JsonUserType.class, parameters = &#123;</span><br><span class="line">				@org.hibernate.annotations.Parameter(name = &quot;targetClass&quot;, value = &quot;com.simpletour.commons.refund.RefundRule&quot;),</span><br><span class="line">				@org.hibernate.annotations.Parameter(name = &quot;jsonModel&quot;, value = &quot;JSON_ARRAY&quot;)</span><br><span class="line">		&#125;)</span><br><span class="line">		&#125;</span><br><span class="line">&#125;)</span><br><span class="line">class Order implement Serializable&#123;</span><br><span class="line">	@Type(type = &quot;RuleItems&quot;)</span><br><span class="line">	List&lt;RefundRule&gt; refundRules;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>则，RefuldRule需要实现Serializable接口</p>
+<h2 id="使用spring-data-jpa接口"><a href="#使用spring-data-jpa接口" class="headerlink" title="使用spring data jpa接口"></a>使用spring data jpa接口</h2><p>针对查询，需要设置<code>org.hibernate.cacheable</code>为<code>true</code>, 具体的</p>
+<h3 id="SimpleJpaRepository继承并覆盖"><a href="#SimpleJpaRepository继承并覆盖" class="headerlink" title="SimpleJpaRepository继承并覆盖"></a>SimpleJpaRepository继承并覆盖</h3><p>针对<code>org.springframework.data.jpa.repository.support.SimpleJpaRepository</code>的查询接口，子类需覆盖下面的方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">protected Map&lt;String, Object&gt; getQueryHints() &#123;</span><br><span class="line">    Map&lt;String, Object&gt; hints = super.getQueryHints();</span><br><span class="line">    Map&lt;String, Object&gt; res = new HashMap&lt;&gt;(hints);</span><br><span class="line">    res.put(&quot;org.hibernate.cacheable&quot;, true);</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="findByXXX类接口"><a href="#findByXXX类接口" class="headerlink" title="findByXXX类接口"></a>findByXXX类接口</h3><p>针对findByXXX且不需要实现的接口，需要设置<code>QueryHints</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">   @QueryHints(&#123;@QueryHint(name = &quot;org.hibernate.cacheable&quot;, value = &quot;true&quot;)&#125;)</span><br><span class="line">PriceEntry findEntryByUionKey(UnionKey unionKey);</span><br></pre></td></tr></table></figure></p>
+<h1 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h1><p>简单的确定一个对象是否被缓存的办法就是看第一次查询和第二次查询的日志，当开启hibernate 的打印sql日志时第一次查询有sql语句而第二次无</p>
+<p>另外也可以通过hibernate提供的缓存命中相关统计查看结果，具体的google之</p>
 
       
     </div>
@@ -300,13 +330,13 @@ ubuntu
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/08/10/mv-usr-dir-to-new-partition/">迁移/usr目录到新的分区</a></p>
+        <p><span>本文标题:</span><a href="/2017/05/18/enable-hibernate-second-level-cache-with-hibernate-redis-in-spring-data-jpa/">spring data jpa + hibernate + redis二级缓存</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">edolphin</a></p>
-        <p><span>发布时间:</span>2016-08-10, 15:55:34</p>
-        <p><span>最后更新:</span>2017-02-13, 20:51:32</p>
+        <p><span>发布时间:</span>2017-05-18, 11:37:54</p>
+        <p><span>最后更新:</span>2017-05-18, 15:45:28</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/08/10/mv-usr-dir-to-new-partition/" title="迁移/usr目录到新的分区">http://edolphin.site/2016/08/10/mv-usr-dir-to-new-partition/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2016/08/10/mv-usr-dir-to-new-partition/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/05/18/enable-hibernate-second-level-cache-with-hibernate-redis-in-spring-data-jpa/" title="spring data jpa + hibernate + redis二级缓存">http://edolphin.site/2017/05/18/enable-hibernate-second-level-cache-with-hibernate-redis-in-spring-data-jpa/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2017/05/18/enable-hibernate-second-level-cache-with-hibernate-redis-in-spring-data-jpa/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -319,16 +349,10 @@ ubuntu
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/09/22/ajaxsso/">
-                    ajaxsso
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/07/29/git-flow/">
-                    git flow使用经验
+                <a href="/2017/04/22/read-redis-source-code-3/">
+                    redis源码阅读3-AOF(Append Only File)
                 </a>
             </div>
         
@@ -339,7 +363,7 @@ ubuntu
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#环境"><span class="toc-number">1.</span> <span class="toc-text">环境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分区"><span class="toc-number">2.</span> <span class="toc-text">分区</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#迁移"><span class="toc-number">3.</span> <span class="toc-text">迁移</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#备份-usr目录"><span class="toc-number">3.1.</span> <span class="toc-text">备份/usr目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#挂载新分区"><span class="toc-number">3.2.</span> <span class="toc-text">挂载新分区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将usr-tar放到-mnt-sda6目录下"><span class="toc-number">3.3.</span> <span class="toc-text">将usr.tar放到/mnt/sda6目录下</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看信分区uuid，并修改-etc-fstab"><span class="toc-number">3.4.</span> <span class="toc-text">查看信分区uuid，并修改/etc/fstab</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重启"><span class="toc-number">3.5.</span> <span class="toc-text">重启</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#不出意外此时已经成功，删除原-usr目录下的文件，释放空间"><span class="toc-number">4.</span> <span class="toc-text">不出意外此时已经成功，删除原/usr目录下的文件，释放空间</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#目的"><span class="toc-number">1.</span> <span class="toc-text">目的</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#支持的缓存类型"><span class="toc-number">2.</span> <span class="toc-text">支持的缓存类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置"><span class="toc-number">3.</span> <span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SingletonRedisRegionFactory的使用"><span class="toc-number">3.1.</span> <span class="toc-text">SingletonRedisRegionFactory的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis序列化的选择与配置"><span class="toc-number">3.2.</span> <span class="toc-text">redis序列化的选择与配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#org-hibernate-annotations-Cache的使用"><span class="toc-number">3.3.</span> <span class="toc-text">@org.hibernate.annotations.Cache的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Domain中需要注意的问题"><span class="toc-number">3.4.</span> <span class="toc-text">Domain中需要注意的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用spring-data-jpa接口"><span class="toc-number">3.5.</span> <span class="toc-text">使用spring data jpa接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SimpleJpaRepository继承并覆盖"><span class="toc-number">3.5.1.</span> <span class="toc-text">SimpleJpaRepository继承并覆盖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#findByXXX类接口"><span class="toc-number">3.5.2.</span> <span class="toc-text">findByXXX类接口</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结果"><span class="toc-number">4.</span> <span class="toc-text">结果</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -411,15 +435,13 @@ ubuntu
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/09/22/ajaxsso/" title="上一篇: ajaxsso">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/07/29/git-flow/" title="下一篇: git flow使用经验">
+            <a href="/2017/04/22/read-redis-source-code-3/" title="下一篇: redis源码阅读3-AOF(Append Only File)">
                 <i class="fa fa-angle-right"></i>
             </a>
         

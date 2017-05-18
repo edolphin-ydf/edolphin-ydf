@@ -153,7 +153,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/c/" style="font-size: 14px;">c</a> <a href="/tags/c/" style="font-size: 12px;">c++</a> <a href="/tags/cas/" style="font-size: 18px;">cas</a> <a href="/tags/cpp/" style="font-size: 10px;">cpp</a> <a href="/tags/dubbo/" style="font-size: 10px;">dubbo</a> <a href="/tags/encrypt/" style="font-size: 14px;">encrypt</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 16px;">hexo</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/jsonp/" style="font-size: 10px;">jsonp</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/lock/" style="font-size: 10px;">lock</a> <a href="/tags/lua/" style="font-size: 10px;">lua</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/misc/" style="font-size: 10px;">misc</a> <a href="/tags/redis/" style="font-size: 16px;">redis</a> <a href="/tags/rvalue/" style="font-size: 10px;">rvalue</a> <a href="/tags/serialize/" style="font-size: 10px;">serialize</a> <a href="/tags/sso/" style="font-size: 10px;">sso</a> <a href="/tags/transaction/" style="font-size: 10px;">transaction</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/ubuntu/" style="font-size: 12px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 14px;">vim</a> <a href="/tags/扩容/" style="font-size: 10px;">扩容</a> <a href="/tags/服务器/" style="font-size: 10px;">服务器</a>
+                        <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/c/" style="font-size: 14px;">c</a> <a href="/tags/c/" style="font-size: 12px;">c++</a> <a href="/tags/cache/" style="font-size: 10px;">cache</a> <a href="/tags/cas/" style="font-size: 18px;">cas</a> <a href="/tags/cpp/" style="font-size: 10px;">cpp</a> <a href="/tags/dubbo/" style="font-size: 10px;">dubbo</a> <a href="/tags/encrypt/" style="font-size: 14px;">encrypt</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 16px;">hexo</a> <a href="/tags/hibernate/" style="font-size: 10px;">hibernate</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/jsonp/" style="font-size: 10px;">jsonp</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/lock/" style="font-size: 10px;">lock</a> <a href="/tags/lua/" style="font-size: 10px;">lua</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/misc/" style="font-size: 10px;">misc</a> <a href="/tags/redis/" style="font-size: 18px;">redis</a> <a href="/tags/rvalue/" style="font-size: 10px;">rvalue</a> <a href="/tags/serialize/" style="font-size: 10px;">serialize</a> <a href="/tags/spring-data-jpa/" style="font-size: 10px;">spring-data-jpa</a> <a href="/tags/sso/" style="font-size: 10px;">sso</a> <a href="/tags/transaction/" style="font-size: 10px;">transaction</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/ubuntu/" style="font-size: 12px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 14px;">vim</a> <a href="/tags/扩容/" style="font-size: 10px;">扩容</a> <a href="/tags/服务器/" style="font-size: 10px;">服务器</a>
                     </div>
                 </section>
                 
@@ -230,6 +230,94 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-enable-hibernate-second-level-cache-with-hibernate-redis-in-spring-data-jpa" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/05/18/enable-hibernate-second-level-cache-with-hibernate-redis-in-spring-data-jpa/" class="article-date">
+      <time datetime="2017-05-18T03:37:54.000Z" itemprop="datePublished">2017-05-18</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/18/enable-hibernate-second-level-cache-with-hibernate-redis-in-spring-data-jpa/">spring data jpa + hibernate + redis二级缓存</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>在spring data jpa + hibernate项目中，使用redis做二级缓存, 在使用过程中，存在很多的细节上的问题，在此做个记录</p>
+<h1 id="支持的缓存类型"><a href="#支持的缓存类型" class="headerlink" title="支持的缓存类型"></a>支持的缓存类型</h1><ul>
+<li>单个Domain按id缓存</li>
+<li>对Domain中的集合类型的缓存</li>
+<li>针对一个查询，根据查询和查询参数做缓存</li>
+<li>Transaction类型，不是太懂</li>
+</ul>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><p>使用<a href="https://github.com/debop/hibernate-redis" target="_blank" rel="external">hibernate-redis</a>作为hibernate和redis之间的桥梁。</p>
+<p>由于hibernate存在接口频繁变动的问题，所以<code>hibernate-redis</code>只针对hibernate的特定版本有效, 根据此项目中的pom文件，可确定hibernate在以下三个版本中可用</p>
+<ul>
+<li>4.3.11.Final</li>
+<li>5.1.4.Final</li>
+<li>5.2.8.Final</li>
+</ul>
+<p>具体代码中的配置，可参考<code>hibernate-redis</code>的<a href="https://github.com/debop/hibernate-redis" target="_blank" rel="external">README</a>文件，其中有几个注意点</p>
+<h2 id="SingletonRedisRegionFactory的使用"><a href="#SingletonRedisRegionFactory的使用" class="headerlink" title="SingletonRedisRegionFactory的使用"></a>SingletonRedisRegionFactory的使用</h2><p><code>SingletonRedisRegionFactory</code>与hibernate版本对应关系如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">4.3.11.Final	: org.hibernate.cache.redis.hibernate4.SingletonRedisRegionFactory</span><br><span class="line">5.1.4.Final		: org.hibernate.cache.redis.hibernate5.SingletonRedisRegionFactory</span><br><span class="line">5.2.8.Final		: org.hibernate.cache.redis.hibernate52.SingletonRedisRegionFactory</span><br></pre></td></tr></table></figure>
+<h2 id="redis序列化的选择与配置"><a href="#redis序列化的选择与配置" class="headerlink" title="redis序列化的选择与配置"></a>redis序列化的选择与配置</h2><p>在redisson.yaml文件中，存在如下配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">codec: !&lt;org.redisson.codec.SnappyCodec&gt; &#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其中&lt;>之间为redisson所使用的序列化方案，虽然redisson支持很多种方案，但不是每一种都可以用在hibernate二级缓存中，测试过程中若存在类型转换错误，请尝试更换序列化方案<br>具体可用的序列化方案见<code>org.redisson.codec</code>包下的文件</p>
+<h2 id="org-hibernate-annotations-Cache的使用"><a href="#org-hibernate-annotations-Cache的使用" class="headerlink" title="@org.hibernate.annotations.Cache的使用"></a>@org.hibernate.annotations.Cache的使用</h2><p>简单用法就是在每一个Domain上加上此注解<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Cache(region=&quot;common&quot;, usage = CacheConcurrencyStrategy.READ_WRITE)  // or @Cacheable(true) for JPA</span><br></pre></td></tr></table></figure></p>
+<p>其中<br>region可以不配，则默认为类全名(class.getName)<br>usage为读还是写等相关控制，其中涉及到是否加锁，对性能有影响，所以根据实际情况确定其取值</p>
+<p>另外，<code>Cache</code>注解可使用在属性上，主要用作级联对象的缓存, 例如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Entity</span><br><span class="line">class ClassDomain &#123;</span><br><span class="line">	@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)</span><br><span class="line">	List&lt;StudentDomain&gt; students;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Entity</span><br><span class="line">class StudentDomain &#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>若上例中,<code>List&lt;StudentDomain&gt; students</code>中不添加<code>Cache</code>注解，则不会自动做二级缓存</p>
+<h2 id="Domain中需要注意的问题"><a href="#Domain中需要注意的问题" class="headerlink" title="Domain中需要注意的问题"></a>Domain中需要注意的问题</h2><p>因为redisson需要做序列化，所以对于Domain及其所有的UserType属性，都需要实现Serializable接口，例如:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@Entity</span><br><span class="line">@TypeDefs(value = &#123;</span><br><span class="line">		@TypeDef(name = &quot;RuleItems&quot;, typeClass = JsonUserType.class, parameters = &#123;</span><br><span class="line">				@org.hibernate.annotations.Parameter(name = &quot;targetClass&quot;, value = &quot;com.simpletour.commons.refund.RefundRule&quot;),</span><br><span class="line">				@org.hibernate.annotations.Parameter(name = &quot;jsonModel&quot;, value = &quot;JSON_ARRAY&quot;)</span><br><span class="line">		&#125;)</span><br><span class="line">		&#125;</span><br><span class="line">&#125;)</span><br><span class="line">class Order implement Serializable&#123;</span><br><span class="line">	@Type(type = &quot;RuleItems&quot;)</span><br><span class="line">	List&lt;RefundRule&gt; refundRules;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>则，RefuldRule需要实现Serializable接口</p>
+<h2 id="使用spring-data-jpa接口"><a href="#使用spring-data-jpa接口" class="headerlink" title="使用spring data jpa接口"></a>使用spring data jpa接口</h2><p>针对查询，需要设置<code>org.hibernate.cacheable</code>为<code>true</code>, 具体的</p>
+<h3 id="SimpleJpaRepository继承并覆盖"><a href="#SimpleJpaRepository继承并覆盖" class="headerlink" title="SimpleJpaRepository继承并覆盖"></a>SimpleJpaRepository继承并覆盖</h3><p>针对<code>org.springframework.data.jpa.repository.support.SimpleJpaRepository</code>的查询接口，子类需覆盖下面的方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">protected Map&lt;String, Object&gt; getQueryHints() &#123;</span><br><span class="line">    Map&lt;String, Object&gt; hints = super.getQueryHints();</span><br><span class="line">    Map&lt;String, Object&gt; res = new HashMap&lt;&gt;(hints);</span><br><span class="line">    res.put(&quot;org.hibernate.cacheable&quot;, true);</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="findByXXX类接口"><a href="#findByXXX类接口" class="headerlink" title="findByXXX类接口"></a>findByXXX类接口</h3><p>针对findByXXX且不需要实现的接口，需要设置<code>QueryHints</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">   @QueryHints(&#123;@QueryHint(name = &quot;org.hibernate.cacheable&quot;, value = &quot;true&quot;)&#125;)</span><br><span class="line">PriceEntry findEntryByUionKey(UnionKey unionKey);</span><br></pre></td></tr></table></figure></p>
+<h1 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h1><p>简单的确定一个对象是否被缓存的办法就是看第一次查询和第二次查询的日志，当开启hibernate 的打印sql日志时第一次查询有sql语句而第二次无</p>
+<p>另外也可以通过hibernate提供的缓存命中相关统计查看结果，具体的google之</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cache/">cache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hibernate/">hibernate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-data-jpa/">spring-data-jpa</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-read-redis-source-code-3" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -794,67 +882,6 @@
       
         <p class="article-more-link">
           <a href="/2016/10/09/dubbo-basic/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-hessian2-vs-fst" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/09/30/hessian2-vs-fst/" class="article-date">
-      <time datetime="2016-09-30T08:00:31.000Z" itemprop="datePublished">2016-09-30</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/30/hessian2-vs-fst/">hessian2 vs fst bytecode</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="class"><a href="#class" class="headerlink" title="class"></a>class</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Simple</span> <span class="keyword">implements</span> <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></span>&#123;</span><br><span class="line">       <span class="keyword">private</span> String name;</span><br><span class="line">       <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">       <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">           <span class="keyword">return</span> name;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">           <span class="keyword">this</span>.name = name;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">           <span class="keyword">return</span> age;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">           <span class="keyword">this</span>.age = age;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="function"><span class="keyword">static</span> Simple <span class="title">getSimple</span><span class="params">()</span> </span>&#123;</span><br><span class="line">           Simple simple = <span class="keyword">new</span> Simple();</span><br><span class="line">           simple.setAge(<span class="number">10</span>);</span><br><span class="line">           simple.setName(<span class="string">"XiaoMing"</span>);</span><br><span class="line">           <span class="keyword">return</span> simple;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/serialize/">serialize</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2016/09/30/hessian2-vs-fst/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
