@@ -3,18 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>hessian2 vs fst bytecode | Server Not Down</title>
+  <title>shell下使用脚本自动填充密码 | Server Not Down</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="class12345678910111213141516171819202122232425262728static class Simple implements java.io.Serializable&amp;#123;       private String name;       private int age;       public String getName() &amp;#123;">
+  <meta name="description" content="一般，当需要ssh到一个服务器时, 会输入12ssh xxx@xxx#enter password
+当使用脚本自动化时，往往不想要输入密码，此时选择可以使用ssh的public key authentication，或者使用sshpass工具, 再或者，使用下面这段脚本1234567891011#!/usr/bin/expectset timeout 20set cmd [lrange $argv">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hessian2 vs fst bytecode">
-<meta property="og:url" content="http://edolphin.site/2016/09/30/hessian2-vs-fst/index.html">
+<meta property="og:title" content="shell下使用脚本自动填充密码">
+<meta property="og:url" content="http://edolphin.site/2017/06/19/shell-script-auto-password/index.html">
 <meta property="og:site_name" content="Server Not Down">
-<meta property="og:description" content="class12345678910111213141516171819202122232425262728static class Simple implements java.io.Serializable&amp;#123;       private String name;       private int age;       public String getName() &amp;#123;">
-<meta property="og:updated_time" content="2017-02-13T12:51:32.000Z">
+<meta property="og:description" content="一般，当需要ssh到一个服务器时, 会输入12ssh xxx@xxx#enter password
+当使用脚本自动化时，往往不想要输入密码，此时选择可以使用ssh的public key authentication，或者使用sshpass工具, 再或者，使用下面这段脚本1234567891011#!/usr/bin/expectset timeout 20set cmd [lrange $argv">
+<meta property="og:updated_time" content="2017-06-19T09:51:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hessian2 vs fst bytecode">
-<meta name="twitter:description" content="class12345678910111213141516171819202122232425262728static class Simple implements java.io.Serializable&amp;#123;       private String name;       private int age;       public String getName() &amp;#123;">
+<meta name="twitter:title" content="shell下使用脚本自动填充密码">
+<meta name="twitter:description" content="一般，当需要ssh到一个服务器时, 会输入12ssh xxx@xxx#enter password
+当使用脚本自动化时，往往不想要输入密码，此时选择可以使用ssh的public key authentication，或者使用sshpass工具, 再或者，使用下面这段脚本1234567891011#!/usr/bin/expectset timeout 20set cmd [lrange $argv">
   
     <link rel="alternative" href="/atom.xml" title="Server Not Down" type="application/atom+xml">
   
@@ -228,11 +231,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-hessian2-vs-fst" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-shell-script-auto-password" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/09/30/hessian2-vs-fst/" class="article-date">
-      <time datetime="2016-09-30T08:00:31.000Z" itemprop="datePublished">2016-09-30</time>
+      <a href="/2017/06/19/shell-script-auto-password/" class="article-date">
+      <time datetime="2017-06-19T09:43:11.000Z" itemprop="datePublished">2017-06-19</time>
 </a>
     </div>
   
@@ -245,7 +248,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      hessian2 vs fst bytecode
+      shell下使用脚本自动填充密码
     </h1>
   
 
@@ -256,7 +259,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/serialize/">serialize</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/">shell</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -266,18 +269,10 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="class"><a href="#class" class="headerlink" title="class"></a>class</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Simple</span> <span class="keyword">implements</span> <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></span>&#123;</span><br><span class="line">       <span class="keyword">private</span> String name;</span><br><span class="line">       <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">       <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">           <span class="keyword">return</span> name;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">           <span class="keyword">this</span>.name = name;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">           <span class="keyword">return</span> age;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">           <span class="keyword">this</span>.age = age;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="function"><span class="keyword">static</span> Simple <span class="title">getSimple</span><span class="params">()</span> </span>&#123;</span><br><span class="line">           Simple simple = <span class="keyword">new</span> Simple();</span><br><span class="line">           simple.setAge(<span class="number">10</span>);</span><br><span class="line">           simple.setName(<span class="string">"XiaoMing"</span>);</span><br><span class="line">           <span class="keyword">return</span> simple;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h1 id="hession2"><a href="#hession2" class="headerlink" title="hession2"></a>hession2</h1><p>class name length:52<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">data: 4d 74  0 34 63 6f 6d 2e 6a 61 73 6f 6e 2e 64 75 	 M t\0 4 c o m . j a s o n . d u</span><br><span class="line">      |---| |---| |----------------------------------</span><br><span class="line">      |---| |-- | |class-name</span><br><span class="line">      |Map  |len:52</span><br><span class="line"></span><br><span class="line">data: 62 62 6f 2e 70 72 6f 76 69 64 65 72 2e 73 65 72 	 b b o . p r o v i d e r . s e r</span><br><span class="line">      |----------------------------------------------</span><br><span class="line">      |class name</span><br><span class="line"></span><br><span class="line">data: 76 69 63 65 2e 44 65 6d 6f 50 72 6f 76 69 64 65 	 v i c e . D e m o P r o v i d e</span><br><span class="line">      |----------------------------------------------</span><br><span class="line">      |class name</span><br><span class="line"></span><br><span class="line">data: 72 24 53 69 6d 70 6c 65 53  0  4 6e 61 6d 65 53 	 r $ S i m p l e S\0  n a m e S</span><br><span class="line">      |---------------------| || |---| |---------| ||</span><br><span class="line">      |                     | || |   | |field:name |S</span><br><span class="line">      |                     | || |len:4</span><br><span class="line">      |                     | |S type String</span><br><span class="line">      |class name</span><br><span class="line"></span><br><span class="line">data:  0  8 58 69 61 6f 4d 69 6e 67 53  0  3 61 67 65 	\0  X i a o M i n g S\0  a g e</span><br><span class="line">      |---| |---------------------| || |---| |------|</span><br><span class="line">      |   | |                     | |S |   | |field:age</span><br><span class="line">      |   | |value:XiaoMing            |len:3</span><br><span class="line">      |len:8</span><br><span class="line"></span><br><span class="line">data: 49  0  0  0  a 7a </span><br><span class="line">      || |---------| |end</span><br><span class="line">      || |Value:10</span><br><span class="line">      |I:int type</span><br></pre></td></tr></table></figure></p>
-<h1 id="fst"><a href="#fst" class="headerlink" title="fst"></a>fst</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">data:  0  1 34 63 6f 6d 2e 6a 61 73 6f 6e 2e 64 75 62 	\0  4 c o m . j a s o n . d u b</span><br><span class="line">      || || || |-------------------------------------</span><br><span class="line">      |  |  |  | class name</span><br><span class="line">      |  |  |class name len:52</span><br><span class="line">      |  |1:not a class id, but full class name</span><br><span class="line">      |Type(Tab):Object</span><br><span class="line"></span><br><span class="line">data: 62 6f 2e 70 72 6f 76 69 64 65 72 2e 73 65 72 76 	 b o . p r o v i d e r . s e r v</span><br><span class="line">      |---------------------------------------------</span><br><span class="line">      | class name</span><br><span class="line"></span><br><span class="line">data: 69 63 65 2e 44 65 6d 6f 50 72 6f 76 69 64 65 72 	 i c e . D e m o P r o v i d e r</span><br><span class="line">      |----------------------------------------------</span><br><span class="line">      | class name</span><br><span class="line"></span><br><span class="line">data: 24 53 69 6d 70 6c 65  a fc  8 58 69 61 6f 4d 69 	 $ S i m p l e\n ￼  X i a o M i</span><br><span class="line">      |------------------| || ||  || |----------------</span><br><span class="line">      |                  | || ||  |    |value:XiaoMi</span><br><span class="line">      | class name         || ||  |len:8</span><br><span class="line">                           |  |-4: type String</span><br><span class="line">                           |10: value for field age</span><br><span class="line"></span><br><span class="line">data: 6e 67  0</span><br><span class="line">      |---| ||</span><br><span class="line">      |ng   | end</span><br></pre></td></tr></table></figure>
-<h1 id="summary"><a href="#summary" class="headerlink" title="summary"></a>summary</h1><ul>
-<li>fst和hessian都有使用一些特殊字符来标识基本类型，如hessian:0x53(S)表示String, fst:0xfc(-4)表示String</li>
-<li>hessian 以map的形式表示一个对象 Map|length of class name|classname|field|value…,<br>field以S|length of field name|field name的形式表示， value以Type|value(Int), Type|length of string|value(String)的形式(其他类型未测试)</li>
-<li>fst存在类名注册机制，对于注册过的类，可以使用int型的id表示，而不在需要序列化完整的类名到二进制中，相反若未注册，则序列化完整的类名(id,1 表示未注册，后接len of class name|class name)</li>
-<li>fst对int类型未写入类型标识符，仅存在一个值，且根据值的大小确定写入的字节数</li>
-<li>fst对于字段名没有做序列化，省出一大片空间,所以fst序列化后的格式为 class header|value|value….</li>
-<li>fst&amp;hessian都存在一个结束符 分别是0x0, 0x7a</li>
-</ul>
+        <p>一般，当需要ssh到一个服务器时, 会输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh xxx@xxx</span><br><span class="line">#enter password</span><br></pre></td></tr></table></figure></p>
+<p>当使用脚本自动化时，往往不想要输入密码，此时选择可以使用ssh的<code>public key authentication</code>，或者使用<code>sshpass</code>工具, 再或者，使用下面这段脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/expect</span><br><span class="line"></span><br><span class="line">set timeout 20</span><br><span class="line"></span><br><span class="line">set cmd [lrange $argv 1 end]</span><br><span class="line">set password [lindex $argv 0]</span><br><span class="line"></span><br><span class="line">eval spawn $cmd</span><br><span class="line">expect &quot;assword:&quot;</span><br><span class="line">send &quot;$password\r&quot;;</span><br><span class="line">interact</span><br></pre></td></tr></table></figure></p>
+<p>将其放在/usr/bin/exp文件中，添加权限，然后使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">exp &lt;password&gt; ssh &lt;anything&gt;</span><br><span class="line">exp &lt;password&gt; scp &lt;anysrc&gt; &lt;anydst&gt;</span><br><span class="line">exp &lt;password&gt; zssh &lt;anything&gt;</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://stackoverflow.com/a/28293101" target="_blank" rel="external">选自stackoverflow Automatically enter SSH password with script</a></p>
 
       
     </div>
@@ -286,13 +281,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/09/30/hessian2-vs-fst/">hessian2 vs fst bytecode</a></p>
+        <p><span>本文标题:</span><a href="/2017/06/19/shell-script-auto-password/">shell下使用脚本自动填充密码</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">edolphin</a></p>
-        <p><span>发布时间:</span>2016-09-30, 16:00:31</p>
-        <p><span>最后更新:</span>2017-02-13, 20:51:32</p>
+        <p><span>发布时间:</span>2017-06-19, 17:43:11</p>
+        <p><span>最后更新:</span>2017-06-19, 17:51:22</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/09/30/hessian2-vs-fst/" title="hessian2 vs fst bytecode">http://edolphin.site/2016/09/30/hessian2-vs-fst/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2016/09/30/hessian2-vs-fst/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/06/19/shell-script-auto-password/" title="shell下使用脚本自动填充密码">http://edolphin.site/2017/06/19/shell-script-auto-password/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2017/06/19/shell-script-auto-password/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -305,16 +300,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/10/09/dubbo-basic/">
-                    dubbo基础和开发规范
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/09/22/ajaxsso/">
-                    ajaxsso
+                <a href="/2017/06/09/order-basic-optimization/">
+                    一波简单的订单优化
                 </a>
             </div>
         
@@ -325,7 +314,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#class"><span class="toc-number">1.</span> <span class="toc-text">class</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#hession2"><span class="toc-number">2.</span> <span class="toc-text">hession2</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#fst"><span class="toc-number">3.</span> <span class="toc-text">fst</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#summary"><span class="toc-number">4.</span> <span class="toc-text">summary</span></a></li></ol>
+    
 </div>
 <style>
     .left-col .switch-btn {
@@ -397,15 +386,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/10/09/dubbo-basic/" title="上一篇: dubbo基础和开发规范">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/09/22/ajaxsso/" title="下一篇: ajaxsso">
+            <a href="/2017/06/09/order-basic-optimization/" title="下一篇: 一波简单的订单优化">
                 <i class="fa fa-angle-right"></i>
             </a>
         
