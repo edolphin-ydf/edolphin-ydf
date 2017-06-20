@@ -6,18 +6,18 @@
   <title>postgres时间戳转换工具 | Server Not Down</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="postgres时间戳转换工具, 记录一下方便使用
-12345678910111213141516171819202122232425-- from unixtimestamp, convert to timestampcreate function from_us(ts bigint)returns timestamp as $$begin     return abstime(ts);end;">
+12345678910111213141516171819202122232425-- from unixtimestamp, convert to timestampcreate function from_us(ts bigint)returns timestamp as $$begin     return abstime(ts::int)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="postgres时间戳转换工具">
 <meta property="og:url" content="http://edolphin.site/2017/06/19/postgres-timestamp-converter/index.html">
 <meta property="og:site_name" content="Server Not Down">
 <meta property="og:description" content="postgres时间戳转换工具, 记录一下方便使用
-12345678910111213141516171819202122232425-- from unixtimestamp, convert to timestampcreate function from_us(ts bigint)returns timestamp as $$begin     return abstime(ts);end;">
-<meta property="og:updated_time" content="2017-06-19T11:13:55.000Z">
+12345678910111213141516171819202122232425-- from unixtimestamp, convert to timestampcreate function from_us(ts bigint)returns timestamp as $$begin     return abstime(ts::int)">
+<meta property="og:updated_time" content="2017-06-20T07:10:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="postgres时间戳转换工具">
 <meta name="twitter:description" content="postgres时间戳转换工具, 记录一下方便使用
-12345678910111213141516171819202122232425-- from unixtimestamp, convert to timestampcreate function from_us(ts bigint)returns timestamp as $$begin     return abstime(ts);end;">
+12345678910111213141516171819202122232425-- from unixtimestamp, convert to timestampcreate function from_us(ts bigint)returns timestamp as $$begin     return abstime(ts::int)">
   
     <link rel="alternative" href="/atom.xml" title="Server Not Down" type="application/atom+xml">
   
@@ -270,7 +270,7 @@
       
           
         <p>postgres时间戳转换工具, 记录一下方便使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">-- from unixtimestamp, convert to timestamp</span><br><span class="line">create function from_us(ts bigint)</span><br><span class="line">returns timestamp as $$</span><br><span class="line">begin </span><br><span class="line">    return abstime(ts);</span><br><span class="line">end;</span><br><span class="line">$$ language plpgsql;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- from unixtimestamp, convert to timestamp</span><br><span class="line">create function from_us(ts integer)</span><br><span class="line">returns timestamp as $$</span><br><span class="line">begin </span><br><span class="line">    return abstime(ts);</span><br><span class="line">end;</span><br><span class="line">$$ language plpgsql;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- to unix timestamp, from a string, convert to int4</span><br><span class="line">create function to_uts(date varchar)</span><br><span class="line">returns int4 as $$</span><br><span class="line">begin</span><br><span class="line">    return extract(epoch from to_timestamp(date, &apos;yyyy-MM-dd&apos;));</span><br><span class="line">end;</span><br><span class="line">$$ language plpgsql</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">-- from unixtimestamp, convert to timestamp</span><br><span class="line">create function from_us(ts bigint)</span><br><span class="line">returns timestamp as $$</span><br><span class="line">begin </span><br><span class="line">    return abstime(ts::int);</span><br><span class="line">end;</span><br><span class="line">$$ language plpgsql;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- from unixtimestamp, convert to timestamp</span><br><span class="line">create function from_us(ts integer)</span><br><span class="line">returns timestamp as $$</span><br><span class="line">begin </span><br><span class="line">    return abstime(ts);</span><br><span class="line">end;</span><br><span class="line">$$ language plpgsql;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-- to unix timestamp, from a string, convert to int4</span><br><span class="line">create function to_uts(date varchar)</span><br><span class="line">returns int4 as $$</span><br><span class="line">begin</span><br><span class="line">    return extract(epoch from to_timestamp(date, &apos;yyyy-MM-dd&apos;));</span><br><span class="line">end;</span><br><span class="line">$$ language plpgsql</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -282,7 +282,7 @@
         <p><span>本文标题:</span><a href="/2017/06/19/postgres-timestamp-converter/">postgres时间戳转换工具</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">edolphin</a></p>
         <p><span>发布时间:</span>2017-06-19, 19:11:37</p>
-        <p><span>最后更新:</span>2017-06-19, 19:13:55</p>
+        <p><span>最后更新:</span>2017-06-20, 15:10:29</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/06/19/postgres-timestamp-converter/" title="postgres时间戳转换工具">http://edolphin.site/2017/06/19/postgres-timestamp-converter/</a>
             <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2017/06/19/postgres-timestamp-converter/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
