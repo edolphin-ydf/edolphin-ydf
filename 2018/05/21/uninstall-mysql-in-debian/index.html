@@ -3,27 +3,30 @@
 <head>
   <meta charset="utf-8">
   
-  <title>ubuntu搜狗输入法，idea下无法输入中文 | Server Not Down</title>
+  <title>Debian下彻底删除mysql | Server Not Down</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ubuntu下使用搜狗输入法，fcitx框架，所有地方都输入正常，唯独idea下无法输入中文
-解决：
-在IDEA的bin目录下的idea.sh文件的前面加上12export XMODIFIERS=@im=fcitxexport QT_IM_MODULE=fcitx
-重启idea，即可输入中文">
+  <meta name="description" content="参考文章：https://wangye.org/blog/archives/862/
+
+dpkg --get-selections | grep mysql 查看安装的与mysql相关的所有包
+sudo apt-get --purge remove mysql... 用上一步查询出来的结果 替换mysql… 依次删除每一个安装
+apt-get autoremove &amp;amp;&amp;amp; apt-g">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ubuntu搜狗输入法，idea下无法输入中文">
-<meta property="og:url" content="http://edolphin.site/2016/10/26/ubuntu-ieda-input-chinese/index.html">
+<meta property="og:title" content="Debian下彻底删除mysql">
+<meta property="og:url" content="http://edolphin.site/2018/05/21/uninstall-mysql-in-debian/index.html">
 <meta property="og:site_name" content="Server Not Down">
-<meta property="og:description" content="ubuntu下使用搜狗输入法，fcitx框架，所有地方都输入正常，唯独idea下无法输入中文
-解决：
-在IDEA的bin目录下的idea.sh文件的前面加上12export XMODIFIERS=@im=fcitxexport QT_IM_MODULE=fcitx
-重启idea，即可输入中文">
-<meta property="og:updated_time" content="2017-02-13T12:51:32.000Z">
+<meta property="og:description" content="参考文章：https://wangye.org/blog/archives/862/
+
+dpkg --get-selections | grep mysql 查看安装的与mysql相关的所有包
+sudo apt-get --purge remove mysql... 用上一步查询出来的结果 替换mysql… 依次删除每一个安装
+apt-get autoremove &amp;amp;&amp;amp; apt-g">
+<meta property="og:updated_time" content="2018-05-21T16:01:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ubuntu搜狗输入法，idea下无法输入中文">
-<meta name="twitter:description" content="ubuntu下使用搜狗输入法，fcitx框架，所有地方都输入正常，唯独idea下无法输入中文
-解决：
-在IDEA的bin目录下的idea.sh文件的前面加上12export XMODIFIERS=@im=fcitxexport QT_IM_MODULE=fcitx
-重启idea，即可输入中文">
+<meta name="twitter:title" content="Debian下彻底删除mysql">
+<meta name="twitter:description" content="参考文章：https://wangye.org/blog/archives/862/
+
+dpkg --get-selections | grep mysql 查看安装的与mysql相关的所有包
+sudo apt-get --purge remove mysql... 用上一步查询出来的结果 替换mysql… 依次删除每一个安装
+apt-get autoremove &amp;amp;&amp;amp; apt-g">
   
     <link rel="alternative" href="/atom.xml" title="Server Not Down" type="application/atom+xml">
   
@@ -237,11 +240,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-ubuntu-ieda-input-chinese" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-uninstall-mysql-in-debian" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/10/26/ubuntu-ieda-input-chinese/" class="article-date">
-      <time datetime="2016-10-26T07:28:39.000Z" itemprop="datePublished">2016-10-26</time>
+      <a href="/2018/05/21/uninstall-mysql-in-debian/" class="article-date">
+      <time datetime="2018-05-21T15:58:43.000Z" itemprop="datePublished">2018-05-21</time>
 </a>
     </div>
   
@@ -254,7 +257,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      ubuntu搜狗输入法，idea下无法输入中文
+      Debian下彻底删除mysql
     </h1>
   
 
@@ -264,10 +267,6 @@
         
 
         
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/misc/">misc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
-    </div>
-
         <div class="clearfix"></div>
       </div>
       
@@ -275,10 +274,15 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>ubuntu下使用搜狗输入法，fcitx框架，所有地方都输入正常，唯独idea下无法输入中文</p>
-<p>解决：</p>
-<p>在IDEA的bin目录下的idea.sh文件的前面加上<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> XMODIFIERS=@im=fcitx</span><br><span class="line"><span class="built_in">export</span> QT_IM_MODULE=fcitx</span><br></pre></td></tr></table></figure></p>
-<p>重启idea，即可输入中文</p>
+        <p>参考文章：<a href="https://wangye.org/blog/archives/862/" target="_blank" rel="external">https://wangye.org/blog/archives/862/</a></p>
+<ol>
+<li><code>dpkg --get-selections | grep mysql</code> 查看安装的与mysql相关的所有包</li>
+<li><code>sudo apt-get --purge remove mysql...</code> 用上一步查询出来的结果 替换mysql… 依次删除每一个安装</li>
+<li><code>apt-get autoremove &amp;&amp; apt-get autoclean</code> </li>
+<li><code>rm /etc/mysql/ -R</code></li>
+<li><code>rm /var/lib/mysql/ -R</code></li>
+</ol>
+<p>注意！！<br>以上， 会删除数据</p>
 
       
     </div>
@@ -287,13 +291,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/10/26/ubuntu-ieda-input-chinese/">ubuntu搜狗输入法，idea下无法输入中文</a></p>
+        <p><span>本文标题:</span><a href="/2018/05/21/uninstall-mysql-in-debian/">Debian下彻底删除mysql</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">edolphin</a></p>
-        <p><span>发布时间:</span>2016-10-26, 15:28:39</p>
-        <p><span>最后更新:</span>2017-02-13, 20:51:32</p>
+        <p><span>发布时间:</span>2018-05-21, 23:58:43</p>
+        <p><span>最后更新:</span>2018-05-22, 00:01:44</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/10/26/ubuntu-ieda-input-chinese/" title="ubuntu搜狗输入法，idea下无法输入中文">http://edolphin.site/2016/10/26/ubuntu-ieda-input-chinese/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2016/10/26/ubuntu-ieda-input-chinese/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/05/21/uninstall-mysql-in-debian/" title="Debian下彻底删除mysql">http://edolphin.site/2018/05/21/uninstall-mysql-in-debian/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2018/05/21/uninstall-mysql-in-debian/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -306,16 +310,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2017/02/09/learing-rvalue-start-with-an-requirement/">
-                    从一个需求出发理解rvalue
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/10/09/dubbo-basic/">
-                    dubbo基础和开发规范
+                <a href="/2018/05/18/golang-useful-repo/">
+                    有用而难找的golang库
                 </a>
             </div>
         
@@ -398,15 +396,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/02/09/learing-rvalue-start-with-an-requirement/" title="上一篇: 从一个需求出发理解rvalue">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/10/09/dubbo-basic/" title="下一篇: dubbo基础和开发规范">
+            <a href="/2018/05/18/golang-useful-repo/" title="下一篇: 有用而难找的golang库">
                 <i class="fa fa-angle-right"></i>
             </a>
         

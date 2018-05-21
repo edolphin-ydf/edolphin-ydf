@@ -231,6 +231,67 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-uninstall-mysql-in-debian" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/05/21/uninstall-mysql-in-debian/" class="article-date">
+      <time datetime="2018-05-21T15:58:43.000Z" itemprop="datePublished">2018-05-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/21/uninstall-mysql-in-debian/">Debian下彻底删除mysql</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>参考文章：<a href="https://wangye.org/blog/archives/862/" target="_blank" rel="external">https://wangye.org/blog/archives/862/</a></p>
+<ol>
+<li><code>dpkg --get-selections | grep mysql</code> 查看安装的与mysql相关的所有包</li>
+<li><code>sudo apt-get --purge remove mysql...</code> 用上一步查询出来的结果 替换mysql… 依次删除每一个安装</li>
+<li><code>apt-get autoremove &amp;&amp; apt-get autoclean</code> </li>
+<li><code>rm /etc/mysql/ -R</code></li>
+<li><code>rm /var/lib/mysql/ -R</code></li>
+</ol>
+<p>注意！！<br>以上， 会删除数据</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-golang-useful-repo" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -786,68 +847,6 @@
       
         <p class="article-more-link">
           <a href="/2017/03/06/read-redis-source-code-2/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-read-redis-source-code-1" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/03/06/read-redis-source-code-1/" class="article-date">
-      <time datetime="2017-03-06T12:06:44.000Z" itemprop="datePublished">2017-03-06</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/06/read-redis-source-code-1/">redis源码阅读1-开始</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>前段时间看到一篇文章说阅读源码，最好就是从那种麻雀虽小，五脏俱全的项目入手，作者又提到了redis就是这样一个开源项目。想想平时也有使用redis，那么久从它开始好了</p>
-<p>这一系列文章主要是自己的一个读书笔记，同时希望能一个较清晰的思路，从头开始阅读redis源码</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2017/03/06/read-redis-source-code-1/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
