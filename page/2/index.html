@@ -231,6 +231,77 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-order-lock" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/03/28/order-lock/" class="article-date">
+      <time datetime="2017-03-28T06:38:38.000Z" itemprop="datePublished">2017-03-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/03/28/order-lock/">订单锁</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>业务情况如下：<br>订单大致存在三处修改的地方，分别为</p>
+<ul>
+<li>下单</li>
+<li>分车</li>
+<li>订单状态流转</li>
+</ul>
+<p>前两处都涉及到车辆的分配，即库存<br>第三处，当订单失效时，涉及到已分配库存的回收</p>
+<p>所以，针对同一产品(线路) 的库存修改，必须保证原子性。原子性可用队列单线程，也可对产品库存加锁实现</p>
+<p>而因为一些原因，直接选择加锁。由于可能存在部署多个实例的情况，所以采用分布式锁</p>
+<p>本文的重点在于，锁的使用(即，在哪里，什么时候加锁)，而非分布式锁的实现。</p>
+<p>由于资源的复杂度远小于线路，所以后面只讨论购买一个线路的情况</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lock/">lock</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/transaction/">transaction</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2017/03/28/order-lock/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-read-redis-source-code-2" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -779,73 +850,6 @@
       
         <p class="article-more-link">
           <a href="/2016/08/10/mv-usr-dir-to-new-partition/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-git-flow" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/07/29/git-flow/" class="article-date">
-      <time datetime="2016-07-28T18:08:14.000Z" itemprop="datePublished">2016-07-29</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/29/git-flow/">git flow使用经验</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h1 id="分支构成"><a href="#分支构成" class="headerlink" title="分支构成"></a>分支构成</h1><ul>
-<li>master 与线上版本保持绝对一致</li>
-<li>develop 开发分支，由下文提到的release， feature， hotfix分支合并过后的代码</li>
-<li>feature 实际功能点开发分支，建议每个功能新建一个feature， 具有关联关系的功能公用一个feature分支</li>
-<li>release 每一次开发完成之后，从develop创建出来的分支</li>
-<li>hotfix 修复线上bug分支</li>
-</ul>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2016/07/29/git-flow/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>

@@ -231,6 +231,63 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-css-test" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/09/11/css-test/" class="article-date">
+      <time datetime="2018-09-11T10:58:49.000Z" itemprop="datePublished">2018-09-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/11/css-test/">css_test</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>this is a post for test css</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+        <p class="article-more-link">
+          <a href="/2018/09/11/css-test/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-delete-and-reset-root-in-mysql" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -792,77 +849,6 @@
       
 
       
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-order-lock" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/03/28/order-lock/" class="article-date">
-      <time datetime="2017-03-28T06:38:38.000Z" itemprop="datePublished">2017-03-28</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/28/order-lock/">订单锁</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>业务情况如下：<br>订单大致存在三处修改的地方，分别为</p>
-<ul>
-<li>下单</li>
-<li>分车</li>
-<li>订单状态流转</li>
-</ul>
-<p>前两处都涉及到车辆的分配，即库存<br>第三处，当订单失效时，涉及到已分配库存的回收</p>
-<p>所以，针对同一产品(线路) 的库存修改，必须保证原子性。原子性可用队列单线程，也可对产品库存加锁实现</p>
-<p>而因为一些原因，直接选择加锁。由于可能存在部署多个实例的情况，所以采用分布式锁</p>
-<p>本文的重点在于，锁的使用(即，在哪里，什么时候加锁)，而非分布式锁的实现。</p>
-<p>由于资源的复杂度远小于线路，所以后面只讨论购买一个线路的情况</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lock/">lock</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/transaction/">transaction</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2017/03/28/order-lock/#more">more >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
