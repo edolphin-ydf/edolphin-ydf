@@ -3,36 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>利用redis在集群的情况下生成全局唯一时间戳 | Server Not Down</title>
+  <title>golang库之sql/driver | Server Not Down</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="如题，需要保证两点：
-
-唯一
-原子操作
-
-当时间戳相同的情况下，需要对其做+1操作以保证唯一使用lua脚本保证原子操作
-12345678910local newTS = 0;if (redis.call(&apos;exists&apos;, KEYS[1]) == 1) then 	newTS = redis.call(&apos;get&apos;, KEYS[1]);endif (newTS &amp;lt; ARGV[1]) then">
+  <meta name="description" content="从这一篇开始, 先给自己挖个坑, 每周一个golang官方包, 敦促自己以不停地去深入学习和了解golang这门语言, 以及官方库的设计之道
+第一篇从database/sql/driver这个包说起">
 <meta property="og:type" content="article">
-<meta property="og:title" content="利用redis在集群的情况下生成全局唯一时间戳">
-<meta property="og:url" content="http://edolphin.site/2016/05/06/generate-increament-timestamp-with-redis/index.html">
+<meta property="og:title" content="golang库之sql/driver">
+<meta property="og:url" content="http://edolphin.site/2018/09/12/go-database-sql-driver/index.html">
 <meta property="og:site_name" content="Server Not Down">
-<meta property="og:description" content="如题，需要保证两点：
-
-唯一
-原子操作
-
-当时间戳相同的情况下，需要对其做+1操作以保证唯一使用lua脚本保证原子操作
-12345678910local newTS = 0;if (redis.call(&apos;exists&apos;, KEYS[1]) == 1) then 	newTS = redis.call(&apos;get&apos;, KEYS[1]);endif (newTS &amp;lt; ARGV[1]) then">
-<meta property="og:updated_time" content="2017-02-13T12:51:32.000Z">
+<meta property="og:description" content="从这一篇开始, 先给自己挖个坑, 每周一个golang官方包, 敦促自己以不停地去深入学习和了解golang这门语言, 以及官方库的设计之道
+第一篇从database/sql/driver这个包说起">
+<meta property="og:updated_time" content="2018-09-12T04:11:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="利用redis在集群的情况下生成全局唯一时间戳">
-<meta name="twitter:description" content="如题，需要保证两点：
-
-唯一
-原子操作
-
-当时间戳相同的情况下，需要对其做+1操作以保证唯一使用lua脚本保证原子操作
-12345678910local newTS = 0;if (redis.call(&apos;exists&apos;, KEYS[1]) == 1) then 	newTS = redis.call(&apos;get&apos;, KEYS[1]);endif (newTS &amp;lt; ARGV[1]) then">
+<meta name="twitter:title" content="golang库之sql/driver">
+<meta name="twitter:description" content="从这一篇开始, 先给自己挖个坑, 每周一个golang官方包, 敦促自己以不停地去深入学习和了解golang这门语言, 以及官方库的设计之道
+第一篇从database/sql/driver这个包说起">
   
     <link rel="alternative" href="/atom.xml" title="Server Not Down" type="application/atom+xml">
   
@@ -246,11 +231,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-generate-increament-timestamp-with-redis" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-go-database-sql-driver" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/05/06/generate-increament-timestamp-with-redis/" class="article-date">
-      <time datetime="2016-05-06T12:19:00.000Z" itemprop="datePublished">2016-05-06</time>
+      <a href="/2018/09/12/go-database-sql-driver/" class="article-date">
+      <time datetime="2018-09-12T01:24:55.000Z" itemprop="datePublished">2018-09-12</time>
 </a>
     </div>
   
@@ -263,7 +248,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      利用redis在集群的情况下生成全局唯一时间戳
+      golang库之sql/driver
     </h1>
   
 
@@ -274,7 +259,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lua/">lua</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/golang/">golang</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/">sql</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -284,14 +269,54 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>如题，需要保证两点：</p>
+        <p>从这一篇开始, 先给自己挖个坑, 每周一个golang官方包, 敦促自己以不停地去深入学习和了解golang这门语言, 以及官方库的设计之道</p>
+<p>第一篇从database/sql/driver这个包说起</p>
+<a id="more"></a>
+<h1 id="总述"><a href="#总述" class="headerlink" title="总述"></a>总述</h1><p>此包目的为: 用作各个数据来扩展, 写各自驱动的接口. 所以这个包里边基本都是interface</p>
+<h1 id="几大类"><a href="#几大类" class="headerlink" title="几大类"></a>几大类</h1><p>此包中, 存在如下几个主要类</p>
 <ul>
-<li>唯一</li>
-<li>原子操作</li>
+<li>Driver: 驱动</li>
+<li>Conn: 连接</li>
+<li>Stmt: </li>
+<li>Result: 执行结果</li>
+<li>Rows: 查询结果</li>
+<li>Tx: 事物控制</li>
 </ul>
-<p>当时间戳相同的情况下，需要对其做+1操作以保证唯一<br>使用lua脚本保证原子操作</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> newTS = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> (redis.call(<span class="string">'exists'</span>, KEYS[<span class="number">1</span>]) == <span class="number">1</span>) <span class="keyword">then</span> </span><br><span class="line">	newTS = redis.call(<span class="string">'get'</span>, KEYS[<span class="number">1</span>]);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">if</span> (newTS &lt; ARGV[<span class="number">1</span>]) <span class="keyword">then</span></span><br><span class="line">	newTS = ARGV[<span class="number">1</span>];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">newTS = newTS + <span class="number">1</span>;</span><br><span class="line">redis.call(<span class="string">'set'</span>, KEYS[<span class="number">1</span>], newTS);</span><br><span class="line"><span class="keyword">return</span> redis.call(<span class="string">'get'</span>, KEYS[<span class="number">1</span>]);</span><br></pre></td></tr></table></figure>
-<p>其中KEY[1]为保存时间戳的key， 可自定义任意值<br>ARGV[1] 为客户端本地取得的当前毫秒戳</p>
+<p>上面这几个, 如果开发中使用过数据库, 基本都应该会有影响, 它们之间的关系如下:</p>
+<p><code>Driver</code> 通过 <code>Open</code> 开启一个<code>Conn</code><br><code>Conn</code> 通过 <code>Prepare</code> 生成一个<code>Stmt</code><br><code>Stmt</code> 通过 <code>Exec</code> 执行一个Sql, 返回<code>Result</code><br><code>Stmt</code> 通过 <code>Query</code> 执行一个查询sql, 返回<code>Rows</code></p>
+<p><code>Conn</code> 通过 <code>Begin</code> 开启一个事物, 返回<code>Tx</code><br><code>Tx</code> 通过 <code>Commit</code>提交一个事物, <code>Rollback()</code> 回滚一个事物</p>
+<p>另外一些新接口, 例如<code>StmtQueryContext</code>, <code>StmtExecContext</code>等, 与上述中的<code>Exec</code>, <code>Query</code>方法类似, 只不过用到了<code>Context</code>, 以达到超时处理等效果.</p>
+<p>官方推荐使用新接口, 老接口将会废弃</p>
+<h2 id="Driver驱动"><a href="#Driver驱动" class="headerlink" title="Driver驱动"></a>Driver驱动</h2><p>Driver代表一个数据库的驱动, 是一个数据库客户端的入口, 其只有一个Open方法<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Open returns a new connection to the database.</span></span><br><span class="line"><span class="comment">// The name is a string in a driver-specific format.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Open may return a cached connection (one previously</span></span><br><span class="line"><span class="comment">// closed), but doing so is unnecessary; the sql package</span></span><br><span class="line"><span class="comment">// maintains a pool of idle connections for efficient re-use.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// The returned connection is only used by one goroutine at a</span></span><br><span class="line"><span class="comment">// time.</span></span><br><span class="line">Open(name <span class="keyword">string</span>) (Conn, error)</span><br></pre></td></tr></table></figure></p>
+<p>用作返回一个到数据库的连接<code>Conn</code>, 由于database/sql包中, 做了数据库连接池的工作, 所以这里只需要返回一个新的连接即可, 而不需要考虑缓存</p>
+<h2 id="Conn连接"><a href="#Conn连接" class="headerlink" title="Conn连接"></a>Conn连接</h2><p>Conn代表一个客户端到数据库的连接, 通过<code>Driver.Open</code>开启, 一个连接只能做三件事情, </p>
+<ul>
+<li>准备一个sql</li>
+<li>关闭</li>
+<li>开启事物</li>
+</ul>
+<p>分别对应其三个接口<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Prepare returns a prepared statement, bound to this connection.</span></span><br><span class="line">Prepare(query <span class="keyword">string</span>) (Stmt, error)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Close invalidates and potentially stops any current</span></span><br><span class="line"><span class="comment">// prepared statements and transactions, marking this</span></span><br><span class="line"><span class="comment">// connection as no longer in use.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Because the sql package maintains a free pool of</span></span><br><span class="line"><span class="comment">// connections and only calls Close when there's a surplus of</span></span><br><span class="line"><span class="comment">// idle connections, it shouldn't be necessary for drivers to</span></span><br><span class="line"><span class="comment">// do their own connection caching.</span></span><br><span class="line">Close() error</span><br><span class="line"></span><br><span class="line"><span class="comment">// Begin starts and returns a new transaction.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Deprecated: Drivers should implement ConnBeginTx instead (or additionally).</span></span><br><span class="line">Begin() (Tx, error)</span><br></pre></td></tr></table></figure></p>
+<p>其中Prepare准备一个sql, 返回<code>Stmt</code>, 为后续的执行和查询做准备, 并且会将<code>Stmt</code>与当前连接关联, 意味着, 当关闭连接的时候, 会先关闭关联的<code>Stmt</code></p>
+<p>连接关闭的时候, 由于database/sql包中做了数据库连接池的工作, 所以可以直接关闭连接, 不需要考虑缓存</p>
+<p><code>Begin</code>开启一个事物, 事物与当前连接关联, 意味着, 当关闭连接的时候, 会先关闭关联的事物, 此方法被标记位Deprecated, 除了不能使用Context控制以外,<br>此接口也没有提供事物隔离级别的选项(旧接口Begin使用数据库默认隔离级别, 且不允许只读), 所以有了新的接口<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ConnBeginTx enhances the Conn interface with context and TxOptions.</span></span><br><span class="line"><span class="keyword">type</span> ConnBeginTx <span class="keyword">interface</span> &#123;</span><br><span class="line">	<span class="comment">// BeginTx starts and returns a new transaction.</span></span><br><span class="line">	<span class="comment">// If the context is canceled by the user the sql package will</span></span><br><span class="line">	<span class="comment">// call Tx.Rollback before discarding and closing the connection.</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	<span class="comment">// This must check opts.Isolation to determine if there is a set</span></span><br><span class="line">	<span class="comment">// isolation level. If the driver does not support a non-default</span></span><br><span class="line">	<span class="comment">// level and one is set or if there is a non-default isolation level</span></span><br><span class="line">	<span class="comment">// that is not supported, an error must be returned.</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	<span class="comment">// This must also check opts.ReadOnly to determine if the read-only</span></span><br><span class="line">	<span class="comment">// value is true to either set the read-only transaction property if supported</span></span><br><span class="line">	<span class="comment">// or return an error if it is not supported.</span></span><br><span class="line">	BeginTx(ctx context.Context, opts TxOptions) (Tx, error)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>所以: 一个连接可以准备一个sql或开启一个事物并与连接关联, 当关闭连接的时候, 会先关闭与之关联的Stmt和事物</p>
+<h2 id="Stmt"><a href="#Stmt" class="headerlink" title="Stmt"></a>Stmt</h2><p>代表一个准备好的sql, 可以根据参数执行sql, 所以其可做以下事情</p>
+<ul>
+<li>执行</li>
+<li>查询</li>
+<li>关闭<br>因为执行和查询都支持参数, 而<code>Prepare</code>时会根据sql, 解析出其需要的参数个数, 所以Stmt还可以</li>
+<li>返回参数个数</li>
+</ul>
+<p>其接口如下<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Stmt is a prepared statement. It is bound to a Conn and not</span></span><br><span class="line"><span class="comment">// used by multiple goroutines concurrently.</span></span><br><span class="line"><span class="keyword">type</span> Stmt <span class="keyword">interface</span> &#123;</span><br><span class="line">	<span class="comment">// Close closes the statement.</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	<span class="comment">// As of Go 1.1, a Stmt will not be closed if it's in use</span></span><br><span class="line">	<span class="comment">// by any queries.</span></span><br><span class="line">	Close() error</span><br><span class="line"></span><br><span class="line">	<span class="comment">// NumInput returns the number of placeholder parameters.</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	<span class="comment">// If NumInput returns &gt;= 0, the sql package will sanity check</span></span><br><span class="line">	<span class="comment">// argument counts from callers and return errors to the caller</span></span><br><span class="line">	<span class="comment">// before the statement's Exec or Query methods are called.</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	<span class="comment">// NumInput may also return -1, if the driver doesn't know</span></span><br><span class="line">	<span class="comment">// its number of placeholders. In that case, the sql package</span></span><br><span class="line">	<span class="comment">// will not sanity check Exec or Query argument counts.</span></span><br><span class="line">	NumInput() <span class="keyword">int</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// Exec executes a query that doesn't return rows, such</span></span><br><span class="line">	<span class="comment">// as an INSERT or UPDATE.</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	<span class="comment">// Deprecated: Drivers should implement StmtExecContext instead (or additionally).</span></span><br><span class="line">	Exec(args []Value) (Result, error)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Query executes a query that may return rows, such as a</span></span><br><span class="line">	<span class="comment">// SELECT.</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	<span class="comment">// Deprecated: Drivers should implement StmtQueryContext instead (or additionally).</span></span><br><span class="line">	Query(args []Value) (Rows, error)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其中, NumInput用作获取sql中需要的参数个数, databas/sql包中, 会根据这个值来检查传入的参数数量是否正确</p>
+<p>Exec用于执行一个没有返回行的sql, eg: INSERT, UPDATE</p>
+<p>Query用于执行一个查询</p>
+<p>Exec和Query都被标记位Deprecated, 新接口增加Context, 使得外部可以取消操作, 新接口如下:<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">type</span> StmtExecContext <span class="keyword">interface</span> &#123;</span><br><span class="line">	<span class="comment">// ExecContext must honor the context timeout and return when it is canceled.</span></span><br><span class="line">	ExecContext(ctx context.Context, args []NamedValue) (Result, error)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> StmtQueryContext <span class="keyword">interface</span> &#123;</span><br><span class="line">	<span class="comment">// QueryContext must honor the context timeout and return when it is canceled.</span></span><br><span class="line">	QueryContext(ctx context.Context, args []NamedValue) (Rows, error)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Result-amp-Rows"><a href="#Result-amp-Rows" class="headerlink" title="Result &amp; Rows"></a>Result &amp; Rows</h2><p> 这两个没什么好说的, 一个返回执行结果, 一个返回查询的数据, 需要注意的是Row有Close方法, 使用完之后需要关闭</p>
+<h2 id="Tx"><a href="#Tx" class="headerlink" title="Tx"></a>Tx</h2><p><code>Tx</code> 用作控制事物的提交和回滚, 其接口如下</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Tx is a transaction.</span></span><br><span class="line"><span class="keyword">type</span> Tx <span class="keyword">interface</span> &#123;</span><br><span class="line">	Commit() error</span><br><span class="line">	Rollback() error</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对应到数据库的提交和回滚, 也没什么问题</p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>driver包主干也就这么多, 理清之后发现, 如果要做一个最简易的, fake驱动, 似乎也有些门道了</p>
 
       
     </div>
@@ -300,13 +325,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/05/06/generate-increament-timestamp-with-redis/">利用redis在集群的情况下生成全局唯一时间戳</a></p>
+        <p><span>本文标题:</span><a href="/2018/09/12/go-database-sql-driver/">golang库之sql/driver</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">edolphin</a></p>
-        <p><span>发布时间:</span>2016-05-06, 20:19:00</p>
-        <p><span>最后更新:</span>2017-02-13, 20:51:32</p>
+        <p><span>发布时间:</span>2018-09-12, 09:24:55</p>
+        <p><span>最后更新:</span>2018-09-12, 12:11:10</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/05/06/generate-increament-timestamp-with-redis/" title="利用redis在集群的情况下生成全局唯一时间戳">http://edolphin.site/2016/05/06/generate-increament-timestamp-with-redis/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2016/05/06/generate-increament-timestamp-with-redis/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/09/12/go-database-sql-driver/" title="golang库之sql/driver">http://edolphin.site/2018/09/12/go-database-sql-driver/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2018/09/12/go-database-sql-driver/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -319,16 +344,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/05/31/encrypt-test/">
-                    encrypt-test
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/05/06/java-extends-super/">
-                    java泛型中，extends和super
+                <a href="/2018/09/11/css-test/">
+                    css_test
                 </a>
             </div>
         
@@ -339,7 +358,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#总述"><span class="toc-number">1.</span> <span class="toc-text">总述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#几大类"><span class="toc-number">2.</span> <span class="toc-text">几大类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Driver驱动"><span class="toc-number">2.1.</span> <span class="toc-text">Driver驱动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conn连接"><span class="toc-number">2.2.</span> <span class="toc-text">Conn连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Stmt"><span class="toc-number">2.3.</span> <span class="toc-text">Stmt</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Result-amp-Rows"><span class="toc-number">2.4.</span> <span class="toc-text">Result & Rows</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tx"><span class="toc-number">2.5.</span> <span class="toc-text">Tx</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#最后"><span class="toc-number">3.</span> <span class="toc-text">最后</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -411,15 +430,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/05/31/encrypt-test/" title="上一篇: encrypt-test">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/05/06/java-extends-super/" title="下一篇: java泛型中，extends和super">
+            <a href="/2018/09/11/css-test/" title="下一篇: css_test">
                 <i class="fa fa-angle-right"></i>
             </a>
         
