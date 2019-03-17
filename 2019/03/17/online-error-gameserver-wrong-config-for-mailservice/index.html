@@ -31,7 +31,7 @@
 
 解决修正游戏服配置的邮件服务器地址, 观察一段时间后发现，服务稳定了, 所以连接超时应该是与配置有关
 分析理论上， 邮件">
-<meta property="og:updated_time" content="2019-03-17T11:56:53.000Z">
+<meta property="og:updated_time" content="2019-03-17T12:01:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="游戏服的邮件服务地址配置错误导致玩家卡住的问题分析">
 <meta name="twitter:description" content="现象游戏中的玩家卡住，无法进行操作
@@ -310,7 +310,10 @@
 <p>通过查看代码发现，使用grpc， 请求邮件接口的时候， <code>context</code>都是使用的<code>context.Background()</code>, 未使用超时配置(<code>context.WithTimeout(context.Background())</code>), 即连不上邮件服务器是不会有超时，会一直卡住</p>
 <p>但是，所有邮件接口的请求都是在玩家协程， 每个玩家一个协程， 按理说应该只是卡住玩家协程才对，为什么会影响所有人?</p>
 <p>如果一个玩家卡住， 则不会再消费消息，会导致玩家的消息缓冲队列满， 而网关转发到游戏服的新的消息， 无法再加入到卡住的玩家消息缓冲队列， 至此， 网关和游戏服连接卡住</p>
-<h1 id="进一步解决"><a href="#进一步解决" class="headerlink" title="进一步解决"></a>进一步解决</h1><p>游戏服调用邮件服务接口时， 要使用timeout</p>
+<h1 id="进一步解决"><a href="#进一步解决" class="headerlink" title="进一步解决"></a>进一步解决</h1><ul>
+<li>游戏服调用邮件服务接口时， 要使用timeout</li>
+<li>网关转发到游戏服的消息， 加入到玩家消息缓冲队列， 当队列满时要做失败处理(比如丢弃消息，并断开玩家连接)</li>
+</ul>
 
       
     </div>
@@ -322,7 +325,7 @@
         <p><span>本文标题:</span><a href="/2019/03/17/online-error-gameserver-wrong-config-for-mailservice/">游戏服的邮件服务地址配置错误导致玩家卡住的问题分析</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">edolphin</a></p>
         <p><span>发布时间:</span>2019-03-17, 19:40:28</p>
-        <p><span>最后更新:</span>2019-03-17, 19:56:53</p>
+        <p><span>最后更新:</span>2019-03-17, 20:01:13</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/03/17/online-error-gameserver-wrong-config-for-mailservice/" title="游戏服的邮件服务地址配置错误导致玩家卡住的问题分析">http://edolphin.site/2019/03/17/online-error-gameserver-wrong-config-for-mailservice/</a>
             <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2019/03/17/online-error-gameserver-wrong-config-for-mailservice/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
