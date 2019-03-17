@@ -3,24 +3,30 @@
 <head>
   <meta charset="utf-8">
   
-  <title>hexo目录及github管理 | Server Not Down</title>
+  <title>linux go too many open files问题记录 | Server Not Down</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="git submodule看名字就知道是什么东西了，在一个repo中添加另一个repo为字模块的命令，具体参考官方文档git submodule
-主要用到下面几个命令
-1234567添加一个字模块git submodule add &amp;lt;repo url&amp;gt;|&amp;lt;repo dir&amp;gt;从git clone之后，需要对字模块进行初始化，git submodule init并且clone字">
+  <meta name="description" content="现象服务器突然无法链接，所有用户都卡在登录界面，客户端确定为链接网关失败
+排查查看网关日志， 大量的 too many open files, 确定为连接数过多导致
+ulimit -a 查看系统配置， open files一项为1024，问题根源找到
+解决ulimit -n 10240 修改最大支持打开文件为10240， 重启网关
+cat /proc/$pid/limits 确认open file">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo目录及github管理">
-<meta property="og:url" content="http://edolphin.site/2016/03/31/hexo目录及github管理/index.html">
+<meta property="og:title" content="linux go too many open files问题记录">
+<meta property="og:url" content="http://edolphin.site/2019/03/17/online-error-linux-go-too-many-open-files/index.html">
 <meta property="og:site_name" content="Server Not Down">
-<meta property="og:description" content="git submodule看名字就知道是什么东西了，在一个repo中添加另一个repo为字模块的命令，具体参考官方文档git submodule
-主要用到下面几个命令
-1234567添加一个字模块git submodule add &amp;lt;repo url&amp;gt;|&amp;lt;repo dir&amp;gt;从git clone之后，需要对字模块进行初始化，git submodule init并且clone字">
-<meta property="og:updated_time" content="2017-02-13T12:51:32.000Z">
+<meta property="og:description" content="现象服务器突然无法链接，所有用户都卡在登录界面，客户端确定为链接网关失败
+排查查看网关日志， 大量的 too many open files, 确定为连接数过多导致
+ulimit -a 查看系统配置， open files一项为1024，问题根源找到
+解决ulimit -n 10240 修改最大支持打开文件为10240， 重启网关
+cat /proc/$pid/limits 确认open file">
+<meta property="og:updated_time" content="2019-03-17T11:29:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo目录及github管理">
-<meta name="twitter:description" content="git submodule看名字就知道是什么东西了，在一个repo中添加另一个repo为字模块的命令，具体参考官方文档git submodule
-主要用到下面几个命令
-1234567添加一个字模块git submodule add &amp;lt;repo url&amp;gt;|&amp;lt;repo dir&amp;gt;从git clone之后，需要对字模块进行初始化，git submodule init并且clone字">
+<meta name="twitter:title" content="linux go too many open files问题记录">
+<meta name="twitter:description" content="现象服务器突然无法链接，所有用户都卡在登录界面，客户端确定为链接网关失败
+排查查看网关日志， 大量的 too many open files, 确定为连接数过多导致
+ulimit -a 查看系统配置， open files一项为1024，问题根源找到
+解决ulimit -n 10240 修改最大支持打开文件为10240， 重启网关
+cat /proc/$pid/limits 确认open file">
   
     <link rel="alternative" href="/atom.xml" title="Server Not Down" type="application/atom+xml">
   
@@ -234,11 +240,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-hexo目录及github管理" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-online-error-linux-go-too-many-open-files" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/03/31/hexo目录及github管理/" class="article-date">
-      <time datetime="2016-03-31T00:06:12.000Z" itemprop="datePublished">2016-03-31</time>
+      <a href="/2019/03/17/online-error-linux-go-too-many-open-files/" class="article-date">
+      <time datetime="2019-03-17T11:07:57.000Z" itemprop="datePublished">2019-03-17</time>
 </a>
     </div>
   
@@ -251,7 +257,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      hexo目录及github管理
+      linux go too many open files问题记录
     </h1>
   
 
@@ -262,7 +268,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/online/">online</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/os/">os</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -272,26 +278,13 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="git-submodule"><a href="#git-submodule" class="headerlink" title="git submodule"></a>git submodule</h2><p>看名字就知道是什么东西了，在一个repo中添加另一个repo为字模块的命令，具体参考官方文档<br><a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E5%AD%90%E6%A8%A1%E5%9D%97" target="_blank" rel="external">git submodule</a></p>
-<p>主要用到下面几个命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">添加一个字模块</span><br><span class="line">git submodule add &lt;repo url&gt;|&lt;repo dir&gt;</span><br><span class="line"></span><br><span class="line">从git clone之后，需要对字模块进行初始化，</span><br><span class="line">git submodule init</span><br><span class="line">并且clone字模块的代码</span><br><span class="line">git submodule update</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<h2 id="blog-目录结构"><a href="#blog-目录结构" class="headerlink" title="blog 目录结构"></a>blog 目录结构</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">blog						 #1</span><br><span class="line">├── edolphin-ydf.github	 #2</span><br><span class="line">├─public						#3</span><br></pre></td></tr></table></figure>
-<ol>
-<li>1处存在一个repo， 用于存放整个由hexo init生成的目录</li>
-<li>2处存在一个repo， 对应github pages对应的repo 用于厨房由hexo generate生成的静态页面</li>
-<li>3处存在一个是由hexo generate 生成的文件的目录</li>
-</ol>
-<p>其中，2作为1的子模块</p>
-<p>由于涉及到两个repo，所以发布的时候，没有使用hexo的deploy命令, 而是一个简单的脚本实现</p>
-<p>commit.sh<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#进入到字模块提交</span></span><br><span class="line"><span class="built_in">cd</span> edolphin-ydf.github.io/</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"<span class="variable">$1</span>"</span></span><br><span class="line">git push</span><br><span class="line"><span class="built_in">cd</span> ../		<span class="comment">#返回到根目录</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#提交根目录</span></span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"<span class="variable">$1</span>"</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure></p>
-<p>deploy.sh<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo g  		<span class="comment">#发布前生成最文件</span></span><br><span class="line">cp -rf public/* edolphin-ydf.github.io/			<span class="comment">#拷贝最新的文件到字模块中</span></span><br><span class="line">./commit.sh <span class="string">"commit"</span>	<span class="comment">#调用commit脚本，因为博客的提交都很随意，所以这里提交信息也就写死为commit了</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="关于字模块一点注意"><a href="#关于字模块一点注意" class="headerlink" title="关于字模块一点注意"></a>关于字模块一点注意</h2><p>通过git clone blog, git submodule init, git submodule update 之后，字模块所在的分支是一个单独的分支，<br>需要使用git checkout master切换到主分支或者其他用到的分支上去</p>
-<hr>
-<h2 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h2><p>update:2016.4.1<br>华丽丽的被自己打脸了，感觉跟自己用的submodule不熟有很大关系，导致git总是出错，于是修改文件目录结构，以及不再使用submodule</p>
-<h4 id="修改后目录结构"><a href="#修改后目录结构" class="headerlink" title="修改后目录结构"></a>修改后目录结构</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">├──blog						 #1</span><br><span class="line">   ├─public						#3</span><br><span class="line">├─edolphin-ydf.github	 #2</span><br></pre></td></tr></table></figure>
-<p>这里将edolhpin-ydf.github.io目录上提, 与blog目录同级，相应的脚本修改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">commit.sh</span><br><span class="line">@@ -1,8 +1,8 @@</span><br><span class="line">-cd edolphin-ydf.github.io/</span><br><span class="line">+cd ../edolphin-ydf.github.io/</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;$1&quot;</span><br><span class="line">git push</span><br><span class="line">-cd ../</span><br><span class="line">+cd ../edolphin-blog</span><br><span class="line"></span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;$1&quot;</span><br><span class="line"></span><br><span class="line">deploy.sh</span><br><span class="line">@@ -1,3 +1,3 @@</span><br><span class="line">hexo g</span><br><span class="line">-cp -rf public/* edolphin-ydf.github.io/</span><br><span class="line">+cp -rf public/* ../edolphin-ydf.github.io/</span><br><span class="line">./commit.sh &quot;commit&quot;</span><br></pre></td></tr></table></figure></p>
-<p>而之前提到的git submodule什么的全都用不到了，clone项目时，也只需要分别clone两个repo就好了<br>不过我感觉总有一天，我还会再来折腾submodule的！！！</p>
+        <h1 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h1><p>服务器突然无法链接，所有用户都卡在登录界面，客户端确定为链接网关失败</p>
+<h1 id="排查"><a href="#排查" class="headerlink" title="排查"></a>排查</h1><p>查看网关日志， 大量的 too many open files, 确定为连接数过多导致</p>
+<p><code>ulimit -a</code> 查看系统配置， open files一项为1024，问题根源找到</p>
+<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p><code>ulimit -n 10240</code> 修改最大支持打开文件为10240， 重启网关</p>
+<p><code>cat /proc/$pid/limits</code> 确认open files一项已被修改为10240</p>
+<h1 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h1><p>每使用一台新服务器， 都应该查看<code>ulimit -a</code>各项参数最大值，并根据需求调整</p>
+<p>Gw2上的只为65535, Gw3为另一云服务商， 各个云服务商的默认配置不同，需要注意</p>
 
       
     </div>
@@ -300,13 +293,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/03/31/hexo目录及github管理/">hexo目录及github管理</a></p>
+        <p><span>本文标题:</span><a href="/2019/03/17/online-error-linux-go-too-many-open-files/">linux go too many open files问题记录</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">edolphin</a></p>
-        <p><span>发布时间:</span>2016-03-31, 08:06:12</p>
-        <p><span>最后更新:</span>2017-02-13, 20:51:32</p>
+        <p><span>发布时间:</span>2019-03-17, 19:07:57</p>
+        <p><span>最后更新:</span>2019-03-17, 19:29:18</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/03/31/hexo目录及github管理/" title="hexo目录及github管理">http://edolphin.site/2016/03/31/hexo目录及github管理/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2016/03/31/hexo目录及github管理/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/03/17/online-error-linux-go-too-many-open-files/" title="linux go too many open files问题记录">http://edolphin.site/2019/03/17/online-error-linux-go-too-many-open-files/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2019/03/17/online-error-linux-go-too-many-open-files/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -320,15 +313,15 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/03/31/vim-plugin-note/">
-                    vim_plugin_note
+                <a href="/2019/03/17/online-error-linux-hangup/">
+                    online-error-linux-hangup
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2016/03/31/maven版本管理/">
-                    maven版本管理
+                <a href="/2018/09/12/go-database-sql-driver/">
+                    golang库之sql/driver
                 </a>
             </div>
         
@@ -339,7 +332,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#git-submodule"><span class="toc-number">1.</span> <span class="toc-text">git submodule</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#blog-目录结构"><span class="toc-number">2.</span> <span class="toc-text">blog 目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于字模块一点注意"><span class="toc-number">3.</span> <span class="toc-text">关于字模块一点注意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分割线"><span class="toc-number">4.</span> <span class="toc-text">分割线</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#修改后目录结构"><span class="toc-number">4.0.1.</span> <span class="toc-text">修改后目录结构</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#现象"><span class="toc-number">1.</span> <span class="toc-text">现象</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#排查"><span class="toc-number">2.</span> <span class="toc-text">排查</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解决"><span class="toc-number">3.</span> <span class="toc-text">解决</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#备注"><span class="toc-number">4.</span> <span class="toc-text">备注</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -411,7 +404,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/03/31/vim-plugin-note/" title="上一篇: vim_plugin_note">
+            <a href="/2019/03/17/online-error-linux-hangup/" title="上一篇: online-error-linux-hangup">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -419,7 +412,7 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2016/03/31/maven版本管理/" title="下一篇: maven版本管理">
+            <a href="/2018/09/12/go-database-sql-driver/" title="下一篇: golang库之sql/driver">
                 <i class="fa fa-angle-right"></i>
             </a>
         
