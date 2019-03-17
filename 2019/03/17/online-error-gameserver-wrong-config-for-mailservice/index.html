@@ -12,10 +12,7 @@
 最初以为是两个问题， 
 
 连接超时(因为网关和游戏服跨公网)
-配置错误
-
-解决修正游戏服配置的邮件服务器地址, 观察一段时间后发现，服务稳定了, 所以连接超时应该是与配置有关
-分析理论上， 邮件">
+配置错误">
 <meta property="og:type" content="article">
 <meta property="og:title" content="游戏服的邮件服务地址配置错误导致玩家卡住的问题分析">
 <meta property="og:url" content="http://edolphin.site/2019/03/17/online-error-gameserver-wrong-config-for-mailservice/index.html">
@@ -27,11 +24,8 @@
 最初以为是两个问题， 
 
 连接超时(因为网关和游戏服跨公网)
-配置错误
-
-解决修正游戏服配置的邮件服务器地址, 观察一段时间后发现，服务稳定了, 所以连接超时应该是与配置有关
-分析理论上， 邮件">
-<meta property="og:updated_time" content="2019-03-17T12:01:13.000Z">
+配置错误">
+<meta property="og:updated_time" content="2019-03-17T12:02:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="游戏服的邮件服务地址配置错误导致玩家卡住的问题分析">
 <meta name="twitter:description" content="现象游戏中的玩家卡住，无法进行操作
@@ -41,10 +35,7 @@
 最初以为是两个问题， 
 
 连接超时(因为网关和游戏服跨公网)
-配置错误
-
-解决修正游戏服配置的邮件服务器地址, 观察一段时间后发现，服务稳定了, 所以连接超时应该是与配置有关
-分析理论上， 邮件">
+配置错误">
   
     <link rel="alternative" href="/atom.xml" title="Server Not Down" type="application/atom+xml">
   
@@ -305,6 +296,7 @@
 <li>连接超时(因为网关和游戏服跨公网)</li>
 <li>配置错误</li>
 </ul>
+<a id="more"></a>
 <h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>修正游戏服配置的邮件服务器地址, 观察一段时间后发现，服务稳定了, 所以连接超时应该是与配置有关</p>
 <h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>理论上， 邮件服连不上， 应该只会影响邮件系统才对， 为什么会导致玩家游戏卡住？</p>
 <p>通过查看代码发现，使用grpc， 请求邮件接口的时候， <code>context</code>都是使用的<code>context.Background()</code>, 未使用超时配置(<code>context.WithTimeout(context.Background())</code>), 即连不上邮件服务器是不会有超时，会一直卡住</p>
@@ -325,7 +317,7 @@
         <p><span>本文标题:</span><a href="/2019/03/17/online-error-gameserver-wrong-config-for-mailservice/">游戏服的邮件服务地址配置错误导致玩家卡住的问题分析</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">edolphin</a></p>
         <p><span>发布时间:</span>2019-03-17, 19:40:28</p>
-        <p><span>最后更新:</span>2019-03-17, 20:01:13</p>
+        <p><span>最后更新:</span>2019-03-17, 20:02:24</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/03/17/online-error-gameserver-wrong-config-for-mailservice/" title="游戏服的邮件服务地址配置错误导致玩家卡住的问题分析">http://edolphin.site/2019/03/17/online-error-gameserver-wrong-config-for-mailservice/</a>
             <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2019/03/17/online-error-gameserver-wrong-config-for-mailservice/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
