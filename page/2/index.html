@@ -153,7 +153,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/c/" style="font-size: 14px;">c</a> <a href="/tags/c/" style="font-size: 12px;">c++</a> <a href="/tags/cache/" style="font-size: 10px;">cache</a> <a href="/tags/cas/" style="font-size: 18px;">cas</a> <a href="/tags/cpp/" style="font-size: 10px;">cpp</a> <a href="/tags/dubbo/" style="font-size: 10px;">dubbo</a> <a href="/tags/encrypt/" style="font-size: 14px;">encrypt</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/hexo/" style="font-size: 16px;">hexo</a> <a href="/tags/hibernate/" style="font-size: 10px;">hibernate</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/jsonp/" style="font-size: 10px;">jsonp</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/lock/" style="font-size: 10px;">lock</a> <a href="/tags/lua/" style="font-size: 10px;">lua</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/misc/" style="font-size: 10px;">misc</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/postgres/" style="font-size: 10px;">postgres</a> <a href="/tags/redis/" style="font-size: 18px;">redis</a> <a href="/tags/rvalue/" style="font-size: 10px;">rvalue</a> <a href="/tags/serialize/" style="font-size: 10px;">serialize</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/spring-data-jpa/" style="font-size: 10px;">spring-data-jpa</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/sso/" style="font-size: 10px;">sso</a> <a href="/tags/transaction/" style="font-size: 10px;">transaction</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/ubuntu/" style="font-size: 12px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 14px;">vim</a> <a href="/tags/扩容/" style="font-size: 10px;">扩容</a> <a href="/tags/服务器/" style="font-size: 10px;">服务器</a>
+                        <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/c/" style="font-size: 14px;">c</a> <a href="/tags/c/" style="font-size: 12px;">c++</a> <a href="/tags/cache/" style="font-size: 10px;">cache</a> <a href="/tags/cas/" style="font-size: 18px;">cas</a> <a href="/tags/cpp/" style="font-size: 10px;">cpp</a> <a href="/tags/dubbo/" style="font-size: 10px;">dubbo</a> <a href="/tags/encrypt/" style="font-size: 14px;">encrypt</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/hexo/" style="font-size: 16px;">hexo</a> <a href="/tags/hibernate/" style="font-size: 10px;">hibernate</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/jsonp/" style="font-size: 10px;">jsonp</a> <a href="/tags/linux/" style="font-size: 12px;">linux</a> <a href="/tags/lock/" style="font-size: 10px;">lock</a> <a href="/tags/lua/" style="font-size: 10px;">lua</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/misc/" style="font-size: 10px;">misc</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/os/" style="font-size: 10px;">os</a> <a href="/tags/postgres/" style="font-size: 10px;">postgres</a> <a href="/tags/redis/" style="font-size: 18px;">redis</a> <a href="/tags/rvalue/" style="font-size: 10px;">rvalue</a> <a href="/tags/serialize/" style="font-size: 10px;">serialize</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/spring-data-jpa/" style="font-size: 10px;">spring-data-jpa</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/sso/" style="font-size: 10px;">sso</a> <a href="/tags/transaction/" style="font-size: 10px;">transaction</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/ubuntu/" style="font-size: 12px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 14px;">vim</a> <a href="/tags/扩容/" style="font-size: 10px;">扩容</a> <a href="/tags/服务器/" style="font-size: 10px;">服务器</a>
                     </div>
                 </section>
                 
@@ -230,6 +230,73 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-read-redis-source-code-3" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/04/22/read-redis-source-code-3/" class="article-date">
+      <time datetime="2017-04-22T11:42:44.000Z" itemprop="datePublished">2017-04-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/22/read-redis-source-code-3/">redis源码阅读3-AOF(Append Only File)</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>redis虽然是一个内存数据库，但是也存在着数据的持久化. 这一次就准备好好看看，一直以为神秘而又复杂的文件存储在redis中是如何高效实现的</p>
+<p>在redis中，存在着两种与持久化相关的方案</p>
+<ul>
+<li>RDB    存储某个时间点的完整备份</li>
+<li>AOF(Append only file)    存储修改数据的命令, 可以认为是增量日志, 存储格式即redis<a href="https://redis.io/topics/protocol">命令协议的格式</a></li>
+</ul>
+<p>RDB还没怎么看，所以先从AOF开始</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2017/04/22/read-redis-source-code-3/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-git-cheat-sheet" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -805,70 +872,9 @@
 
 
   
-    <article id="post-ajaxsso" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/09/22/ajaxsso/" class="article-date">
-      <time datetime="2016-09-22T03:32:59.000Z" itemprop="datePublished">2016-09-22</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/22/ajaxsso/">ajaxsso</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>单点登录修改为ajax请求</p>
-          
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ajax/">ajax</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cas/">cas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jsonp/">jsonp</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2016/09/22/ajaxsso/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 </div>
@@ -876,7 +882,7 @@
     <div class="outer">
         <div id="footer-info">
             <div class="footer-left">
-                &copy; 2018 edolphin
+                &copy; 2019 edolphin
             </div>
             <div class="footer-right">
                 <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE
