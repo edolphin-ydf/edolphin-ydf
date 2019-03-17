@@ -3,14 +3,30 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: jpa | Server Not Down</title>
+  <title>linux go too many open files问题记录 | Server Not Down</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Server Not Down">
-<meta property="og:url" content="http://edolphin.site/tags/jpa/index.html">
+  <meta name="description" content="现象服务器突然无法链接，所有用户都卡在登录界面，客户端确定为链接网关失败
+排查查看网关日志， 大量的 too many open files, 确定为连接数过多导致
+ulimit -a 查看系统配置， open files一项为1024，问题根源找到
+解决ulimit -n 10240 修改最大支持打开文件为10240， 重启网关
+cat /proc/$pid/limits 确认open file">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux go too many open files问题记录">
+<meta property="og:url" content="http://edolphin.site/2019/03/17/online-linux-go-too-many-open-files/index.html">
 <meta property="og:site_name" content="Server Not Down">
+<meta property="og:description" content="现象服务器突然无法链接，所有用户都卡在登录界面，客户端确定为链接网关失败
+排查查看网关日志， 大量的 too many open files, 确定为连接数过多导致
+ulimit -a 查看系统配置， open files一项为1024，问题根源找到
+解决ulimit -n 10240 修改最大支持打开文件为10240， 重启网关
+cat /proc/$pid/limits 确认open file">
+<meta property="og:updated_time" content="2019-03-17T11:29:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Server Not Down">
+<meta name="twitter:title" content="linux go too many open files问题记录">
+<meta name="twitter:description" content="现象服务器突然无法链接，所有用户都卡在登录界面，客户端确定为链接网关失败
+排查查看网关日志， 大量的 too many open files, 确定为连接数过多导致
+ulimit -a 查看系统配置， open files一项为1024，问题根源找到
+解决ulimit -n 10240 修改最大支持打开文件为10240， 重启网关
+cat /proc/$pid/limits 确认open file">
   
     <link rel="alternative" href="/atom.xml" title="Server Not Down" type="application/atom+xml">
   
@@ -39,9 +55,9 @@
           fancybox: true,
           animate: true,
           isHome: false,
-          isPost: false,
+          isPost: true,
           isArchive: false,
-          isTag: true,
+          isTag: false,
           isCategory: false,
           open_in_new: true,
       }
@@ -224,54 +240,192 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-online-linux-go-too-many-open-files" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2017/06/09/order-basic-optimization/" class="archive-article-date">
-      <time datetime="2017-06-09T02:36:35.000Z" itemprop="datePublished">06-09</time>
+    <div class="article-meta">
+      <a href="/2019/03/17/online-linux-go-too-many-open-files/" class="article-date">
+      <time datetime="2019-03-17T11:07:57.000Z" itemprop="datePublished">2019-03-17</time>
 </a>
-        </div>
-         
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/09/order-basic-optimization/">一波简单的订单优化</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      linux go too many open files问题记录
     </h1>
   
 
-        <div class="article-info info-on-archive">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 
-          
+        
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jpa/">jpa</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/online/">online</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/os/">os</a></li></ul>
     </div>
 
-        </div>
         <div class="clearfix"></div>
-    </header>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h1><p>服务器突然无法链接，所有用户都卡在登录界面，客户端确定为链接网关失败</p>
+<h1 id="排查"><a href="#排查" class="headerlink" title="排查"></a>排查</h1><p>查看网关日志， 大量的 too many open files, 确定为连接数过多导致</p>
+<p><code>ulimit -a</code> 查看系统配置， open files一项为1024，问题根源找到</p>
+<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p><code>ulimit -n 10240</code> 修改最大支持打开文件为10240， 重启网关</p>
+<p><code>cat /proc/$pid/limits</code> 确认open files一项已被修改为10240</p>
+<h1 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h1><p>每使用一台新服务器， 都应该查看<code>ulimit -a</code>各项参数最大值，并根据需求调整</p>
+<p>Gw2上的只为65535, Gw3为另一云服务商， 各个云服务商的默认配置不同，需要注意</p>
+
+      
+    </div>
+    
   </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/03/17/online-linux-go-too-many-open-files/">linux go too many open files问题记录</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">edolphin</a></p>
+        <p><span>发布时间:</span>2019-03-17, 19:07:57</p>
+        <p><span>最后更新:</span>2019-03-17, 19:29:18</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/03/17/online-linux-go-too-many-open-files/" title="linux go too many open files问题记录">http://edolphin.site/2019/03/17/online-linux-go-too-many-open-files/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2019/03/17/online-linux-go-too-many-open-files/　　作者: edolphin" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2019/03/17/online-error-linux-hangup/">
+                    online-error-linux-hangup
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2018/09/12/go-database-sql-driver/">
+                    golang库之sql/driver
+                </a>
+            </div>
+        
+    </nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#现象"><span class="toc-number">1.</span> <span class="toc-text">现象</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#排查"><span class="toc-number">2.</span> <span class="toc-text">排查</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解决"><span class="toc-number">3.</span> <span class="toc-text">解决</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#备注"><span class="toc-number">4.</span> <span class="toc-text">备注</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+    <div class="share">
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+    <a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+    <a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+    </div>
+    <script>
+        window._bd_share_config={
+            "common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+</div>
+
+
+
+    
+        <section class="youyan" id="comments">
+  <div id="uyan_frame"></div>
+  <script src="http://v2.uyan.cc/code/uyan.js?uid=2092308"></script>
+</section>
 
     
 
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2019/03/17/online-error-linux-hangup/" title="上一篇: online-error-linux-hangup">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2018/09/12/go-database-sql-driver/" title="下一篇: golang库之sql/driver">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/03/17/online-error-linux-hangup/">online-error-linux-hangup</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/17/online-linux-go-too-many-open-files/">linux go too many open files问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/12/go-database-sql-driver/">golang库之sql/driver</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/11/css-test/">css_test</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/23/delete-and-reset-root-in-mysql/">Mysql能在root环境下,通过root账户登陆,却不能在其他用户环境下通过root账户登陆解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/21/uninstall-mysql-in-debian/">Debian下彻底删除mysql</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/18/golang-useful-repo/">有用而难找的golang库</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/19/postgres-timestamp-converter/">postgres时间戳转换工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/19/shell-script-auto-password/">shell下使用脚本自动填充密码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/09/order-basic-optimization/">一波简单的订单优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/18/enable-hibernate-second-level-cache-with-hibernate-redis-in-spring-data-jpa/">spring data jpa + hibernate + redis二级缓存</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/22/read-redis-source-code-3/">redis源码阅读3-AOF(Append Only File)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/05/git-cheat-sheet/">git-cheat-sheet</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/28/order-lock/">订单锁</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/06/read-redis-source-code-2/">redis源码阅读2-线程模型和event-loop</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/06/read-redis-source-code-1/">redis源码阅读1-开始</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/26/总结/">总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/09/learing-rvalue-start-with-an-requirement/">从一个需求出发理解rvalue</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/26/ubuntu-ieda-input-chinese/">ubuntu搜狗输入法，idea下无法输入中文</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/09/dubbo-basic/">dubbo基础和开发规范</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/30/hessian2-vs-fst/">hessian2 vs fst bytecode</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/22/ajaxsso/">ajaxsso</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/10/mv-usr-dir-to-new-partition/">迁移/usr目录到新的分区</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/29/git-flow/">git flow使用经验</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/12/cas-faq/">cas-循环重定向</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/01/cas-single-sign-out/">cas+shiro单点登出的坑</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/03/迁儿/">1</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/03/TodoList/">TodoList</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/01/608重庆武隆/">608重庆武隆</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/31/encrypt-post/">加密博客内容，使用密码访问</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/31/encrypt-test/">encrypt-test</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/generate-increament-timestamp-with-redis/">利用redis在集群的情况下生成全局唯一时间戳</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/java-extends-super/">java泛型中，extends和super</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/cas-user-auth-flow/">cas单点登录用户认证流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/cas-login-flow/">cas单点登录基本流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/flowcharttest/">flowcharttest</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/01/vim-build-in-ubuntu/">build vim in ubuntu and os x with lua, python, clientserver feature</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/01/write-blog-with-vim/">在windows下通过xshell连接ubuntu写blog</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/vim-plugin-note/">vim_plugin_note</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/hexo目录及github管理/">hexo目录及github管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/maven版本管理/">maven版本管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/30/rpc-design-and-implement/">Rpc的设计与实现</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
