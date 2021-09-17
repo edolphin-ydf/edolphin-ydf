@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="default">
+<head>
+  <meta charset="utf-8">
+  
+  <title>encrypt-test | Server Not Down</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="the follow content will be encrypted!!~ there exist the more tag, so, in home page, the content before more will not be encrypted">
+<meta property="og:type" content="article">
+<meta property="og:title" content="encrypt-test">
+<meta property="og:url" content="http://edolphin.site/2016/05/31/encrypt-test/index.html">
+<meta property="og:site_name" content="Server Not Down">
+<meta property="og:description" content="the follow content will be encrypted!!~ there exist the more tag, so, in home page, the content before more will not be encrypted">
+<meta property="og:locale">
+<meta property="article:published_time" content="2016-05-30T18:38:54.000Z">
+<meta property="article:modified_time" content="2021-09-17T03:07:53.232Z">
+<meta property="article:author" content="edolphin">
+<meta property="article:tag" content="encrypt">
+<meta property="article:tag" content="hexo">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="Server Not Down" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+      
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+
+  
+  
+  
+      <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+      <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+  
+<script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: true,
+      }
+  </script>
+
+  
+      <script>
+          yiliaConfig.rootUrl = "/";
+      </script>
+  
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar2.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">undefined</a></h1>
+        </hgroup>
+
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <li id="Email"><a class="Email" target="_blank" href="mailto:shisanbihua@@126.com" title="Email"></a></li>
+                            
+                                <li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/edolphin-ydf" title="GitHub"></a></li>
+                            
+                                <li id="RSS"><a class="RSS" target="_blank" href="/atom.xml" title="RSS"></a></li>
+                            
+                                <li id="Google"><a class="Google" target="_blank" href="https://plus.google.com/115713498639892832391" title="Google"></a></li>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/ajax/" style="font-size: 10px;">ajax</a> <a href="/tags/c/" style="font-size: 14px;">c</a> <a href="/tags/c/" style="font-size: 12px;">c++</a> <a href="/tags/cache/" style="font-size: 10px;">cache</a> <a href="/tags/cas/" style="font-size: 18px;">cas</a> <a href="/tags/cpp/" style="font-size: 10px;">cpp</a> <a href="/tags/dubbo/" style="font-size: 10px;">dubbo</a> <a href="/tags/encrypt/" style="font-size: 14px;">encrypt</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/golang/" style="font-size: 10px;">golang</a> <a href="/tags/hangup/" style="font-size: 10px;">hangup</a> <a href="/tags/hexo/" style="font-size: 16px;">hexo</a> <a href="/tags/hibernate/" style="font-size: 10px;">hibernate</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/jsonp/" style="font-size: 10px;">jsonp</a> <a href="/tags/linux/" style="font-size: 12px;">linux</a> <a href="/tags/lock/" style="font-size: 10px;">lock</a> <a href="/tags/lua/" style="font-size: 10px;">lua</a> <a href="/tags/maven/" style="font-size: 10px;">maven</a> <a href="/tags/misc/" style="font-size: 10px;">misc</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/online/" style="font-size: 16px;">online</a> <a href="/tags/os/" style="font-size: 10px;">os</a> <a href="/tags/postgres/" style="font-size: 10px;">postgres</a> <a href="/tags/redis/" style="font-size: 18px;">redis</a> <a href="/tags/rvalue/" style="font-size: 10px;">rvalue</a> <a href="/tags/serialize/" style="font-size: 10px;">serialize</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/spring-data-jpa/" style="font-size: 10px;">spring-data-jpa</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/sso/" style="font-size: 10px;">sso</a> <a href="/tags/transaction/" style="font-size: 10px;">transaction</a> <a href="/tags/travel/" style="font-size: 10px;">travel</a> <a href="/tags/ubuntu/" style="font-size: 12px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 14px;">vim</a> <a href="/tags/%E6%89%A9%E5%AE%B9/" style="font-size: 10px;">扩容</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">服务器</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">服务器不宕机</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">undefined</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar2.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">undefined</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <li id="Email"><a class="Email" target="_blank" href="mailto:shisanbihua@@126.com" title="Email"></a></li>
+                            
+                                <li id="GitHub"><a class="GitHub" target="_blank" href="https://github.com/edolphin-ydf" title="GitHub"></a></li>
+                            
+                                <li id="RSS"><a class="RSS" target="_blank" href="/atom.xml" title="RSS"></a></li>
+                            
+                                <li id="Google"><a class="Google" target="_blank" href="https://plus.google.com/115713498639892832391" title="Google"></a></li>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-encrypt-test" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/31/encrypt-test/" class="article-date">
+      <time datetime="2016-05-30T18:38:54.000Z" itemprop="datePublished">2016-05-31</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      encrypt-test
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/encrypt/" rel="tag">encrypt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <script src=/js/crypto-js.js></script>
+<script>
+function doDecrypt (pwd, onError) {
+	console.log('in doDecrypt');
+	const txt = document.getElementById('enc_content').innerHTML;
+	let plantext;
+	try {
+		const bytes = CryptoJS.AES.decrypt(txt, pwd);
+		var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+	} catch(err) {
+		if(onError) {
+			onError(err);
+		}
+		return;
+	}
+	document.getElementById('enc_content').innerHTML = plaintext;
+	document.getElementById('enc_content').style.display = 'block';
+	document.getElementById('enc_passwd').style.display = 'none';
+	if(typeof MathJax !== 'undefined') {
+		MathJax.Hub.Queue(
+			['resetEquationNumbers', MathJax.InputJax.TeX],
+			['PreProcess', MathJax.Hub],
+			['Reprocess', MathJax.Hub]
+		);
+	}
+}
+</script>
+<div id="enc_content" style="display:none">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</div>
+<div id="enc_passwd"> <input type="text" style=" border-radius: 5px; border-style: groove; height: 30px; width: 50%; cursor: auto; font-size: 102%; color: currentColor; outline: none; text-overflow: initial; padding-left: 5px;" onkeydown="if (event.keyCode == 13) { decrypt(); return false;}">  <input type="submit" value="解&nbsp;密" onclick="decrypt()" style=" width: 58px; height: 34px; border-radius: 5px; background-color: white; border-style: solid; color: currentColor; "> <div id="enc_error" style=" display: inline-block; color: #d84527; font: large; "></div> <script> var onError = function(error) { $("#enc_error")[0].innerHTML = "password error!"; }; function decrypt() { var passwd = $("#enc_passwd input")[0].value; doDecrypt(passwd, onError); }; </script></div>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/05/31/encrypt-test/">encrypt-test</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">undefined</a></p>
+        <p><span>发布时间:</span>2016-05-31, 02:38:54</p>
+        <p><span>最后更新:</span>2021-09-17, 11:07:53</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/05/31/encrypt-test/" title="encrypt-test">http://edolphin.site/2016/05/31/encrypt-test/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://edolphin.site/2016/05/31/encrypt-test/　　作者: undefined" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2016/05/31/encrypt-post/">
+                    加密博客内容，使用密码访问
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/05/06/generate-increament-timestamp-with-redis/">
+                    利用redis在集群的情况下生成全局唯一时间戳
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+    <div class="share">
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+    <a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+    <a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+    </div>
+    <script>
+        window._bd_share_config={
+            "common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+</div>
+
+
+
+    
+        <section class="youyan" id="comments">
+  <div id="uyan_frame"></div>
+  <script src="http://v2.uyan.cc/code/uyan.js?uid=2092308"></script>
+</section>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/05/31/encrypt-post/" title="上一篇: 加密博客内容，使用密码访问">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/05/06/generate-increament-timestamp-with-redis/" title="下一篇: 利用redis在集群的情况下生成全局唯一时间戳">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/04/04/use-fail2ban-to-dynamic-block-ip/">使用fail2ban动态禁用非法ip</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/25/online-error-gem-data-type-is-0/">online-error-gem-data-type-is-0</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/17/online-error-gameserver-wrong-config-for-mailservice/">游戏服的邮件服务地址配置错误导致玩家卡住的问题分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/17/online-error-linux-hangup/">online-error-linux-hangup</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/17/online-error-linux-go-too-many-open-files/">linux go too many open files问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/12/go-database-sql-driver/">golang库之sql/driver</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/11/css-test/">css_test</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/23/delete-and-reset-root-in-mysql/">Mysql能在root环境下,通过root账户登陆,却不能在其他用户环境下通过root账户登陆解决办法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/21/uninstall-mysql-in-debian/">Debian下彻底删除mysql</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/18/golang-useful-repo/">有用而难找的golang库</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/19/postgres-timestamp-converter/">postgres时间戳转换工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/19/shell-script-auto-password/">shell下使用脚本自动填充密码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/09/order-basic-optimization/">一波简单的订单优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/18/enable-hibernate-second-level-cache-with-hibernate-redis-in-spring-data-jpa/">spring data jpa + hibernate + redis二级缓存</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/22/read-redis-source-code-3/">redis源码阅读3-AOF(Append Only File)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/05/git-cheat-sheet/">git-cheat-sheet</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/28/order-lock/">订单锁</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/06/read-redis-source-code-2/">redis源码阅读2-线程模型和event-loop</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/06/read-redis-source-code-1/">redis源码阅读1-开始</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/26/%E6%80%BB%E7%BB%93/">总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/09/learing-rvalue-start-with-an-requirement/">从一个需求出发理解rvalue</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/26/ubuntu-ieda-input-chinese/">ubuntu搜狗输入法，idea下无法输入中文</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/09/dubbo-basic/">dubbo基础和开发规范</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/30/hessian2-vs-fst/">hessian2 vs fst bytecode</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/22/ajaxsso/">ajaxsso</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/10/mv-usr-dir-to-new-partition/">迁移/usr目录到新的分区</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/29/git-flow/">git flow使用经验</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/12/cas-faq/">cas-循环重定向</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/01/cas-single-sign-out/">cas+shiro单点登出的坑</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/03/%E8%BF%81%E5%84%BF/">1</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/03/TodoList/">TodoList</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/01/608%E9%87%8D%E5%BA%86%E6%AD%A6%E9%9A%86/">608重庆武隆</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/31/encrypt-post/">加密博客内容，使用密码访问</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/31/encrypt-test/">encrypt-test</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/generate-increament-timestamp-with-redis/">利用redis在集群的情况下生成全局唯一时间戳</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/06/java-extends-super/">java泛型中，extends和super</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/cas-user-auth-flow/">cas单点登录用户认证流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/cas-login-flow/">cas单点登录基本流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/14/flowcharttest/">flowcharttest</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/01/vim-build-in-ubuntu/">build vim in ubuntu and os x with lua, python, clientserver feature</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/01/write-blog-with-vim/">在windows下通过xshell连接ubuntu写blog</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/vim-plugin-note/">vim_plugin_note</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/hexo%E7%9B%AE%E5%BD%95%E5%8F%8Agithub%E7%AE%A1%E7%90%86/">hexo目录及github管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/31/maven%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/">maven版本管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/30/rpc-design-and-implement/">Rpc的设计与实现</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2021 edolphin
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script src="http://cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+<script src="/js/mobile.js"></script>
+<script src="/js/pc.js"></script>
+<script src="/fancybox/jquery.fancybox.js"></script>
+<script src="/js/jquery.lazyload.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-78763240-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+
+<script src="/js/raphael.js"></script>
+
+
+<script src="/js/underscore.js"></script>
+
+
+<script src="/js/sequence-diagram.js"></script>
+
+
+<script src="/js/flowchart.js"></script>
+
+
+<!-- Chart Render -->
+<script type="text/javascript">
+  $(".sequence").sequenceDiagram({theme: 'simple'});
+  var flowCount = 0;
+  $(".flow").each(function() {
+      var el = $(this);
+      el.hide();
+      el.after('<div id="flow-' + flowCount + '"></div>');
+      var chart = flowchart.parse(el.text());
+      chart.drawSVG('flow-' + flowCount, {
+                      // 'x': 30,
+                      // 'y': 50,
+                      'line-width': 3,
+                      'line-length': 50,
+                      'text-margin': 10,
+                      'font-size': 14,
+                      'font': 'normal',
+                      'font-family': 'Helvetica',
+                      'font-weight': 'normal',
+                      'font-color': 'black',
+                      'line-color': 'black',
+                      'element-color': 'black',
+                      'fill': 'white',
+                      'yes-text': 'yes',
+                      'no-text': 'no',
+                      'arrow-end': 'block',
+                      'scale': 1,
+                      'symbols': {
+                        'start': {
+                          'font-color': 'red',
+                          'element-color': 'green',
+                          'fill': 'yellow'
+                        },
+                        'end':{
+                          'class': 'end-element'
+                        }
+                      },
+                      'flowstate' : {
+                        'past' : { 'fill' : '#CCCCCC', 'font-size' : 12},
+                        'current' : {'fill' : 'yellow', 'font-color' : 'red', 'font-weight' : 'bold'},
+                        'future' : { 'fill' : '#FFFF99'},
+                        'request' : { 'fill' : 'blue'},
+                        'invalid': {'fill' : '#444444'},
+                        'approved' : { 'fill' : '#58C4A3', 'font-size' : 12, 'yes-text' : 'APPROVED', 'no-text' : 'n/a' },
+                        'rejected' : { 'fill' : '#C45879', 'font-size' : 12, 'yes-text' : 'n/a', 'no-text' : 'REJECTED' }
+                      }
+				});
+      flowCount++;
+  });
+</script>
+<!-- End Chart Render -->
+
+
+
+
+  </div>
+</body>
+</html>
